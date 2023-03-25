@@ -1,0 +1,47 @@
+
+h1{
+    text-align: center;
+    color: #B46060;
+    border-bottom: 3px  solid #4D4D4D;
+    border-style: double;
+ }
+
+    .form-group {
+        margin-top: 2%;
+        margin-left: 10%;
+        color: #4D4D4D;
+        margin-bottom: 1rem;
+      }
+      
+      label {
+        font-weight: bold;
+      }
+      
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"] {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #4D4D4D;
+        background-color: #f0e6e6;
+        background-clip: padding-box;
+        border: 1px solid #B46060;
+        border-radius: 0.25rem;
+      }
+      
+      input[type="file"] {
+        
+        margin-top: 0.25rem;
+        
+
+      }
+      
+      button[type="submit"] {
+        border-radius: 0.3rem;
+        width: 5rem;
+        margin-top: 1rem;
+        margin-left: 19%;
+        background-color: #B46060;
+        color:#4D4D4D; 
+        font-size: 1.3rem;
+      }

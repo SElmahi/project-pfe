@@ -1,0 +1,127 @@
+<style>
+    :host {
+    font-weight: bold;
+    color: #cfc3c3;
+    
+  }
+  .footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45px;
+  background-color: #4D4D4D;
+  align-items: center;
+  text-align: end;
+
+}
+  
+.toolbar {
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    background-color: #B46060;
+  }
+ .toolbar ul {
+    font: italic 1.2em "Fira Sans", serif;
+    list-style: none;
+    font-size: 14px;
+    display: flex;
+    
+ } 
+ .toolbar li {
+    margin-right: 1em;
+    
+ }
+ .toolbar a {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #4D4D4D;
+    font-weight: bold;
+    transition: all 0.5s ease-in-out;
+ }
+ .toolbar a:hover{
+    color: #FFF4E0;
+ }
+ .toolbar a:active{
+    color:#FFF4E0 ;
+ }
+
+ h1{
+    font-size: 60px;
+    color:#FFF4E0;
+    text-align: center;
+ }
+ .photo{
+    background-image:url('assets/image/conference.jpg');
+    margin-top: 5.5%;
+    margin-left: 1%;
+    margin-right: 1%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+.logo{
+    justify-content: center;
+    width: 9% ;
+   
+    margin: 2%;
+   
+}
+ 
+</style>
+<nav class="toolbar" > 
+    <div >
+     <img class="logo" [src]="logoMenu" alt="logo" >
+
+     
+    </div> 
+     <div>    <span>2023</span></div>
+
+<div>
+   <ul>
+    <li>
+        <a href="/about">About</a>
+    </li>
+    <li>
+        <a href="/committees">Committees</a>
+    </li>
+    <li>
+        <a href="/important-dates">ImportantDates</a>
+    </li>
+    <li>
+        <a href="/call-for-papers">CallForPapers</a>
+    </li>
+    <li>
+        <a href="/submit">Submit</a>
+    </li>
+    <li>
+        <a href="/register">Register</a>
+    </li>
+    <li>
+        <a href="/publication-index">PublicationIndex</a>
+    </li>
+   </ul>
+</div>
+</nav>
+
+
+
+<div  class="photo" >  
+    <h1>{{title}}</h1>
+</div>
+
+
+
+<div class="footer">
+    <div></div>
+    <span style="margin-right: 3%;">{{contact}}</span>
+</div>
+

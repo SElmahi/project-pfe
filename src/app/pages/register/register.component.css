@@ -1,0 +1,24 @@
+
+h1{
+    text-align: center;
+    color: #B46060;
+    border-bottom: 3px  solid #4D4D4D;
+    border-style: double;
+ }
+ table {
+    margin-left: 5%;
+    color: #4D4D4D;
+    border-collapse: collapse;
+    width: 30%;
+  }
+  
+  th, td {
+    border: 1px solid #4D4D4D;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #FFBF9B;
+  }
+  
