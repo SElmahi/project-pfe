@@ -4,14 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './pages/about/about.component';
-import { CommitteesComponent } from './committees/committees.component';
-import { ImportantDatesComponent } from './important-dates/important-dates.component';
-import { CallForPapersComponent } from './call-for-papers/call-for-papers.component';
-import { RegisterComponent } from './register/register.component';
-import { PublicationIndexComponent } from './publication-index/publication-index.component';
-import { AdminComponent } from './admin/admin.component';
-import { HeaderComponent } from './header/header.component';
-import { SubmitComponent } from './submit/submit.component';
+import { CommitteesComponent } from './pages/committees/committees.component';
+import { ImportantDatesComponent } from './pages/important-dates/important-dates.component';
+import { CallForPapersComponent } from './pages/call-for-papers/call-for-papers.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { PublicationIndexComponent } from './pages/publication-index/publication-index.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { HeaderComponent } from './pages/header/header.component';
+import { SubmitComponent } from './pages/submit/submit.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { AboutService } from './services/about.service';
+
 
 
 @NgModule({
@@ -25,13 +28,14 @@ import { SubmitComponent } from './submit/submit.component';
     PublicationIndexComponent,
     AdminComponent,
     HeaderComponent,
-    SubmitComponent
+    SubmitComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CKEditorModule
   ],
-  providers: [],
+  providers: [AboutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,26 @@
+.position {
+    text-align: center;
+    font-size: 1.6rem;
+    margin:5%;
+    color:#4D4D4D;
+}
+input[type="submit"] {
+    border-radius: 0.3rem;
+    
+    
+    margin-left: 10%;
+    background-color: #B46060;
+    color:#4D4D4D; 
+    
+  }
+  input[type="text"],
+      input[type="password"]
+       {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #4D4D4D;
+        background-color: #f0e6e6;
+        background-clip: padding-box;
+        border: 1px solid #B46060;
+        border-radius: 0.25rem;
+      }
