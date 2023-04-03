@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PageServiceService } from 'src/app/services/page-service.service';
 
 @Component({
   selector: 'app-header',
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  title="The 1st National Conference on Computer Science and Artificial Intelligence (NCCSAI 2023)";
+  content:any
   logoMenu:string = 'assets/image/logo.jpg';
-  contact="contact"
+
+  constructor(private pageServiceService:PageServiceService){
+
+  }
+  ngOnInit(): void {
+    this.content = this.pageServiceService.getHeaderPage()
+   
+  }
+
 }

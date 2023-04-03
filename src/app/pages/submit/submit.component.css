@@ -1,7 +1,7 @@
 
 h1{
     text-align: center;
-    color: #B46060;
+    color: #0A2647;
     border-bottom: 3px  solid #4D4D4D;
     border-style: double;
  }
@@ -22,10 +22,10 @@ h1{
       input[type="tel"] {
         font-size: 1rem;
         line-height: 1.5;
-        color: #4D4D4D;
+        color: #0A2647;
         background-color: #f0e6e6;
         background-clip: padding-box;
-        border: 1px solid #B46060;
+        border: 1px solid #0A2647;
         border-radius: 0.25rem;
       }
       
@@ -41,7 +41,7 @@ h1{
         width: 5rem;
         margin-top: 1rem;
         margin-left: 19%;
-        background-color: #B46060;
+        background-color: #0A2647;
         color:#4D4D4D; 
         font-size: 1.3rem;
       }

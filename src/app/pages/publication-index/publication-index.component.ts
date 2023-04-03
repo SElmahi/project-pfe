@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PageServiceService } from 'src/app/services/page-service.service';
 
 @Component({
   selector: 'app-publication-index',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./publication-index.component.css']
 })
 export class PublicationIndexComponent {
+content :any
+constructor( private pageServiceService:PageServiceService){}
+
+ngOnInit(): void {
+  this.content = this.pageServiceService.getPublicationIndexPage()
+ 
+}
 
 }

@@ -10,14 +10,16 @@
   left: 0;
   right: 0;
   height: 45px;
-  background-color: #4D4D4D;
+  background-color: #0A2647;
   align-items: center;
-  text-align: end;
+  display: flex;
+  justify-content: space-between;
+
 
 }
   
 .toolbar {
-    
+    font-family: "Times New Roman", Times, serif;
     position: fixed;
     top: 0;
     left: 0;
@@ -25,10 +27,10 @@
     height: 45px;
     display: flex;
     align-items: center;
-    background-color: #B46060;
+    background-color: #0A2647;
   }
  .toolbar ul {
-    font: italic 1.2em "Fira Sans", serif;
+    
     list-style: none;
     font-size: 14px;
     display: flex;
@@ -41,12 +43,12 @@
  .toolbar a {
     font-size: 1.2em;
     text-decoration: none;
-    color: #4D4D4D;
+    color: #FFF4E0;
     font-weight: bold;
     transition: all 0.5s ease-in-out;
  }
  .toolbar a:hover{
-    color: #FFF4E0;
+    color: #2C74B3;
  }
  .toolbar a:active{
     color:#FFF4E0 ;
@@ -83,30 +85,30 @@
 
      
     </div> 
-     <div>    <span>2023</span></div>
+    
 
 <div>
    <ul>
     <li>
-        <a href="/about">About</a>
+        <a routerLink="/about">About</a>
     </li>
     <li>
-        <a href="/committees">Committees</a>
+        <a routerLink="/committees">Committees</a>
     </li>
     <li>
-        <a href="/important-dates">ImportantDates</a>
+        <a routerLink="/important-dates">Important Dates</a>
     </li>
     <li>
-        <a href="/call-for-papers">CallForPapers</a>
+        <a routerLink="/call-for-papers">Call For Papers</a>
     </li>
     <li>
-        <a href="/submit">Submit</a>
+        <a routerLink="/submit">Submit</a>
     </li>
     <li>
-        <a href="/register">Register</a>
+        <a routerLink="/register">Register</a>
     </li>
     <li>
-        <a href="/publication-index">PublicationIndex</a>
+        <a routerLink="/publication-index">Publication Index</a>
     </li>
    </ul>
 </div>
@@ -115,13 +117,14 @@
 
 
 <div  class="photo" >  
-    <h1>{{title}}</h1>
+    <h1>The 1st National Conference on Computer Science and Artificial Intelligence (NCCSAI 2023)</h1>
 </div>
 
 
 
-<div class="footer">
-    <div></div>
-    <span style="margin-right: 3%;">{{contact}}</span>
+<div  class="footer">
+    <div [innerHTML]="content"></div>
+    <div style="margin-left: 3%;">logo</div>
+    <span style="margin-right: 3%;">contact@gmail.com</span>
 </div>
 

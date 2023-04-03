@@ -1,7 +1,7 @@
 
 h1{
     text-align: center;
-    color: #B46060;
+    color: #0A2647;
     border-bottom: 3px  solid #4D4D4D;
     border-style: double;
  }
@@ -13,12 +13,14 @@ h1{
   }
   
   th, td {
+    
     border: 1px solid #4D4D4D;
     padding: 8px;
     text-align: left;
   }
   
   th {
-    background-color: #FFBF9B;
+    color: #FFF4E0;
+    background-color: #205295;
   }
   

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AboutService } from 'src/app/services/about.service';
 import { AboutComponent } from './about.component';
-import { CKEditorModule,CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 
 
 
@@ -10,17 +11,18 @@ import { CKEditorModule,CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
-  declarations: [AboutComponent],
+  declarations: [],
   imports: [
     CommonModule,
-    CKEditorModule,
-    CKEditorComponent
+    CKEditorModule
+
     
   ],
   providers: [
     AboutService
-  ],exports: [
-    AboutComponent
+  ],
+  exports: [
+    
   ],
 })
 export class AboutModule { }

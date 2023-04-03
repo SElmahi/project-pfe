@@ -7,14 +7,14 @@ p{
  margin-top: 5%;
 text-align:left;
 color:#4D4D4D;
-font-size: 20px;
+font-size: 18px;
 }
 .content {
 margin-right: 5%;
 padding:auto;
 }
 h1{
-color: #B46060;
+color: #0A2647;
 border-bottom: 3px  solid #4D4D4D;
 border-style: double;
 }
@@ -32,6 +32,19 @@ height: 100%;
 width: 100%;
 }
 .part{
-background-color: #FFBF9B;
+background-color: #466783;
 padding: auto;
+}
+ul{
+  list-style: none;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+}
+img{
+  
+  width: 100px ;
+ height: 60px;
+  margin: 10px;
+ 
 }

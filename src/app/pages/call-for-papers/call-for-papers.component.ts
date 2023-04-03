@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PageServiceService } from 'src/app/services/page-service.service';
 
 @Component({
   selector: 'app-call-for-papers',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class CallForPapersComponent {
 
+  content:any
+  constructor(private pageServiceService:PageServiceService){
+
+  }
+  
+  ngOnInit(): void {
+    this.content = this.pageServiceService.getCallForPapersPage()
+   
+  }
 }

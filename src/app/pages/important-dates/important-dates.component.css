@@ -1,0 +1,26 @@
+h1{
+    text-align: center;
+    color: #0A2647;
+    border-bottom: 3px  solid #4D4D4D;
+    border-style: double;
+ }
+ .comment {
+    margin-left:6.7% ;
+    font-size: 14px;
+    color: #4D4D4D;
+    
+}
+
+    p{
+        margin-left:6% ;
+        margin-top: 5%;
+    text-align:left;
+    font-weight: bold;
+    color:#4D4D4D;
+    font-size: 20px;
+ }
+
+.cross {
+  text-decoration: line-through;
+  
+}

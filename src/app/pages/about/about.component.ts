@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutService } from 'src/app/services/about.service';
+import { PageServiceService } from 'src/app/services/page-service.service';
+
 
 @Component({
   selector: 'app-about',
@@ -8,13 +10,13 @@ import { AboutService } from 'src/app/services/about.service';
 })
 export class AboutComponent implements OnInit {
   content:any
-  constructor(private aboutSerive:AboutService){
+  constructor(private pageServiceService:PageServiceService){
 
   }
   
   ngOnInit(): void {
-   this.content = this.aboutSerive.getAboutPage()
-  
+    this.content = this.pageServiceService.getAboutPage()
+   
   }
 
   local="fso Oujda"
