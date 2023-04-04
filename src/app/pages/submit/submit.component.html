@@ -1,26 +1,21 @@
-
 <div><h1>SUBMISSION</h1></div>
-<form  >
+<router-outlet></router-outlet>
+<form #form="ngForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="First name">First name :</label><br>
-    <input type="text" class="form-control" id="First name" name="First name" >
+    <label for="name">First name :</label><br>
+    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name">
   </div>
   <div class="form-group">
-    <label for="prenom">last name :</label><br>
-    <input type="text" class="form-control" id="last name" name="last name">
+    <label for="familyName">Last name :</label><br>
+    <input type="text" class="form-control" id="familyName" name="familyName" [(ngModel)]="familyName">
   </div>
   <div class="form-group">
     <label for="email">Email :</label><br>
-    <input type="email" class="form-control" id="email" name="email" >
+    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
   </div>
   <div class="form-group">
-    <label for="tel">phone number :</label><br>
-    <input type="tel" class="form-control" id="phone number" name="phone number" >
+    <label for="payment">Payment :</label><br>
+    <input type="file" id="payment" name="payment">
   </div>
-  <div class="form-group">
-    <label for="photo">Photo :</label><br>
-    <input type="file"  id="photo" name="photo">
-  </div>
-  <button type="submit" >send</button>
+  <button type="submit">Send</button>
 </form>
-
