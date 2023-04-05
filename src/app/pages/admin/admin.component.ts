@@ -20,7 +20,7 @@ export class AdminComponent {
       (response: any) => {
         console.log(response);
         if (response.role === 'Admin') {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/admin-dashboard']);
         } else if (response.role === 'Author') {
           this.router.navigate(['/author']);
         }
