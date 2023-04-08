@@ -1,8 +1,7 @@
-// submit.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,13 +10,14 @@ export class SubmitService {
 
   constructor(private http: HttpClient) {}
 
-  registerAttendee(name: string, familyName: string, email: string): Observable<any> {
-    const body = {
-      name,
-      familyName,
-      email
-    };
+  registerAttendee(name: string, familyName: string, email: string, payment: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('attendee', JSON.stringify({ name, familyName, email }));
+    formData.append('paper', payment);
 
-    return this.http.post<any>(this.apiUrl, body);
-  }
+    const httpOptions = {
+      responseType: 'text' as 'json' // Only keep this line
+    };
+    return this.http.post<any>(this.apiUrl, formData, httpOptions);
+}
 }

@@ -1,21 +1,37 @@
 <div><h1>SUBMISSION</h1></div>
 <router-outlet></router-outlet>
-<form #form="ngForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="name">First name :</label><br>
-    <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name">
+    <input type="text" class="form-control" id="name" formControlName="name">
+    <div *ngIf="submitForm.get('name').invalid && submitForm.get('name').touched" class="error-message">
+      First name is required.
+    </div>
   </div>
   <div class="form-group">
     <label for="familyName">Last name :</label><br>
-    <input type="text" class="form-control" id="familyName" name="familyName" [(ngModel)]="familyName">
+    <input type="text" class="form-control" id="familyName" formControlName="familyName">
+    <div *ngIf="submitForm.get('familyName').invalid && submitForm.get('familyName').touched" class="error-message">
+      Last name is required.
+    </div>
   </div>
   <div class="form-group">
     <label for="email">Email :</label><br>
-    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
+    <input type="email" class="form-control" id="email" formControlName="email">
+    <div *ngIf="submitForm.get('email').invalid && submitForm.get('email').touched" class="error-message">
+      <span *ngIf="submitForm.get('email').errors?.required">Email is required.</span>
+      <span *ngIf="submitForm.get('email').errors?.email">Invalid email format.</span>
+    </div>
   </div>
   <div class="form-group">
     <label for="payment">Payment :</label><br>
-    <input type="file" id="payment" name="payment">
+    <input type="file" id="payment" name="payment" (change)="onFileSelected($event.target.files)" accept=".pdf">
+    <div *ngIf="submitForm.hasError('fileNotSelected') && submitForm.touched" class="error-message">
+      Payment file is required.
+    </div>
   </div>
-  <button type="submit">Send</button>
+  <button type="submit" [disabled]="isSubmitting || submitForm.invalid">
+    {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+  </button>
 </form>
+

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'; // Import RouterModule here
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +17,8 @@ import { AdminDasboardComponent } from './pages/admin-dasboard/admin-dasboard.co
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminService } from './services/admin.service';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDasboardComponent, canActivate: [AdminGuard] },
@@ -41,12 +42,17 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     CKEditorModule,
+    BrowserAnimationsModule,
     FormsModule,
+    MatSnackBarModule,
     HttpClientModule,
+    FormsModule,
+   ReactiveFormsModule,
     RouterModule.forRoot(routes) // Add RouterModule here
   ],
   providers: [AdminService, AdminGuard], // Add AdminGuard to providers array
   bootstrap: [AppComponent],
   exports: [RouterModule],
+  
 })
 export class AppModule { }

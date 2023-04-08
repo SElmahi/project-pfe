@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'publication-index', component: PublicationIndexComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'submit', component: SubmitComponent },
-  { path: 'admin-dashboard', component: AdminDasboardComponent},
+  { path: 'admin-dashboard', component: AdminDasboardComponent, canActivate: [AdminGuard] },
   { path: 'admin', component: AdminComponent },
   { path: '', component: AboutComponent },
 ];
