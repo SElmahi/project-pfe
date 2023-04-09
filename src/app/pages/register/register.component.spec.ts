@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SubmitService } from '../../services/submit.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, Validators, FormGroup, AbstractControl, ValidationErrors } from '@angular/forms';
 
 import { RegisterComponent } from './register.component';
 

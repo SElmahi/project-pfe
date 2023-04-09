@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminService } from './services/admin.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthorDashboardComponent } from './pages/author-dashboard/author-dashboard.component';
+
 
 const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDasboardComponent, canActivate: [AdminGuard] },
@@ -37,6 +39,7 @@ const routes: Routes = [
     HeaderComponent,
     SubmitComponent,
     AdminDasboardComponent,
+    AuthorDashboardComponent,
   ],
   imports: [
     BrowserModule,

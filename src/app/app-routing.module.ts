@@ -10,6 +10,7 @@ import { PublicationIndexComponent } from './pages/publication-index/publication
 import { RegisterComponent } from './pages/register/register.component';
 import { SubmitComponent } from './pages/submit/submit.component';
 import { AdminGuard } from './guards/admin.guard';
+import { AuthorDashboardComponent } from './pages/author-dashboard/author-dashboard.component';
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'committees', component: CommitteesComponent },
@@ -20,6 +21,9 @@ const routes: Routes = [
   { path: 'submit', component: SubmitComponent },
   { path: 'admin-dashboard', component: AdminDasboardComponent, canActivate: [AdminGuard] },
   { path: 'admin', component: AdminComponent },
+  {
+    path: 'author-dashboard',component: AuthorDashboardComponent,canActivate: [AdminGuard], // Use the updated AdminGuard to protect the route
+  },
   { path: '', component: AboutComponent },
 ];
 

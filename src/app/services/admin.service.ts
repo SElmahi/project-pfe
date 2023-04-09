@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AdminService {
   private apiUrl = 'http://localhost:8080/api/auth';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
+  private roleSubject = new BehaviorSubject<string>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -20,8 +21,11 @@ export class AdminService {
     };
     return this.http.post<any>(`${this.apiUrl}/login`, loginData).pipe(
       tap(response => {
-        if (response.role === 'Admin') {
+        if (response.role) {
+          this.roleSubject.next(response.role);
           this.isAuthenticatedSubject.next(true);
+        } else {
+          this.isAuthenticatedSubject.next(false);
         }
       })
     );
@@ -31,15 +35,19 @@ export class AdminService {
     return this.isAuthenticatedSubject.asObservable();
   }
 
+  getRole(): Observable<string> {
+    return this.roleSubject.asObservable();
+  }
+
   checkAuthenticated(): void {
     this.http.get<any>(`${this.apiUrl}/isAuthenticated`).subscribe(response => {
-      if (response.authenticated && response.role === 'Admin') {
+      if (response.authenticated) {
         this.isAuthenticatedSubject.next(true);
+        this.roleSubject.next(response.role);
       } else {
         this.isAuthenticatedSubject.next(false);
+        this.roleSubject.next(null);
       }
     });
   }
 }
-
-

@@ -8,7 +8,7 @@
         <div *ngIf="loginForm.controls.email?.errors.email">Email invalide</div>
       </div>
     </div>
-    <input type="password" class="form-control" name="password" placeholder="Password" minlength="10" maxlength="15" ngModel required />      
+    <input type="password" class="form-control" name="password" placeholder="Password" minlength="8" maxlength="35" ngModel required />      
     <br>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
   </form>

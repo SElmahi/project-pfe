@@ -22,7 +22,7 @@ export class AdminComponent {
         if (response.role === 'Admin') {
           this.router.navigate(['/admin-dashboard']);
         } else if (response.role === 'Author') {
-          this.router.navigate(['/author']);
+          this.router.navigate(['/admin-dashboard']);
         }
       },
       (error) => {

@@ -1,61 +1,80 @@
+h1 {
+  text-align: center;
+  color: #0A2647;
+  border-bottom: 3px solid #4D4D4D;
+  border-style: double;
+  margin-bottom: 1rem;
+}
 
+h2 {
+  margin-top: 2%;
+  margin-left: 10%;
+  color: #4D4D4D;
+}
+form {
+  margin-left: 15%;
+}
+.form-group {
+  margin-top: 2%;
+  margin-left: 10%;
+  color: #4D4D4D;
+  margin-bottom: 1rem;
+}
 
-h1{
-    text-align: center;
-    color: #0A2647;
-    border-bottom: 3px  solid #4D4D4D;
-    border-style: double;
- }
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
 
-    .form-group {
-        margin-top: 2%;
-        margin-left: 10%;
-        color: #4D4D4D;
-        margin-bottom: 1rem;
-      }
-      
-      label {
-        font-weight: bold;
-      }
-      
-      input[type="text"],
-      input[type="email"],
-      input[type="tel"] {
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #0A2647;
-        background-color: #f0e6e6;
-        background-clip: padding-box;
-        border: 1px solid #0A2647;
-        border-radius: 0.25rem;
-      }
-      
-      input[type="file"] {
-        
-        margin-top: 0.25rem;
-        
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+textarea,
+select {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #0A2647;
+  background-color: #f0e6e6;
+  background-clip: padding-box;
+  border: 1px solid #0A2647;
+  border-radius: 0.25rem;
+  width: 100%;
+  max-width: 400px;
+  padding: 0.375rem 0.75rem;
+  margin-bottom: 1rem;
+}
 
-      }
-      
-      button[type="submit"] {
-        border-radius: 0.3rem;
-        padding: 0.5rem 1rem; /* Add padding to the button */
-        margin-top: 1rem;
-        margin-left: 19%;
-        background-color: #0A2647;
-        color: #4D4D4D;
-        font-size: 1.3rem;
-        white-space: nowrap; /* Prevent text wrapping to the next line */
-        min-width: 5rem; /* Set the minimum width for the button */
-      }
-      
-      
-      button[type="submit"]:hover {
-        background-color: #1E4A8C; /* Change background-color on hover */
-      }
-      
-      button[type="submit"]:disabled {
-        background-color: #A3B1C6; /* Change background-color for disabled state */
-        cursor: not-allowed; /* Change cursor to not-allowed for disabled state */
-      }
-      
+input[type="file"] {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+button[type="button"],
+button[type="submit"] {
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-left: 19%;
+  background-color: #0A2647;
+  color: #4D4D4D;
+  font-size: 1.3rem;
+  white-space: nowrap;
+  min-width: 5rem;
+}
+
+button[type="button"]:hover,
+button[type="submit"]:hover {
+  background-color: #1E4A8C;
+}
+
+button[type="submit"]:disabled {
+  background-color: #A3B1C6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 2rem;
+}

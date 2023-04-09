@@ -1,37 +1,162 @@
 <div><h1>SUBMISSION</h1></div>
 <router-outlet></router-outlet>
 <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="name">First name :</label><br>
-    <input type="text" class="form-control" id="name" formControlName="name">
-    <div *ngIf="submitForm.get('name').invalid && submitForm.get('name').touched" class="error-message">
-      First name is required.
+  <h2>Author Information</h2>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" formControlName="email" required>
+    <div *ngIf="submitForm.get('email').touched && submitForm.get('email').hasError('required')" class="error-message">
+      Email is required.
+    </div>
+    <div *ngIf="submitForm.get('email').touched && submitForm.get('email').hasError('pattern')" class="error-message">
+      Please enter a valid email address.
     </div>
   </div>
-  <div class="form-group">
-    <label for="familyName">Last name :</label><br>
-    <input type="text" class="form-control" id="familyName" formControlName="familyName">
-    <div *ngIf="submitForm.get('familyName').invalid && submitForm.get('familyName').touched" class="error-message">
-      Last name is required.
+  <div>
+    <label for="password">Password: (will be used to log in later)</label>
+    <input type="password" formControlName="password" required>
+    <div *ngIf="submitForm.get('password').touched && submitForm.get('password').hasError('required')" class="error-message">
+      Password is required.
+    </div>
+    <div *ngIf="submitForm.get('password').touched && submitForm.get('password').hasError('minlength')" class="error-message">
+      Password must be at least 8 characters long.
     </div>
   </div>
-  <div class="form-group">
-    <label for="email">Email :</label><br>
-    <input type="email" class="form-control" id="email" formControlName="email">
-    <div *ngIf="submitForm.get('email').invalid && submitForm.get('email').touched" class="error-message">
-      <span *ngIf="submitForm.get('email').errors?.required">Email is required.</span>
-      <span *ngIf="submitForm.get('email').errors?.email">Invalid email format.</span>
+  <div>
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" formControlName="confirmPassword" required>
+    <div *ngIf="submitForm.get('confirmPassword').touched && submitForm.get('confirmPassword').hasError('required')" class="error-message">
+      Confirm Password is required.
+    </div>
+    <div *ngIf="submitForm.get('confirmPassword').touched && submitForm.get('confirmPassword').hasError('isError')" class="error-message">
+      Passwords do not match.
     </div>
   </div>
-  <div class="form-group">
-    <label for="payment">Payment :</label><br>
-    <input type="file" id="payment" name="payment" (change)="onFileSelected($event.target.files)" accept=".pdf">
-    <div *ngIf="submitForm.hasError('fileNotSelected') && submitForm.touched" class="error-message">
-      Payment file is required.
+<!-- First Name -->
+<div>
+  <label for="firstName">First Name:</label>
+  <input type="text" formControlName="firstName" required>
+  <div *ngIf="submitForm.get('firstName').touched && submitForm.get('firstName').hasError('required')" class="error-message">
+    First Name is required.
+  </div>
+</div>
+
+<!-- Last Name -->
+<div>
+  <label for="lastName">Last Name:</label>
+  <input type="text" formControlName="lastName" required>
+  <div *ngIf="submitForm.get('lastName').touched && submitForm.get('lastName').hasError('required')" class="error-message">
+    Last Name is required.
+  </div>
+</div>
+
+<!-- Affiliation -->
+<div>
+  <label for="affiliation">Affiliation:</label>
+  <input type="text" formControlName="affiliation" required>
+  <div *ngIf="submitForm.get('affiliation').touched && submitForm.get('affiliation').hasError('required')" class="error-message">
+    Affiliation is required.
+  </div>
+</div>
+
+
+ <h2>Co-authors</h2>
+<div *ngFor="let coAuthor of coAuthors; let i = index">
+  <h3>Co-author Information</h3>
+
+  <!-- Co-author First Name -->
+  <div>
+    <label for="coAuthorFirstName">First Name:</label>
+    <input type="text" [(ngModel)]="coAuthor.firstName" name="coAuthorFirstName" required #coAuthorFirstName="ngModel">
+    <div *ngIf="coAuthorFirstName.touched && coAuthorFirstName.invalid" class="error-message">
+      First Name is required.
     </div>
   </div>
-  <button type="submit" [disabled]="isSubmitting || submitForm.invalid">
-    {{ isSubmitting ? 'Submitting...' : 'Submit' }}
-  </button>
+
+  <!-- Co-author Last Name -->
+  <div>
+    <label for="coAuthorLastName">Last Name:</label>
+    <input type="text" [(ngModel)]="coAuthor.lastName" name="coAuthorLastName" required #coAuthorLastName="ngModel">
+    <div *ngIf="coAuthorLastName.touched && coAuthorLastName.invalid" class="error-message">
+      Last Name is required.
+    </div>
+  </div>
+
+  <!-- Co-author Email -->
+  <div>
+    <label for="coAuthorEmail">Email:</label>
+    <input type="email" [(ngModel)]="coAuthor.email" name="coAuthorEmail" required #coAuthorEmail="ngModel">
+    <div *ngIf="coAuthorEmail.touched && coAuthorEmail.invalid" class="error-message">
+      Email is required.
+    </div>
+  </div>
+
+  <!-- Co-author Affiliation -->
+  <div>
+    <label for="coAuthorAffiliation">Affiliation:</label>
+    <input type="text" [(ngModel)]="coAuthor.affiliation" name="coAuthorAffiliation" required #coAuthorAffiliation="ngModel">
+    <div *ngIf="coAuthorAffiliation.touched && coAuthorAffiliation.invalid" class="error-message">
+      Affiliation is required.
+    </div>
+  </div>
+
+  <button type="button" (click)="removeCoAuthor(i)">Remove Co-author</button>
+</div>
+<button type="button" (click)="addCoAuthor()">Add Co-author</button>
+
+  <h2>Paper Submission</h2>
+<div>
+  <label for="title">Title:</label>
+  <input type="text" formControlName="title" required>
+  <div *ngIf="submitForm.get('title').touched && submitForm.get('title').hasError('required')" class="error-message">
+    Title is required.
+  </div>
+</div>
+<div>
+  <label for="abstractText">Abstract:</label>
+  <textarea formControlName="abstractText" required></textarea>
+  <div *ngIf="submitForm.get('abstractText').touched && submitForm.get('abstractText').hasError('required')" class="error-message">
+    Abstract is required.
+  </div>
+</div>
+<div>
+  <label for="keywords">Keywords:</label>
+  <input type="text" formControlName="keywords" required>
+  <div *ngIf="submitForm.get('keywords').touched && submitForm.get('keywords').hasError('required')" class="error-message">
+    Keywords are required.
+  </div>
+</div>
+
+<label for="paper">Paper (PDF):</label>
+<input type="file" formControlName="paper" (change)="onFileSelected($event)" accept="application/pdf" required>
+<div *ngIf="submitForm.get('paper').touched && submitForm.get('paper').hasError('invalidFileType')" class="error-message">
+  Invalid file type. Please upload a PDF file.
+</div>
+<div *ngIf="submitForm.get('paper').touched && submitForm.get('paper').hasError('maxSize')" class="error-message">
+  File size exceeds 5MB. Please upload a smaller file.
+</div>
+
+<div>
+  <div>
+    <label for="submissionType">Submission Type:</label>
+    <select formControlName="submissionType" required>
+      <option value="" disabled selected>Select Submission Type</option>
+      <option value="STANDARD_AUTHOR">Standard Author</option>
+      <option value="STUDENT_AUTHOR">Student Author</option>
+      <option value="EXTRA_PAPER">Extra Paper</option>
+    </select>
+    <div *ngIf="submitForm.get('submissionType').touched && submitForm.get('submissionType').hasError('required')" class="error-message">
+      Submission Type is required.
+    </div>
+  </div>
+</div>
+
+
+<button type="submit" [disabled]="isSubmitting || submitForm.invalid">
+  {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+</button>
 </form>
+
+
+
 
