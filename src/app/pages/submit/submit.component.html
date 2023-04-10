@@ -61,47 +61,55 @@
 
 
  <h2>Co-authors</h2>
-<div *ngFor="let coAuthor of coAuthors; let i = index">
+ <div formArrayName="coAuthors">
+  <ng-container *ngFor="let coAuthorControl of getCoAuthorsControls(); let i = index">
+    <div [formGroupName]="i">
+
+
+
+
   <h3>Co-author Information</h3>
-
-  <!-- Co-author First Name -->
-  <div>
-    <label for="coAuthorFirstName">First Name:</label>
-    <input type="text" [(ngModel)]="coAuthor.firstName" name="coAuthorFirstName" required #coAuthorFirstName="ngModel">
-    <div *ngIf="coAuthorFirstName.touched && coAuthorFirstName.invalid" class="error-message">
-      First Name is required.
-    </div>
+  
+ <!-- Co-author First Name -->
+<div>
+  <label for="coAuthorFirstName">First Name:</label>
+  <input type="text" formControlName="firstName" required>
+  <div *ngIf="coAuthorControl.get('firstName').touched && coAuthorControl.get('firstName').hasError('required')" class="error-message">
+    First Name is required.
   </div>
+</div>
 
-  <!-- Co-author Last Name -->
-  <div>
-    <label for="coAuthorLastName">Last Name:</label>
-    <input type="text" [(ngModel)]="coAuthor.lastName" name="coAuthorLastName" required #coAuthorLastName="ngModel">
-    <div *ngIf="coAuthorLastName.touched && coAuthorLastName.invalid" class="error-message">
-      Last Name is required.
-    </div>
+<!-- Co-author Last Name -->
+<div>
+  <label for="coAuthorLastName">Last Name:</label>
+  <input type="text" formControlName="lastName" required>
+  <div *ngIf="coAuthorControl.get('lastName').touched && coAuthorControl.get('lastName').hasError('required')" class="error-message">
+    Last Name is required.
   </div>
+</div>
 
-  <!-- Co-author Email -->
-  <div>
-    <label for="coAuthorEmail">Email:</label>
-    <input type="email" [(ngModel)]="coAuthor.email" name="coAuthorEmail" required #coAuthorEmail="ngModel">
-    <div *ngIf="coAuthorEmail.touched && coAuthorEmail.invalid" class="error-message">
-      Email is required.
-    </div>
+<!-- Co-author Email -->
+<div>
+  <label for="coAuthorEmail">Email:</label>
+  <input type="email" formControlName="email" required>
+  <div *ngIf="coAuthorControl.get('email').touched && coAuthorControl.get('email').hasError('required')" class="error-message">
+    Email is required.
   </div>
+</div>
 
-  <!-- Co-author Affiliation -->
-  <div>
-    <label for="coAuthorAffiliation">Affiliation:</label>
-    <input type="text" [(ngModel)]="coAuthor.affiliation" name="coAuthorAffiliation" required #coAuthorAffiliation="ngModel">
-    <div *ngIf="coAuthorAffiliation.touched && coAuthorAffiliation.invalid" class="error-message">
-      Affiliation is required.
-    </div>
+<!-- Co-author Affiliation -->
+<div>
+  <label for="coAuthorAffiliation">Affiliation:</label>
+  <input type="text" formControlName="affiliation" required>
+  <div *ngIf="coAuthorControl.get('affiliation').touched && coAuthorControl.get('affiliation').hasError('required')" class="error-message">
+    Affiliation is required.
   </div>
+</div>
 
   <button type="button" (click)="removeCoAuthor(i)">Remove Co-author</button>
-</div>
+</div> <!-- Closing tag for formGroupName div -->
+</ng-container> <!-- Closing tag for ng-container -->
+</div> <!-- Closing tag for formArrayName div -->
 <button type="button" (click)="addCoAuthor()">Add Co-author</button>
 
   <h2>Paper Submission</h2>
@@ -155,6 +163,7 @@
 <button type="submit" [disabled]="isSubmitting || submitForm.invalid">
   {{ isSubmitting ? 'Submitting...' : 'Submit' }}
 </button>
+
 </form>
 
 

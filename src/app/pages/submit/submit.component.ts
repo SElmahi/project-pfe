@@ -106,18 +106,19 @@ export class SubmitComponent implements OnInit {
   
 
   addCoAuthor(): void {
-    this.coAuthors.push({
-      email: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      affiliation: '',
-      role: UserRole.AUTHOR
-    });
+    const coAuthorsArray = this.submitForm.get('coAuthors') as FormArray;
+    coAuthorsArray.push(this.formBuilder.group({
+      email: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      affiliation: ['', Validators.required],
+      role: [UserRole.AUTHOR]
+    }));
   }
 
   removeCoAuthor(index: number): void {
-    this.coAuthors.splice(index, 1);
+    const coAuthorsArray = this.submitForm.get('coAuthors') as FormArray;
+    coAuthorsArray.removeAt(index);
   }
 
 
@@ -137,5 +138,7 @@ confirmPasswordValidator(control: AbstractControl) {
   }
   return null;
 }
-
+getCoAuthorsControls(): AbstractControl[] {
+  return (this.submitForm.get('coAuthors') as FormArray).controls;
+}
 }

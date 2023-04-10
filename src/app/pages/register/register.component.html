@@ -27,11 +27,11 @@
   </table>
   </div>
   <div>
-f
-f
+
   </div>
   <div><h1>SUBMISSION</h1></div>
   <router-outlet></router-outlet>
+  <div class="wrapper">
   <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">First name :</label><br>
@@ -66,3 +66,22 @@ f
       {{ isSubmitting ? 'Submitting...' : 'Submit' }}
     </button>
   </form>
+  <form>
+    <h2>AUTHORS</h2>
+    <div class="form-group">
+      <label>Id Submission :</label><br />
+      <input
+        type="text"
+        class="form-control"
+        id="Id Submission"
+        name="Id Submission"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Payment :</label><br />
+      <input type="file" accept=".pdf" id="photo" name="photo" />
+    </div>
+    <button type="submit">send</button>
+  </form>
+  </div>

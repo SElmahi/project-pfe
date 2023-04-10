@@ -1,5 +1,26 @@
-select{
-    margin:5%;
-    background-color:#FFBF9B;
-    color: #4D4D4D;
+select {
+  margin-top: 2%;
+  color: #4d4d4d;
+  margin-left: 86%;
+  margin-bottom: 2%;
 }
+h1 {
+  text-align: center;
+  color: #0a2647;
+  border-bottom: 3px solid #4d4d4d;
+  border-style: double;
+}
+button {
+  margin-left: 92%;
+  margin-top: 2%;
+  background-color: #0a2647;
+  color: antiquewhite;
+  width: 7%;
+  height: 19%;
+  font-size: 22px;
+  border-radius: 0.3rem;
+}
+.ck{
+  background-color: white;
+}
+

@@ -1,50 +1,50 @@
-:host{
-    color: #4D4D4D;
-    text-align: center;
+:host {
+  color: #4d4d4d;
+  
 }
-p{
-  margin-left:2% ;
- margin-top: 5%;
-text-align:left;
-color:#4D4D4D;
-font-size: 18px;
+p {
+  margin-left: 2%;
+  margin-top: 5%;
+  text-align: left;
+  color: #4d4d4d;
+  font-size: 18px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 .content {
-margin-right: 5%;
-padding:auto;
+  margin-right: 5%;
+  padding: auto;
 }
-h1{
-color: #0A2647;
-border-bottom: 3px  solid #4D4D4D;
-border-style: double;
+h1 {text-align: center;
+  color: #0a2647;
+  border-bottom: 3px solid #4d4d4d;
+  border-style: double;
 }
 .comment {
-font-size: 14px;
-color: #4D4D4D;
-
+  text-align: center;
+  font-size: 14px;
+  color: #4d4d4d;
 }
 .map {
-display: flex;
-justify-content: center;
-height: 400px;
-margin-top: 2em;
-height: 100%;
-width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 400px;
+  margin-top: 2em;
+  height: 100%;
+  width: 100%;
 }
-.part{
-background-color: #466783;
-padding: auto;
+.part {
+  background-color: #466783;
+  padding: auto;
 }
-ul{
+ul {
   list-style: none;
   font-size: 16px;
   display: flex;
   justify-content: center;
 }
-img{
-  
-  width: 100px ;
- height: 60px;
+img {
+  width: 100px;
+  height: 60px;
   margin: 10px;
- 
 }

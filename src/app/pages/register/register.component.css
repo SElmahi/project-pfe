@@ -1,4 +1,102 @@
+h1 {
+  text-align: center;
+  color: #0a2647;
+  border-bottom: 3px solid #4d4d4d;
+  border-style: double;
+}
+table {
+  margin-left: 5%;
+  color: #4d4d4d;
+  border-collapse: collapse;
+  width: 30%;
+}
 
+th,
+td {
+  border: 1px solid #4d4d4d;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  color: #fff4e0;
+  background-color: #144272;
+}
+p {
+  margin-left: 2%;
+  margin-top: 5%;
+  text-align: left;
+  color: #4d4d4d;
+  font-size: 18px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+.wrapper {
+  border: 2px solid #0a2647;
+  display: flex;
+  margin: 19%;
+  justify-content: space-between;
+  margin-top: 5%;
+  margin-bottom: 0%;
+}
+
+.form-group {
+  margin-top: 2%;
+
+  color: #4d4d4d;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"] {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #0a2647;
+  background-color: #f0e6e6;
+  background-clip: padding-box;
+  border: 1px solid #0a2647;
+  border-radius: 0.25rem;
+}
+
+input[type="file"] {
+  margin-top: 0.25rem;
+}
+
+button[type="submit"] {
+  border-radius: 0.3rem;
+  width: 5rem;
+  margin-top: 1rem;
+  margin-left: 50%;
+  background-color: #0a2647;
+  color: #f0e6e6;
+  font-size: 1.3rem;
+  margin-bottom: 3%;
+}
+.left {
+  float: left;
+  width: 50%;
+}
+
+.right {
+  float: right;
+  width: 50%;
+}
+h2 {
+  color: #0a2647;
+  text-decoration: underline;
+}
+form {
+  text-align: center;
+  border: 2px solid #0a2647;
+  margin: 2%;
+  width: 90%;
+}
+
+**
 h1{
     text-align: center;
     color: #0A2647;

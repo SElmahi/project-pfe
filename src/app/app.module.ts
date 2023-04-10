@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthorDashboardComponent } from './pages/author-dashboard/author-dashboard.component';
 
 
+
 const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDasboardComponent, canActivate: [AdminGuard] },
   // ...

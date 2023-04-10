@@ -1,34 +1,40 @@
-
-
-
 <h1>ABOUT</h1>
 <div class="content">
-  
-<div [innerHTML]="content"></div>
+  <p [innerHTML]="content"></p>
 </div>
-<div ><h1>Conference Programme</h1>
+<div>
+  <h1>Conference Programme</h1>
 
-
-<span class="comment">The Conference Programme is currently being developed. Please check back later for updates.</span>
+  <span class="comment" [innerHTML]="conferencePorgramme"
+    >The Conference Programme is currently being developed. Please check back
+    later for updates.</span
+  >
 </div>
 
-<div> <h1>Conference Venue</h1>
-       <h2>{{local}}</h2>
-<div class="map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6564.213538774099!2d-1.9035986707190666!3d34.65200642344661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd787cbcbec59e59%3A0x83957ae60b188453!2sFacult%C3%A9%20des%20Sciences%20d&#39;Oujda!5e0!3m2!1sfr!2sma!4v1677958754678!5m2!1sfr!2sma" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div>
+  <h1>Conference Venue</h1>
+
+  <h2 style="text-align: center" [innerHTML]="conferenceVenue"></h2>
+  <div class="map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6564.213538774099!2d-1.9035986707190666!3d34.65200642344661!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd787cbcbec59e59%3A0x83957ae60b188453!2sFacult%C3%A9%20des%20Sciences%20d&#39;Oujda!5e0!3m2!1sfr!2sma!4v1677958754678!5m2!1sfr!2sma"
+      width="600"
+      height="450"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
   </div>
- </div>
- <div class="part">
-    <h1>Partners</h1>
-    
-    <ul >
-      <li><img src="assets/image/logo1.jpg" alt="Logo 1"></li>
-      <li><img src="assets/image/logo2.png" alt="Logo 2"></li>
-      <li><img src="assets/image/logo 3.jpg" alt="Logo 3"></li>
-      <li><img src="assets/image/logo4.jpg" alt="Logo 4"></li>
-      <li><img src="assets/image/logo5.jpg" alt="Logo 5"></li>
+</div>
+<div class="part">
+  <h1>Partners</h1>
 
-    </ul>
- </div>
-
- 
+  <ul>
+    <li><img src="assets/image/logo1.jpg" alt="Logo 1" /></li>
+    <li><img src="assets/image/logo2.png" alt="Logo 2" /></li>
+    <li><img src="assets/image/logo 3.jpg" alt="Logo 3" /></li>
+    <li><img src="assets/image/logo4.jpg" alt="Logo 4" /></li>
+    <li><img src="assets/image/logo5.jpg" alt="Logo 5" /></li>
+  </ul>
+</div>
