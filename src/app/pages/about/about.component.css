@@ -1,48 +1,85 @@
-:host {
-  color: #4d4d4d;
-  
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+body {
+  background-color: #f8f9fa;
+  font-family: 'Roboto', sans-serif;
+  color: var(--dark-text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+:root {
+  --primary-color: #1d3557;
+  --secondary-color: #457b9d;
+  --accent-color: #e63946;
+  --light-text-color: #FFFFFF;
+  --dark-text-color: #4D4D4D;
+}
+
+.about-wrapper {
+  font-family: 'Roboto', sans-serif;
+  color: var(--dark-text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content,
+.conference-programme,
+.conference-venue,
+.partners {
+  width: 80%;
+  margin-bottom: 3rem;
+}
+
 p {
-  margin-left: 2%;
-  margin-top: 5%;
-  text-align: left;
-  color: #4d4d4d;
-  font-size: 18px;
   text-align: justify;
   text-justify: inter-word;
+  font-size: 18px;
+  line-height: 1.5;
+  font-family: 'Montserrat', sans-serif;
 }
-.content {
-  margin-right: 5%;
-  padding: auto;
-}
-h1 {text-align: center;
-  color: #0a2647;
-  border-bottom: 3px solid #4d4d4d;
-  border-style: double;
-}
-.comment {
+
+h1 {
   text-align: center;
-  font-size: 14px;
-  color: #4d4d4d;
+  color: var(--primary-color);
+  border-bottom: 3px solid var(--accent-color);
+  border-style: double;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
 }
+
+h2 {
+  text-align: center;
+  color: var(--secondary-color);
+  font-weight: normal;
+  margin-top: 0;
+}
+
 .map {
   display: flex;
   justify-content: center;
   height: 400px;
   margin-top: 2em;
-  height: 100%;
   width: 100%;
 }
-.part {
-  background-color: #466783;
-  padding: auto;
+
+.partners {
+  background-color: var(--secondary-color);
+  padding: 1rem;
 }
+
 ul {
   list-style: none;
   font-size: 16px;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  padding: 0;
 }
+
 img {
   width: 100px;
   height: 60px;

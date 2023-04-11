@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './pages/about/about.component';
 import { AdminDasboardComponent } from './pages/admin-dasboard/admin-dasboard.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { CallForPapersComponent } from './pages/call-for-papers/call-for-papers.component';
+import { CallForPapersComponent } from './pages/pages/call-for-papers/call-for-papers.component';
 import { CommitteesComponent } from './pages/committees/committees.component';
 import { ImportantDatesComponent } from './pages/important-dates/important-dates.component';
 import { PublicationIndexComponent } from './pages/publication-index/publication-index.component';

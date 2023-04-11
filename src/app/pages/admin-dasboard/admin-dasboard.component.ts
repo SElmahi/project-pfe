@@ -34,8 +34,10 @@ export class AdminDasboardComponent {
 
   save() {
     if (this.pageSelected == 'About') {
-      this.pageServiceService.saveAboutPage(this.editordata);
-    } else if (this.pageSelected == 'Header') {
+      this.pageServiceService.saveAboutPage(this.editordata).subscribe(() => {
+        alert('About page saved');
+      });
+    } if (this.pageSelected == 'Header') {
       this.pageServiceService.saveHeaderPage(this.editordata);
     } else if (this.pageSelected == 'Register') {
       this.pageServiceService.saveRegisterPage(this.editordata);
@@ -48,8 +50,12 @@ export class AdminDasboardComponent {
     } else if (this.pageSelected == 'Publication Index') {
       this.pageServiceService.savePublicationIndexPage(this.editordata);
     } else if (this.pageSelected == 'ConferenceProgramme') {
-      this.pageServiceService.saveConferenceProgramme(this.editordata);
-    } else if (this.pageSelected == 'ConferenceVenue') {
+      this.pageServiceService.saveConferenceProgramme(this.editordata).subscribe(() => {
+        alert('Conference Programme saved');
+      });
+    }
+    
+     else if (this.pageSelected == 'ConferenceVenue') {
       this.pageServiceService.saveConferenceVenue(this.editordata);
     } else if (this.pageSelected == 'Partners') {
       this.pageServiceService.savePartners(this.editordata);
@@ -61,7 +67,9 @@ export class AdminDasboardComponent {
   }
   afficheContent() {
     if (this.pageSelected == 'About') {
-      this.contentAffiche = this.pageServiceService.getAboutPage();
+      this.pageServiceService.getAboutPage().subscribe((response: any) => {
+        this.contentAffiche = response.aboutContent; // Change this line
+      });
     } else if (this.pageSelected == 'Header') {
       this.contentAffiche = this.pageServiceService.getHeaderPage();
     } else if (this.pageSelected == 'Register') {
@@ -75,7 +83,9 @@ export class AdminDasboardComponent {
     } else if (this.pageSelected == 'Publication Index') {
       this.contentAffiche = this.pageServiceService.getPublicationIndexPage();
     } else if (this.pageSelected == 'ConferenceProgramme') {
-      this.contentAffiche = this.pageServiceService.getConferenceProgramme();
+      this.pageServiceService.getConferenceProgramme().subscribe((response: any) => {
+        this.contentAffiche = response.conferenceProgramme; // Change this line
+      });
     } else if (this.pageSelected == 'ConferenceVenue') {
       this.contentAffiche = this.pageServiceService.getConferenceVenue();
     } else if (this.pageSelected == 'Partners') {

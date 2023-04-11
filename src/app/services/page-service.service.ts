@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root',
@@ -14,19 +16,22 @@ export class PageServiceService {
   private conferenceProgramme;
   private conferenceVenue;
   private partners;
-  constructor() {}
+  private baseUrl = 'http://localhost:8080/api/home';
+  constructor(private http: HttpClient) {}
 
-  saveAboutPage(content: any) {
-    this.aboutPage = content;
+  getAboutPage() {
+    return this.http.get(`${this.baseUrl}/1`);
   }
-  getAboutPage(): any {
-    return this.aboutPage;
+  
+  saveAboutPage(content: string) {
+    return this.http.put(`${this.baseUrl}/1`, { aboutContent: content });
   }
-  saveConferenceProgramme(conferenceContent: any) {
-    this.conferenceProgramme = conferenceContent;
-  }
-  getConferenceProgramme(): any {
-    return this.conferenceProgramme;
+ saveConferenceProgramme(content: string) {
+  return this.http.put(`${this.baseUrl}/1/conferenceProgramme`, content);
+}
+  
+  getConferenceProgramme() {
+    return this.http.get(`${this.baseUrl}/1`);
   }
 
   saveConferenceVenue(conferenceContent: any) {

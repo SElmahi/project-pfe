@@ -4,12 +4,6 @@ import { AboutService } from 'src/app/services/about.service';
 import { AboutComponent } from './about.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
-
-
-
-
-
-
 @NgModule({
   declarations: [],
   imports: [

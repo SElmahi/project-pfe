@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommitteesComponent } from './pages/committees/committees.component';
 import { ImportantDatesComponent } from './pages/important-dates/important-dates.component';
-import { CallForPapersComponent } from './pages/call-for-papers/call-for-papers.component';
+import { CallForPapersComponent } from './pages/pages/call-for-papers/call-for-papers.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { PublicationIndexComponent } from './pages/publication-index/publication-index.component';
 import { AdminComponent } from './pages/admin/admin.component';
