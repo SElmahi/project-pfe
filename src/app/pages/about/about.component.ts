@@ -21,8 +21,9 @@ export class AboutComponent implements OnInit {
       this.contentAffiche = response.aboutContent;
      
       this.conferencePorgramme = response.conferenceProgramme;
-    });
-    this.conferenceVenue = this.pageServiceService.getConferenceVenue();
+   
+    this.conferenceVenue = response.conferenceVenue;
+  });
     this.partners = this.pageServiceService.getPartners();
   }
   local = 'fso Oujda';

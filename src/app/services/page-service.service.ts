@@ -16,78 +16,85 @@ export class PageServiceService {
   private conferenceProgramme;
   private conferenceVenue;
   private partners;
-  private baseUrl = 'http://localhost:8080/api/home';
+  private baseUrl = 'http://localhost:8080/api'
   constructor(private http: HttpClient) {}
 
   getAboutPage() {
-    return this.http.get(`${this.baseUrl}/1`);
+    return this.http.get(`${this.baseUrl}/home/1`);
   }
   
   saveAboutPage(content: string) {
-    return this.http.put(`${this.baseUrl}/1`, { aboutContent: content });
+    return this.http.put(`${this.baseUrl}/home/1`, { aboutContent: content });
   }
  saveConferenceProgramme(content: string) {
-  return this.http.put(`${this.baseUrl}/1/conferenceProgramme`, content);
+  return this.http.put(`${this.baseUrl}/home/1/conferenceProgramme`, content);
 }
   
   getConferenceProgramme() {
-    return this.http.get(`${this.baseUrl}/1`);
+    return this.http.get(`${this.baseUrl}/home/1`);
   }
 
-  saveConferenceVenue(conferenceContent: any) {
-    this.conferenceVenue = conferenceContent;
+  saveConferenceVenue(content: string) {
+    return this.http.put(`${this.baseUrl}/home/1/conferenceVenue`, content);
   }
-  getConferenceVenue(): any {
-    return this.conferenceVenue;
-  }
-
-  savePartners(contentPartners: any) {
-    this.partners = contentPartners;
-  }
-
-  getPartners() {
-    return this.partners;
-  }
-
-  saveHeaderPage(content: any) {
-    this.headerPage = content;
-  }
-  getHeaderPage(): any {
-    return this.headerPage;
-  }
-
-  saveCallForPapersPage(content: any) {
-    this.CallForPapersPage = content;
-  }
-  getCallForPapersPage(): any {
-    return this.CallForPapersPage;
-  }
-
-  saveImportantDatesPage(content: any) {
-    this.importantDatesPage = content;
-  }
-  getImportantDatesPage(): any {
-    return this.importantDatesPage;
-  }
-
-  saveCommitteesPage(content: any) {
-    this.committeesPage = content;
-  }
-  getCommitteesPage(): any {
-    return this.committeesPage;
-  }
-
-  saveRegisterPage(content: any) {
-    this.registerPage = content;
-  }
-  getRegisterPage(): any {
-    return this.registerPage;
-  }
-
-  savePublicationIndexPage(content: any) {
-    this.publicationIndexPage = content;
-  }
-  getPublicationIndexPage(): any {
-    return this.publicationIndexPage;
-  }
+    
+    getConferenceVenue() {
+      return this.http.get(`${this.baseUrl}/home/1`);
+    }
+  
+    savePartners(contentPartners: any) {
+      return this.http.put(`${this.baseUrl}/partners`, { content: contentPartners });
+    }
+  
+    getPartners() {
+      return this.http.get(`${this.baseUrl}/partners`);
+    }
+  
+    saveHeaderPage(content: any) {
+      return this.http.put(`${this.baseUrl}/header`, { content: content });
+    }
+  
+    getHeaderPage(): any {
+      return this.http.get(`${this.baseUrl}/header`);
+    }
+  
+    saveCallForPapersPage(content: any) {
+      return this.http.put(`${this.baseUrl}/callforpapers`, { content: content });
+    }
+  
+    getCallForPapersPage(): any {
+      return this.http.get(`${this.baseUrl}/callforpapers`);
+    }
+  
+    saveImportantDatesPage(content: any) {
+      return this.http.put(`${this.baseUrl}/importantdates/1`,  content );
+    }
+  
+    getImportantDatesPage(): any {
+      return this.http.get(`${this.baseUrl}/importantdates/1`);
+    }
+  
+    saveCommitteesPage(content: any) {
+      return this.http.put(`${this.baseUrl}/committees`, { content: content });
+    }
+  
+    getCommitteesPage(): any {
+      return this.http.get(`${this.baseUrl}/committees`);
+    }
+  
+    saveRegisterPage(content: any) {
+      return this.http.put(`${this.baseUrl}/register`, { content: content });
+    }
+  
+    getRegisterPage(): any {
+      return this.http.get(`${this.baseUrl}/register`);
+    }
+  
+    savePublicationIndexPage(content: any) {
+      return this.http.put(`${this.baseUrl}/publicationindex`, { content: content });
+    }
+  
+    getPublicationIndexPage(): any {
+      return this.http.get(`${this.baseUrl}/publicationindex`);
+    }
 }

@@ -1,26 +1,45 @@
-h1{
-    text-align: center;
-    color: #0A2647;
-    border-bottom: 3px  solid #4D4D4D;
-    border-style: double;
- }
- .comment {
-    margin-left:6.7% ;
-    font-size: 14px;
-    color: #4D4D4D;
-    
-}
-
-    p{
-        margin-left:6% ;
-        margin-top: 5%;
-    text-align:left;
-    font-weight: bold;
-    color:#4D4D4D;
-    font-size: 20px;
- }
-
-.cross {
-  text-decoration: line-through;
+.important-dates-content {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
   
-}
+  .important-dates-content h1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #0A2647;
+    border: 2px solid #4D4D4D;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    border-radius: 10px;
+    display: inline-block;
+  }
+  
+  .important-dates-content h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #4caf50;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  
+  .important-dates-content p {
+    margin-bottom: 1rem;
+  }
+  
+  .important-dates-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .important-dates-content li {
+    margin-bottom: 1rem;
+  }
+  

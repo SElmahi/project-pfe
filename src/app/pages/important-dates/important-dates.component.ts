@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageServiceService } from 'src/app/services/page-service.service';
 
 @Component({
@@ -6,12 +6,18 @@ import { PageServiceService } from 'src/app/services/page-service.service';
   templateUrl: './important-dates.component.html',
   styleUrls: ['./important-dates.component.css']
 })
-export class ImportantDatesComponent {
-content : any
-constructor(private pageServiceService:PageServiceService){}
-ngOnInit(): void {
-  this.content = this.pageServiceService.getImportantDatesPage()
+export class ImportantDatesComponent implements OnInit {
+  public contentAffiche;
+  
+  content: any;
+
+  constructor(private pageServiceService: PageServiceService) {}
+
  
+  ngOnInit(): void {
+    this.pageServiceService.getImportantDatesPage().subscribe((response: any) => {
+      this.contentAffiche = response.content || '';
+    });
 }
 
 }

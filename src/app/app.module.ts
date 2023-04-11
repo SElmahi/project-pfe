@@ -6,12 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommitteesComponent } from './pages/committees/committees.component';
 import { ImportantDatesComponent } from './pages/important-dates/important-dates.component';
-import { CallForPapersComponent } from './pages/pages/call-for-papers/call-for-papers.component';
+import { CallForPapersComponent } from './pages/call-for-papers/call-for-papers.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { PublicationIndexComponent } from './pages/publication-index/publication-index.component';
+import { PublicationIndexComponent } from './pages/pages/publication-index/publication-index.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminGuard } from './guards/admin.guard'; // Import AdminGuard here
-import { HeaderComponent } from './pages/header/header.component';
+import { HeaderComponent } from './pages/pages/header/header.component';
 import { SubmitComponent } from './pages/submit/submit.component';
 import { AdminDasboardComponent } from './pages/admin-dasboard/admin-dasboard.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
