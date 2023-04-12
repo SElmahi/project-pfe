@@ -11,6 +11,9 @@ export class HeaderComponent {
 
   constructor(private pageServiceService: PageServiceService) {}
   ngOnInit(): void {
-    this.content = this.pageServiceService.getHeaderPage();
+    this.pageServiceService.getHeaderPage().subscribe((response: any) => {
+      this.content = response;
+    });
   }
+  
 }

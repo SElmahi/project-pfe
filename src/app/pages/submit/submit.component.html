@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
 <div><h1>SUBMISSION</h1></div>
 <router-outlet></router-outlet>
 <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
@@ -106,11 +108,11 @@
   </div>
 </div>
 
-  <button type="button" (click)="removeCoAuthor(i)">Remove Co-author</button>
+<button type="button" class="buttons-container" (click)="removeCoAuthor(i)">Remove Co-author</button>
 </div> <!-- Closing tag for formGroupName div -->
 </ng-container> <!-- Closing tag for ng-container -->
 </div> <!-- Closing tag for formArrayName div -->
-<button type="button" (click)="addCoAuthor()">Add Co-author</button>
+<button type="button" class="buttons-container" (click)="addCoAuthor()">Add Co-author</button>
 
   <h2>Paper Submission</h2>
 <div>

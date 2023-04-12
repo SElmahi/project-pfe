@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
+import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
 
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 import { PageServiceService } from 'src/app/services/page-service.service';
+import DOMPurify from 'dompurify';
+
 @Component({
   selector: 'app-admin-dasboard',
   templateUrl: './admin-dasboard.component.html',
@@ -12,7 +15,7 @@ import { PageServiceService } from 'src/app/services/page-service.service';
 export class AdminDasboardComponent {
   public Editor = DecoupledEditor as any;
  
-    
+  
 
   public pages = [
     'About',
@@ -26,10 +29,37 @@ export class AdminDasboardComponent {
     'ConferenceVenue',
     'Partners',
   ];
+ 
+
 
   public pageSelected!: string;
   private editordata;
   public contentAffiche;
+  public editorConfig = {
+    toolbar: {
+      items: [
+        // ... your other toolbar items
+        'htmlEmbed',
+      ],
+    },
+    htmlEmbed: {
+      showPreviews: true,
+      sanitizeHtml: (inputHtml: string) => {
+        // Strip unsafe elements and attributes, e.g.:
+        // the `<script>` elements and `on*` attributes.
+        const outputHtml = this.sanitize(inputHtml);
+  
+        return {
+          html: outputHtml,
+          hasChanged: true,
+        };
+      },
+    },
+    // ... your other configurations
+  };
+  sanitize(inputHtml: string): string {
+    return DOMPurify.sanitize(inputHtml);
+  }
   constructor(private pageServiceService: PageServiceService) {}
 
   
@@ -89,8 +119,11 @@ export class AdminDasboardComponent {
       });
     } else if (this.pageSelected == 'Header') {
       this.pageServiceService.getHeaderPage().subscribe((response: any) => {
-        this.contentAffiche = response.headerContent;
-        
+        this.contentAffiche = {
+          headerText: response.text,
+          headerImageUrl: response.imageUrl,
+        };
+      
       });
     } else if (this.pageSelected == 'Register') {
       this.pageServiceService.getRegisterPage().subscribe((response: any) => {
@@ -143,5 +176,6 @@ export class AdminDasboardComponent {
         editor.ui.view.toolbar.element,
         editor.ui.getEditableElement()
     );
+  
 }
 }

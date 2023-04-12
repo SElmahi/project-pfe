@@ -51,12 +51,15 @@ export class PageServiceService {
     }
   
     saveHeaderPage(content: any) {
-      return this.http.put(`${this.baseUrl}/header`, { content: content });
+      return this.http.put(`${this.baseUrl}/header/${content.id}`, {
+        text: content.headerText,
+        imageUrl: content.headerImageUrl,
+      });
     }
   
-    getHeaderPage(): any {
-      return this.http.get(`${this.baseUrl}/header`);
-    }
+  getHeaderPage() {
+    return this.http.get(`${this.baseUrl}/header/1`);
+  }
   
     saveCallForPapersPage(content: any) {
       return this.http.put(`${this.baseUrl}/callforpapers`, { content: content });

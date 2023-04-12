@@ -1,4 +1,5 @@
-<div><h1>REGISTRATION</h1></div>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,600&display=swap" rel="stylesheet">
+<div><h2>REGISTRATION</h2></div>
 <div><table>
     <thead>
       <tr>
@@ -31,8 +32,9 @@
   </div>
  
   <router-outlet></router-outlet>
-  <div class="wrapper">
-  <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
+  <div class="form-container">
+    <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
+      <h2>ATTENDEES</h2>
     <div class="form-group">
       <label for="name">First name :</label><br>
       <input type="text" class="form-control" id="name" formControlName="name">

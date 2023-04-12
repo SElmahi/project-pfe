@@ -14,13 +14,12 @@
     font-size: 32px;
     font-weight: 600;
     color: #0A2647;
-    border: 2px solid #4D4D4D;
-    padding: 10px;
+    border-bottom: 2px solid #4D4D4D;
+    padding-bottom: 10px;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
-    border-radius: 10px;
-    display: inline-block;
   }
+  
   
   .important-dates-content h3 {
     font-size: 18px;

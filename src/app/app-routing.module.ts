@@ -6,7 +6,7 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { CallForPapersComponent } from './pages/call-for-papers/call-for-papers.component';
 import { CommitteesComponent } from './pages/committees/committees.component';
 import { ImportantDatesComponent } from './pages/important-dates/important-dates.component';
-import { PublicationIndexComponent } from './pages/pages/publication-index/publication-index.component';
+import { PublicationIndexComponent } from './pages/publication-index/publication-index.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SubmitComponent } from './pages/submit/submit.component';
 import { AdminGuard } from './guards/admin.guard';

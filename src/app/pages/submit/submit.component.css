@@ -1,23 +1,32 @@
 h1 {
   text-align: center;
-  color: #0A2647;
-  border-bottom: 3px solid #4D4D4D;
-  border-style: double;
-  margin-bottom: 1rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #1A3B5D;
+  border-bottom: 3px solid #1A3B5D;
+  padding-bottom: 10px;
+  margin-bottom: 1.5rem;
 }
 
 h2 {
+  font-family: 'Roboto', sans-serif;
   margin-top: 2%;
   margin-left: 10%;
-  color: #4D4D4D;
+  color: #1A3B5D;
+  font-size: 24px;
+  font-weight: 500;
 }
+
 form {
   margin-left: 15%;
+  font-family: 'Roboto', sans-serif;
 }
+
 .form-group {
   margin-top: 2%;
   margin-left: 10%;
-  color: #4D4D4D;
+  color: #1A3B5D;
   margin-bottom: 1rem;
 }
 
@@ -35,10 +44,10 @@ textarea,
 select {
   font-size: 1rem;
   line-height: 1.5;
-  color: #0A2647;
-  background-color: #f0e6e6;
+  color: #1A3B5D;
+  background-color: #F5F5F5;
   background-clip: padding-box;
-  border: 1px solid #0A2647;
+  border: 1px solid #1A3B5D;
   border-radius: 0.25rem;
   width: 100%;
   max-width: 400px;
@@ -56,23 +65,38 @@ button[type="submit"] {
   border-radius: 0.3rem;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
-  margin-left: 19%;
-  background-color: #0A2647;
-  color: #4D4D4D;
-  font-size: 1.3rem;
+  background-color: #1A3B5D;
+  color: #FFFFFF;
+  font-size: 1.1rem;
   white-space: nowrap;
-  min-width: 5rem;
+  min-width: 7rem; /* Updated min-width for equal size */
+}
+
+button[type="submit"] {
+  margin-left: 19%;
 }
 
 button[type="button"]:hover,
 button[type="submit"]:hover {
-  background-color: #1E4A8C;
+  background-color: #3E6AA3;
 }
 
 button[type="submit"]:disabled {
   background-color: #A3B1C6;
   cursor: not-allowed;
 }
+
+/* Updated styles for the Add and Remove Co-author buttons */
+button.add-co-author {
+  margin-left: 10%;
+  margin-top: 1rem;
+}
+
+button.remove-co-author {
+  margin-right: 1rem;
+  margin-top: 0;
+}
+
 
 .error-message {
   color: red;
