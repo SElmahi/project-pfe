@@ -5,7 +5,6 @@ import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 import { PageServiceService } from 'src/app/services/page-service.service';
-import DOMPurify from 'dompurify';
 
 @Component({
   selector: 'app-admin-dasboard',
@@ -35,31 +34,7 @@ export class AdminDasboardComponent {
   public pageSelected!: string;
   private editordata;
   public contentAffiche;
-  public editorConfig = {
-    toolbar: {
-      items: [
-        // ... your other toolbar items
-        'htmlEmbed',
-      ],
-    },
-    htmlEmbed: {
-      showPreviews: true,
-      sanitizeHtml: (inputHtml: string) => {
-        // Strip unsafe elements and attributes, e.g.:
-        // the `<script>` elements and `on*` attributes.
-        const outputHtml = this.sanitize(inputHtml);
   
-        return {
-          html: outputHtml,
-          hasChanged: true,
-        };
-      },
-    },
-    // ... your other configurations
-  };
-  sanitize(inputHtml: string): string {
-    return DOMPurify.sanitize(inputHtml);
-  }
   constructor(private pageServiceService: PageServiceService) {}
 
   
