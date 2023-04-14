@@ -15,19 +15,22 @@ export class AdminComponent {
     if (form.invalid) {
       return;
     }
-
+  
     this.adminService.login(form.value.email, form.value.password).subscribe(
       (response: any) => {
         console.log(response);
         if (response.role === 'Admin') {
+          this.adminService.saveUserDetails(response.role, form.value.email);
           this.router.navigate(['/admin-dashboard']);
         } else if (response.role === 'Author') {
-          this.router.navigate(['/admin-dashboard']);
+          this.adminService.saveUserDetails(response.role, form.value.email);
+          this.router.navigate(['/author-dashboard']);
         }
       },
       (error) => {
         console.error('Failed to login', error);
       }
     );
+  
   }
 }

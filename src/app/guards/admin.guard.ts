@@ -13,33 +13,26 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    console.log('AdminGuard: checking authentication...');
-    return this.adminService.isAuthenticated().pipe(
-      tap(isAuthenticated => {
-        console.log('AdminGuard: isAuthenticated', isAuthenticated);
-
-        if (!isAuthenticated) {
-          console.log('AdminGuard: authentication failed, redirecting to /admin');
-          this.router.navigate(['/admin']);
-        }
-      }),
-      map(isAuthenticated => {
-        if (isAuthenticated) {
-          let result = true;
-
-          this.adminService.getRole().subscribe(userRole => {
-            if (userRole === 'Author' && state.url === '/admin-dashboard') {
-              console.log('AdminGuard: author trying to access admin dashboard, redirecting');
-              this.router.navigate(['/author-dashboard']);
-              result = false;
-            }
-          });
-
-          return result;
-        }
-
-        return false;
-      })
-    );
+    if (this.adminService.isSessionExpired()) {
+      localStorage.removeItem('userRole');
+      localStorage.removeItem('userEmail');
+      localStorage.removeItem('sessionExpiration');
+      this.router.navigate(['/admin']);
+      return false;
+    }
+  
+    const userRole = localStorage.getItem('userRole');
+    if (!userRole) {
+      this.router.navigate(['/admin']);
+      return false;
+    }
+  
+    if (userRole === 'Author' && state.url === '/admin-dashboard') {
+      this.router.navigate(['/author-dashboard']);
+      return false;
+    }
+  
+    return true;
   }
-}
+  }
+

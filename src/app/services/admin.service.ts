@@ -22,6 +22,7 @@ export class AdminService {
     return this.http.post<any>(`${this.apiUrl}/login`, loginData).pipe(
       tap(response => {
         if (response.role) {
+          this.saveUserDetails(response.role, email);
           this.roleSubject.next(response.role);
           this.isAuthenticatedSubject.next(true);
         } else {
@@ -29,6 +30,22 @@ export class AdminService {
         }
       })
     );
+  }
+
+  saveUserDetails(role: string, email: string) {
+    const expirationTime = new Date().getTime() + (60 * 60 * 1000); // 3 minutes
+    localStorage.setItem('userRole', role);
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('sessionExpiration', expirationTime.toString());
+  }
+  isSessionExpired(): boolean {
+    const expirationTime = localStorage.getItem('sessionExpiration');
+    if (!expirationTime) {
+      return true;
+    }
+  
+    const currentTime = new Date().getTime();
+    return currentTime >= parseInt(expirationTime, 10);
   }
 
   isAuthenticated(): Observable<boolean> {
