@@ -20,6 +20,8 @@ import { AdminService } from './services/admin.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthorDashboardComponent } from './pages/author-dashboard/author-dashboard.component';
+import { MatTableModule } from '@angular/material/table';
+
 
 
 
@@ -50,8 +52,11 @@ const routes: Routes = [
     FormsModule,
     MatSnackBarModule,
     HttpClientModule,
+    MatTableModule,
     FormsModule,
    ReactiveFormsModule,
+
+   
     RouterModule.forRoot(routes) // Add RouterModule here
   ],
   providers: [AdminService, AdminGuard], // Add AdminGuard to providers array

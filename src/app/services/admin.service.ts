@@ -12,7 +12,27 @@ export class AdminService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   private roleSubject = new BehaviorSubject<string>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    const userRole = localStorage.getItem('userRole');
+    const userEmail = localStorage.getItem('userEmail');
+    const sessionExpiration = localStorage.getItem('sessionExpiration');
+  
+    if (userRole && userEmail && sessionExpiration) {
+      const currentTime = new Date().getTime();
+      if (currentTime < parseInt(sessionExpiration, 10)) {
+        this.isAuthenticatedSubject.next(true);
+        this.roleSubject.next(userRole);
+      } else {
+        this.clearLocalStorage();
+      }
+    }
+  }
+   clearLocalStorage() {
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('sessionExpiration');
+  }
+  
 
   login(email: string, password: string): Observable<any> {
     const loginData = {
@@ -22,7 +42,7 @@ export class AdminService {
     return this.http.post<any>(`${this.apiUrl}/login`, loginData).pipe(
       tap(response => {
         if (response.role) {
-          this.saveUserDetails(response.role, email);
+          this.saveUserDetails(response.role, email, response.id);
           this.roleSubject.next(response.role);
           this.isAuthenticatedSubject.next(true);
         } else {
@@ -32,10 +52,11 @@ export class AdminService {
     );
   }
 
-  saveUserDetails(role: string, email: string) {
-    const expirationTime = new Date().getTime() + (60 * 60 * 1000); // 3 minutes
+  saveUserDetails(role: string, email: string, id: number) {
+    const expirationTime = new Date().getTime() + (2 * 60 * 1000); // 3 minutes
     localStorage.setItem('userRole', role);
     localStorage.setItem('userEmail', email);
+    localStorage.setItem('userId', id.toString());
     localStorage.setItem('sessionExpiration', expirationTime.toString());
   }
   isSessionExpired(): boolean {
@@ -45,7 +66,7 @@ export class AdminService {
     }
   
     const currentTime = new Date().getTime();
-    return currentTime >= parseInt(expirationTime, 10);
+    return currentTime >= parseInt(expirationTime, 5);
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -66,5 +87,11 @@ export class AdminService {
         this.roleSubject.next(null);
       }
     });
+  }
+  getAuthorSubmissions(id: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/authors/submissions?id=${id}`);
+  }
+  getAuthorInfo(id: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/authors/info?id=${id}`);
   }
 }

@@ -13,26 +13,24 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.adminService.isSessionExpired()) {
-      localStorage.removeItem('userRole');
-      localStorage.removeItem('userEmail');
-      localStorage.removeItem('sessionExpiration');
-      this.router.navigate(['/admin']);
-      return false;
-    }
-  
-    const userRole = localStorage.getItem('userRole');
-    if (!userRole) {
-      this.router.navigate(['/admin']);
-      return false;
-    }
-  
-    if (userRole === 'Author' && state.url === '/admin-dashboard') {
-      this.router.navigate(['/author-dashboard']);
-      return false;
-    }
-  
-    return true;
+    return this.adminService.isAuthenticated().pipe(
+      tap(isAuthenticated => {
+        if (!isAuthenticated) {
+          this.router.navigate(['/admin']);
+        }
+      }),
+      map(isAuthenticated => {
+        if (isAuthenticated) {
+          const userRole = localStorage.getItem('userRole');
+          if ((userRole === 'Author' && state.url === '/admin-dashboard') || 
+              (userRole === 'Admin' && state.url === '/author-dashboard')) {
+            this.router.navigate(['/admin']); // Redirect to the login page if the user tries to access the wrong dashboard
+            return false;
+          }
+          return true;
+        }
+        return false;
+      })
+    );
   }
-  }
-
+}

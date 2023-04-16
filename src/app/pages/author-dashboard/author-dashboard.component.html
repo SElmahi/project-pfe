@@ -1,5 +1,28 @@
 <div class="author-dashboard">
-    <h1>Welcome to the Author Dashboard!</h1>
-    <!-- Add more content for the author dashboard here -->
-  </div>
-  
+  <h1>Welcome, {{ authorName }}!</h1>
+  <h2>Here are your current submissions:</h2>
+</div>
+<div class="submissions-table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Abstract</th>
+        <th>Keywords</th>
+        <th>Status</th>
+        <th>Submission Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let submission of submissions">
+        <td>{{ submission.customId }}</td>
+        <td>{{ submission.title }}</td>
+        <td>{{ submission.abstractText }}</td>
+        <td>{{ submission.keywords }}</td>
+        <td>{{ submission.submissionState }}</td>
+        <td>{{ submission.submissionDate }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

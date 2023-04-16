@@ -20,10 +20,10 @@ export class AdminComponent {
       (response: any) => {
         console.log(response);
         if (response.role === 'Admin') {
-          this.adminService.saveUserDetails(response.role, form.value.email);
+          this.adminService.saveUserDetails(response.role, form.value.email,response.id);
           this.router.navigate(['/admin-dashboard']);
         } else if (response.role === 'Author') {
-          this.adminService.saveUserDetails(response.role, form.value.email);
+          this.adminService.saveUserDetails(response.role, form.value.email,response.id);
           this.router.navigate(['/author-dashboard']);
         }
       },
