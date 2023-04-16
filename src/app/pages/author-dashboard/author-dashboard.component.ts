@@ -21,5 +21,10 @@ export class AuthorDashboardComponent implements OnInit {
     this.adminService.getAuthorSubmissions(userId).subscribe((data: any[]) => {
       this.submissions = data;
     });
+
   }
+  getPaperUrl(paperName: string): string {
+    return `http://localhost:8080/api/submissions/papers/${paperName}`;
+  }
+  
 }

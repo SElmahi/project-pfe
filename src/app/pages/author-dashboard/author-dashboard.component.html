@@ -12,6 +12,7 @@
         <th>Keywords</th>
         <th>Status</th>
         <th>Submission Date</th>
+        <th>Paper</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,12 @@
         <td>{{ submission.keywords }}</td>
         <td>{{ submission.submissionState }}</td>
         <td>{{ submission.submissionDate }}</td>
+       
+
+<!-- Add a new cell to display the link -->
+        <td>
+   <a [href]="getPaperUrl(submission.paper)" target="_blank">Download Paper</a>
+        </td>
       </tr>
     </tbody>
   </table>

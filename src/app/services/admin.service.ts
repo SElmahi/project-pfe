@@ -53,7 +53,7 @@ export class AdminService {
   }
 
   saveUserDetails(role: string, email: string, id: number) {
-    const expirationTime = new Date().getTime() + (2 * 60 * 1000); // 3 minutes
+    const expirationTime = new Date().getTime() + (10 * 60 * 1000); // 3 minutes
     localStorage.setItem('userRole', role);
     localStorage.setItem('userEmail', email);
     localStorage.setItem('userId', id.toString());
@@ -66,7 +66,7 @@ export class AdminService {
     }
   
     const currentTime = new Date().getTime();
-    return currentTime >= parseInt(expirationTime, 5);
+    return currentTime >= parseInt(expirationTime, 10);
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -76,7 +76,7 @@ export class AdminService {
   getRole(): Observable<string> {
     return this.roleSubject.asObservable();
   }
-
+  
   checkAuthenticated(): void {
     this.http.get<any>(`${this.apiUrl}/isAuthenticated`).subscribe(response => {
       if (response.authenticated) {
@@ -94,4 +94,5 @@ export class AdminService {
   getAuthorInfo(id: number): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/api/authors/info?id=${id}`);
   }
+ 
 }
