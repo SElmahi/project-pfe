@@ -21,6 +21,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthorDashboardComponent } from './pages/author-dashboard/author-dashboard.component';
 import { MatTableModule } from '@angular/material/table';
+import { ModifySubmissionComponent } from './pages/modify-submission/modify-submission.component';
 
 
 
@@ -43,6 +44,7 @@ const routes: Routes = [
     SubmitComponent,
     AdminDasboardComponent,
     AuthorDashboardComponent,
+    ModifySubmissionComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -94,5 +95,6 @@ export class AdminService {
   getAuthorInfo(id: number): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/api/authors/info?id=${id}`);
   }
+ 
  
 }

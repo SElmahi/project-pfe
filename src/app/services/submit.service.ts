@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Author } from '../models/Author';
+import { Submission } from '../models/Submission';
 
 @Injectable({
   providedIn: 'root'
@@ -48,5 +49,23 @@ export class SubmitService {
       responseType: 'text' as 'json'
     };
     return this.http.post<any>(this.submitPaperUrl, submissionData, httpOptions);
+  }
+  getSubmissionById(id: string): Observable<Submission> {
+    return this.http.get<Submission>(`${this.apiUrl}/submissions/${id}`);
+  }
+
+  updateSubmission(id: number, submission: Submission, paper: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('submission', new Blob([JSON.stringify(submission)], { type: 'application/json' }));
+    if (paper) {
+      formData.append('paper', paper);
+    }
+  
+    return this.http.put(`${this.apiUrl}/submissions/${id}`, formData, {
+      headers: {
+        // Don't set the 'Content-Type' header, Angular will set it automatically.
+        // 'Content-Type': 'multipart/form-data',
+      },
+    });
   }
 }

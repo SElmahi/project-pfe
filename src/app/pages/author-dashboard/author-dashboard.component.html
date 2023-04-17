@@ -23,6 +23,9 @@
         <td>{{ submission.keywords }}</td>
         <td>{{ submission.submissionState }}</td>
         <td>{{ submission.submissionDate }}</td>
+        <td>
+          <button (click)="modifySubmission(submission.id)">Modify</button>
+        </td>
        
 
 <!-- Add a new cell to display the link -->

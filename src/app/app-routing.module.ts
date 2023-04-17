@@ -11,6 +11,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { SubmitComponent } from './pages/submit/submit.component';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthorDashboardComponent } from './pages/author-dashboard/author-dashboard.component';
+import { ModifySubmissionComponent } from './pages/modify-submission/modify-submission.component';
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'committees', component: CommitteesComponent },
@@ -24,6 +25,8 @@ const routes: Routes = [
   {
     path: 'author-dashboard',component: AuthorDashboardComponent,canActivate: [AdminGuard], // Use the updated AdminGuard to protect the route
   },
+  {path: 'modify-submission/:id',
+  component: ModifySubmissionComponent},
   { path: '', component: AboutComponent },
 ];
 
