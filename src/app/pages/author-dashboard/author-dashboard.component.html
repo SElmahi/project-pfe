@@ -3,36 +3,38 @@
   <h2>Here are your current submissions:</h2>
 </div>
 <div class="submissions-table-container">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Abstract</th>
-        <th>Keywords</th>
-        <th>Status</th>
-        <th>Submission Date</th>
-        <th>Paper</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let submission of submissions">
-        <td>{{ submission.customId }}</td>
-        <td>{{ submission.title }}</td>
-        <td>{{ submission.abstractText }}</td>
-        <td>{{ submission.keywords }}</td>
-        <td>{{ submission.submissionState }}</td>
-        <td>{{ submission.submissionDate }}</td>
-        <td>
-          <button (click)="modifySubmission(submission.id)">Modify</button>
-        </td>
-       
-
-<!-- Add a new cell to display the link -->
-        <td>
-   <a [href]="getPaperUrl(submission.paper)" target="_blank">Download Paper</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="submissions-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Abstract</th>
+          <th>Keywords</th>
+          <th>Status</th>
+          <th>Submission Date</th>
+          <th>Type</th> <!-- Added a header for the Submission Type column -->
+          <th>Modify</th>
+          <th>Paper</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let submission of submissions">
+          <td data-label="ID">{{ submission.customId }}</td>
+          <td data-label="Title">{{ submission.title }}</td>
+          <td data-label="Abstract">{{ submission.abstractText }}</td>
+          <td data-label="Keywords">{{ submission.keywords }}</td>
+          <td data-label="Status">{{ submission.submissionState }}</td>
+          <td data-label="Submission Date">{{ submission.submissionDate }}</td>
+          <td data-label="Type">{{ submission.submissionType }}</td> <!-- Added Submission Type field -->
+          <td data-label="Modify">
+            <button (click)="modifySubmission(submission.id)">Modify</button>
+          </td>
+          <td data-label="Paper">
+            <a [href]="getPaperUrl(submission.paper)" target="_blank">Download Paper</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

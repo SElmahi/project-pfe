@@ -56,7 +56,18 @@ export class SubmitService {
 
   updateSubmission(id: number, submission: Submission, paper: File): Observable<any> {
     const formData = new FormData();
-    formData.append('submission', new Blob([JSON.stringify(submission)], { type: 'application/json' }));
+    
+    // Create an object containing the updated submission properties
+    const updatedSubmissionData = {
+      title: submission.title,
+      abstractText: submission.abstractText,
+      keywords: submission.keywords,
+      submissionType: submission.submissionType
+    };
+  
+    // Append the object as a JSON string with the key 'submission'
+    formData.append('submission', new Blob([JSON.stringify(updatedSubmissionData)], { type: 'application/json' }));
+  
     if (paper) {
       formData.append('paper', paper);
     }
@@ -68,4 +79,5 @@ export class SubmitService {
       },
     });
   }
+  
 }

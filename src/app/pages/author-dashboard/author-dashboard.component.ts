@@ -14,12 +14,14 @@ export class AuthorDashboardComponent implements OnInit {
   constructor(private adminService: AdminService,private router :Router) {}
   authorName: string = '';
   ngOnInit(): void {
+    console.log('ngOnInit called')
     const userId = parseInt(localStorage.getItem('userId'), 10);
     this.adminService.getAuthorInfo(userId).subscribe((data: any) => {
       this.authorName = data.firstName;
     });
     
     this.adminService.getAuthorSubmissions(userId).subscribe((data: any[]) => {
+      console.log('Updated submissions data:', data); // Check the updated data
       this.submissions = data;
     });
 
