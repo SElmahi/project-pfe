@@ -1,20 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /* Add these styles to styles.css or styles.scss */
-
-  .mat-snack-bar-container-center {
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    position: fixed !important;
-  }
-  .error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 5px;
-  }
-  .separator {
-    padding: 5%;
-  }
- 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.mat-snack-bar-container-center {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  position: fixed !important;
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.separator {
+  padding: 5%;
+}

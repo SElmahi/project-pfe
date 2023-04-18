@@ -1,5 +1,6 @@
 <style>
   :host {
+    font-family: "Roboto", sans-serif;
     font-weight: bold;
     color: #cfc3c3;
   }
@@ -16,12 +17,11 @@
   }
 
   .toolbar {
-    font-family: "Times New Roman", Times, serif;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height:50px;
+    height: 50px;
     display: flex;
     align-items: center;
     background-color: #0a2647;
@@ -36,7 +36,7 @@
     margin-right: 1em;
   }
   .toolbar a {
-    font-size: 150%;
+    font-size: 135%;
     text-decoration: none;
     color: #fff4e0;
     font-weight: bold;
@@ -69,11 +69,70 @@
     width: 4%;
     margin: 1%;
   }
+  .link {
+    display: flex;
+  }
+  /*tejriba f nav bar*/
+
+  .toggle-button {
+    position: absolute;
+    margin-top: 5%;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+  }
+  .toggle-button .bar {
+    height: 5px;
+    width: 8%;
+    background-color: white;
+    border-radius: 10px;
+    margin-left: auto;
+  }
+
+  @media (max-width: 946px) {
+    .toggle-button {
+      display: flex;
+    }
+    .toolbar a {
+      width: 100%;
+    }
+
+    .toolbar {
+      flex-direction: column;
+      align-items: start;
+      height: auto;
+    }
+    .toolbar ul {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+    }
+    .logo {
+      width: 11%;
+    }
+    .footer {
+      height: auto;
+    }
+    .photo {
+      margin-top: 19%;
+      height: 300px;
+    }
+    h1 {
+      font-size: 180%;
+    }
+  }
 </style>
 <nav class="toolbar">
   <img class="logo" src="assets/image/logo.png" alt="logo" />
-
-  <div>
+  <a href="#" class="toggle-button">
+    <span class="bar"> </span>
+    <span class="bar"> </span>
+    <span class="bar"> </span>
+  </a>
+  <div class="link">
     <ul>
       <li>
         <a routerLink="/about">About</a>
@@ -112,5 +171,6 @@
 
 <div class="footer">
   <img class="logo" src="assets/image/logo.png" alt="logo" />
+
   <span style="margin-right: 3%">contact@gmail.com</span>
 </div>

@@ -18,7 +18,7 @@ export class PageServiceService {
   private partners;
   private baseUrl = 'http://localhost:8080/api'
   constructor(private http: HttpClient) {}
-
+  //About
   getAboutPage() {
     return this.http.get(`${this.baseUrl}/home/1`);
   }
@@ -26,14 +26,15 @@ export class PageServiceService {
   saveAboutPage(content: string) {
     return this.http.put(`${this.baseUrl}/home/1`, { aboutContent: content });
   }
- saveConferenceProgramme(content: string) {
+  //Conference Programme
+  saveConferenceProgramme(content: string) {
   return this.http.put(`${this.baseUrl}/home/1/conferenceProgramme`, content);
-}
+  }
   
   getConferenceProgramme() {
     return this.http.get(`${this.baseUrl}/home/1`);
   }
-
+  //Conference Venue
   saveConferenceVenue(content: string) {
     return this.http.put(`${this.baseUrl}/home/1/conferenceVenue`, content);
   }
@@ -41,7 +42,7 @@ export class PageServiceService {
     getConferenceVenue() {
       return this.http.get(`${this.baseUrl}/home/1`);
     }
-  
+  //Partners
     savePartners(contentPartners: any) {
       return this.http.put(`${this.baseUrl}/partners`, { content: contentPartners });
     }
@@ -49,7 +50,7 @@ export class PageServiceService {
     getPartners() {
       return this.http.get(`${this.baseUrl}/partners`);
     }
-  
+  //Header
     saveHeaderPage(content: any) {
       return this.http.put(`${this.baseUrl}/header/${content.id}`, {
         text: content.headerText,
@@ -60,7 +61,7 @@ export class PageServiceService {
   getHeaderPage() {
     return this.http.get(`${this.baseUrl}/header/1`);
   }
-  
+  //Call For Papers 
     saveCallForPapersPage(content: any) {
       return this.http.put(`${this.baseUrl}/callforpapers`, { content: content });
     }
@@ -68,7 +69,7 @@ export class PageServiceService {
     getCallForPapersPage(): any {
       return this.http.get(`${this.baseUrl}/callforpapers`);
     }
-  
+  //Important Dates
     saveImportantDatesPage(content: any) {
       return this.http.put(`${this.baseUrl}/importantdates/1`,  content );
     }
@@ -76,7 +77,7 @@ export class PageServiceService {
     getImportantDatesPage(): any {
       return this.http.get(`${this.baseUrl}/importantdates/1`);
     }
-  
+  //Committees
     saveCommitteesPage(content: any) {
       return this.http.put(`${this.baseUrl}/committees`, { content: content });
     }
@@ -84,7 +85,7 @@ export class PageServiceService {
     getCommitteesPage(): any {
       return this.http.get(`${this.baseUrl}/committees`);
     }
-  
+  //Register
     saveRegisterPage(content: any) {
       return this.http.put(`${this.baseUrl}/register`, { content: content });
     }
@@ -92,7 +93,7 @@ export class PageServiceService {
     getRegisterPage(): any {
       return this.http.get(`${this.baseUrl}/register`);
     }
-  
+  //Publication Index
     savePublicationIndexPage(content: any) {
       return this.http.put(`${this.baseUrl}/publicationindex`, { content: content });
     }

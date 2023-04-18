@@ -1,31 +1,21 @@
-
 <style>
-  .separator{
-      padding: 5%;
+  .separator {
+    padding: 7%;
   }
   .couverture {
-    
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: auto;
-    background-color: #fffefd; /* Couleur de fond de votre choix */
-    z-index: -1; /* Pour que la div soit en arrière-plan */
+
+    z-index: -1;
   }
-  </style>
-  
-  
-  
-  
-  
-  
-  
-  <div class="couverture">
+</style>
+
+<div class="couverture">
   <div><app-header></app-header></div>
-  
-    <router-outlet></router-outlet>
-    <div class="separator"></div>
-    
-  </div>
-  
+
+  <router-outlet></router-outlet>
+  <div class="separator"></div>
+</div>

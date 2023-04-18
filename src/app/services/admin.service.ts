@@ -5,7 +5,7 @@ import { tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminService {
   private apiUrl = 'http://localhost:8080/api/auth';
@@ -14,13 +14,17 @@ export class AdminService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<any> {
+  login(username: string, password: string): Observable<any> {
     const loginData = {
-      email: email,
-      password: password
+      username: username,
+      password: password,
     };
+    console.log(loginData);
+
     return this.http.post<any>(`${this.apiUrl}/login`, loginData).pipe(
-      tap(response => {
+      tap((response) => {
+        console.log(response);
+
         if (response.role) {
           this.roleSubject.next(response.role);
           this.isAuthenticatedSubject.next(true);
@@ -40,14 +44,16 @@ export class AdminService {
   }
 
   checkAuthenticated(): void {
-    this.http.get<any>(`${this.apiUrl}/isAuthenticated`).subscribe(response => {
-      if (response.authenticated) {
-        this.isAuthenticatedSubject.next(true);
-        this.roleSubject.next(response.role);
-      } else {
-        this.isAuthenticatedSubject.next(false);
-        this.roleSubject.next(null);
-      }
-    });
+    this.http
+      .get<any>(`${this.apiUrl}/isAuthenticated`)
+      .subscribe((response) => {
+        if (response.authenticated) {
+          this.isAuthenticatedSubject.next(true);
+          this.roleSubject.next(response.role);
+        } else {
+          this.isAuthenticatedSubject.next(false);
+          this.roleSubject.next(null);
+        }
+      });
   }
 }

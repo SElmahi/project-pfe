@@ -5,10 +5,11 @@ select {
   margin-bottom: 2%;
 }
 h1 {
+  padding-bottom: 0.5rem;
+  font-family: 'Arial', sans-serif;
   text-align: center;
   color: #0a2647;
-  border-bottom: 3px solid #4d4d4d;
-  border-style: double;
+  border-bottom: 3px solid #0a2647;
 }
 button {
   margin-left: 92%;

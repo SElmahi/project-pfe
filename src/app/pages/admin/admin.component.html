@@ -1,15 +1,29 @@
 <div class="wrapper">
-  <form class="form-signin" (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">       
+  <form class="form-signin">
     <h2>Please login</h2>
     <div class="form-group">
-      <input type="email" class="form-control" name="email" placeholder="Email Address@gmail.com" ngModel required />
-      <div *ngIf="loginForm.controls.email?.invalid && (loginForm.controls.email?.dirty || loginForm.controls.email?.touched)">
-        <div *ngIf="loginForm.controls.email?.errors.required">Email est requis</div>
-        <div *ngIf="loginForm.controls.email?.errors.email">Email invalide</div>
-      </div>
+      <input
+        type="email"
+        [(ngModel)]="username"
+        class="form-control"
+        name="email"
+        placeholder="Email Address@gmail.com"
+        required
+      />
     </div>
-    <input type="password" class="form-control" name="password" placeholder="Password" minlength="8" maxlength="35" ngModel required />      
-    <br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+    <input
+      [(ngModel)]="password"
+      type="password"
+      class="form-control"
+      name="password"
+      placeholder="Password"
+      minlength="8"
+      maxlength="35"
+      required
+    />
+    <br />
+    <button (click)="onLogin()" class="btn btn-lg btn-primary btn-block">
+      Login
+    </button>
   </form>
 </div>
