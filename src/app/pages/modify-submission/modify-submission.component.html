@@ -29,6 +29,9 @@
 
   <label for="paper">Paper (PDF):</label>
   <input type="file" formControlName="paper" (change)="onFileSelected($event)" accept="application/pdf" required>
+  <div *ngIf="submitForm.get('paper').hasError('required')" class="error-message">
+   New  Paper is required.
+  </div>
   <div *ngIf="submitForm.get('paper').touched && submitForm.get('paper').hasError('invalidFileType')" class="error-message">
     Invalid file type. Please upload a PDF file.
   </div>
@@ -51,6 +54,8 @@
     </div>
   </div>
 
-  <button type="submit" [disabled]="loading">Update Submission</button>
+  <button type="submit" [disabled]="isSubmitting || submitForm.invalid">
+    {{ isSubmitting ? 'Updating...' : 'Update' }}
+  </button>
 
 </form>

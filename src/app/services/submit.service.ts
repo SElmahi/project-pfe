@@ -79,5 +79,19 @@ export class SubmitService {
       },
     });
   }
+  addSubmission(formData: any, paper: File): Observable<any> {
+    const submissionData = new FormData();
+    submissionData.append('title', formData.title);
+    submissionData.append('abstractText', formData.abstractText);
+    submissionData.append('keywords', formData.keywords);
+    submissionData.append('paper', paper);
+    submissionData.append('submissionType', formData.submissionType);
+  
+    const httpOptions = {
+      responseType: 'text' as 'json'
+    };
+    return this.http.post<any>(this.submitPaperUrl, submissionData, httpOptions);
+  }
+  
   
 }

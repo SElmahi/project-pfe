@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthorDashboardComponent } from './pages/author-dashboard/author-dashboard.component';
 import { MatTableModule } from '@angular/material/table';
 import { ModifySubmissionComponent } from './pages/modify-submission/modify-submission.component';
+import { AddSubmissionComponent } from './pages/add-submission/add-submission.component';
 
 
 
@@ -45,6 +46,8 @@ const routes: Routes = [
     AdminDasboardComponent,
     AuthorDashboardComponent,
     ModifySubmissionComponent,
+    AddSubmissionComponent,
+   
   ],
   imports: [
     BrowserModule,

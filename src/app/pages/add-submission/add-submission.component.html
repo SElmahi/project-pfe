@@ -1,0 +1,57 @@
+
+<div><h1>NEW SUBMISSION</h1></div>
+<router-outlet></router-outlet>
+<form [formGroup]="addSubmissionForm" (ngSubmit)="onSubmit()">
+    <h2>Paper Submission</h2>
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" formControlName="title" required>
+      <div *ngIf="submitForm.get('title').touched && submitForm.get('title').hasError('required')" class="error-message">
+        Title is required.
+      </div>
+    </div>
+    <div>
+      <label for="abstractText">Abstract:</label>
+      <textarea formControlName="abstractText" required></textarea>
+      <div *ngIf="submitForm.get('abstractText').touched && submitForm.get('abstractText').hasError('required')" class="error-message">
+        Abstract is required.
+      </div>
+    </div>
+    <div>
+      <label for="keywords">Keywords:</label>
+      <input type="text" formControlName="keywords" required>
+      <div *ngIf="submitForm.get('keywords').touched && submitForm.get('keywords').hasError('required')" class="error-message">
+        Keywords are required.
+      </div>
+    </div>
+    
+    <label for="paper">Paper (PDF):</label>
+    <input type="file" formControlName="paper" (change)="onFileSelected($event)" accept="application/pdf" required>
+    <div *ngIf="submitForm.get('paper').touched && submitForm.get('paper').hasError('required')" class="error-message">
+      Invalid file type. Please upload a PDF file.
+    </div>
+    <div *ngIf="submitForm.get('paper').touched && submitForm.get('paper').hasError('maxSize')" class="error-message">
+      File size exceeds 5MB. Please upload a smaller file.
+    </div>
+    
+    <div>
+      <div>
+        <label for="submissionType">Submission Type:</label>
+        <select formControlName="submissionType" required>
+          <option value="" disabled selected>Select Submission Type</option>
+          <option value="STANDARD_AUTHOR">Standard Author</option>
+          <option value="STUDENT_AUTHOR">Student Author</option>
+          <option value="EXTRA_PAPER">Extra Paper</option>
+        </select>
+        <div *ngIf="submitForm.get('submissionType').touched && submitForm.get('submissionType').hasError('required')" class="error-message">
+          Submission Type is required.
+        </div>
+      </div>
+    </div>
+    
+    
+    <button type="submit" [disabled]="isSubmitting || submitForm.invalid">
+      {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+    </button>
+    
+    </form>

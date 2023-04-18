@@ -12,6 +12,7 @@ import { SubmitComponent } from './pages/submit/submit.component';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthorDashboardComponent } from './pages/author-dashboard/author-dashboard.component';
 import { ModifySubmissionComponent } from './pages/modify-submission/modify-submission.component';
+import { AddSubmissionComponent } from './pages/add-submission/add-submission.component';
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'committees', component: CommitteesComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'modify-submission/:id',
   component: ModifySubmissionComponent},
   { path: '', component: AboutComponent },
+  { path: 'add-submission', component: AddSubmissionComponent },
 ];
 
 
