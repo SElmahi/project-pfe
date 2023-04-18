@@ -26,9 +26,15 @@ export class AuthorDashboardComponent implements OnInit {
     });
 
   }
-  getPaperUrl(paperName: string): string {
-    return `http://localhost:8080/api/submissions/papers/${paperName}`;
+  getPaperUrl(subfolder: string, fileName: string): string {
+    const normalizedFileName = fileName.replace(/\\/g, '/');
+    const subfolderPrefix = subfolder + '/';
+    const cleanedFileName = normalizedFileName.startsWith(subfolderPrefix) ? normalizedFileName.slice(subfolderPrefix.length) : normalizedFileName;
+    const url = `http://localhost:8080/api/submissions/${subfolder}/${cleanedFileName}`;
+    console.log('Generated URL:', url);
+    return url;
   }
+  
   modifySubmission(submissionId: number): void {
     this.router.navigate(['/modify-submission', submissionId]);
   }

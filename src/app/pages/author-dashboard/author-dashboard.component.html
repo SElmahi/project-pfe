@@ -31,7 +31,7 @@
             <button (click)="modifySubmission(submission.id)">Modify</button>
           </td>
           <td data-label="Paper">
-            <a [href]="getPaperUrl(submission.paper)" target="_blank">Download Paper</a>
+            <a [href]="getPaperUrl('papers', submission.paper)" target="_blank">Download Paper</a>
           </td>
         </tr>
       </tbody>

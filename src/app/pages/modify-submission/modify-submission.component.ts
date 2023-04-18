@@ -47,6 +47,7 @@ export class ModifySubmissionComponent implements OnInit {
       this.submission = submission;
       const { paper, ...submissionData } = submission;
       this.submitForm.patchValue(submissionData);
+      console.log('Submission data:', submissionData);
     });
   }
  
