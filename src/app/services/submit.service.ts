@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Author } from '../models/Author';
 import { Submission } from '../models/Submission';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,8 @@ export class SubmitService {
   private apiUrl = 'http://localhost:8080/api';
   private registerAttendeeUrl = this.apiUrl + '/attendees/registerr';
   private submitPaperUrl = this.apiUrl + '/submissions/submit';
+  private addSubmissionUrl = this.apiUrl + '/submissions/addSubmission';
+
 
   constructor(private http: HttpClient) {}
 
@@ -22,11 +24,13 @@ export class SubmitService {
     const httpOptions = {
       responseType: 'text' as 'json'
     };
+    
     return this.http.post<any>(this.registerAttendeeUrl, formData, httpOptions);
   }
 
   submitPaper(formData: any, paper: File, coAuthors: Author[]): Observable<any> {
     const submissionData = new FormData();
+    
     submissionData.append('email', formData.email);
     submissionData.append('password', formData.password);
     submissionData.append('firstName', formData.firstName);
@@ -79,19 +83,21 @@ export class SubmitService {
       },
     });
   }
-  addSubmission(formData: any, paper: File): Observable<any> {
+  addSubmission(formData: any, paper: File, authorId: number): Observable<any> {
     const submissionData = new FormData();
     submissionData.append('title', formData.title);
     submissionData.append('abstractText', formData.abstractText);
     submissionData.append('keywords', formData.keywords);
     submissionData.append('paper', paper);
     submissionData.append('submissionType', formData.submissionType);
+    submissionData.append('authorId', authorId.toString());
   
-    const httpOptions = {
-      responseType: 'text' as 'json'
-    };
-    return this.http.post<any>(this.submitPaperUrl, submissionData, httpOptions);
+    console.log('Form data:', submissionData);
+  
+    return this.http.post<any>(`${this.addSubmissionUrl}`, submissionData);
   }
+  
+  
   
   
 }
