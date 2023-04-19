@@ -93,8 +93,11 @@ export class SubmitService {
     submissionData.append('authorId', authorId.toString());
   
     console.log('Form data:', submissionData);
+    const httpOptions = {
+      responseType: 'json' as 'json'
+    };
   
-    return this.http.post<any>(`${this.addSubmissionUrl}`, submissionData);
+    return this.http.post<any>(this.addSubmissionUrl, submissionData, httpOptions);
   }
   
   

@@ -60,24 +60,18 @@ export class AddSubmissionComponent implements OnInit {
     }
     this.isSubmitting = true;
     // Pass this.author.id as the third argument to the addSubmission method
-    this.submitService.addSubmission(this.addSubmissionForm.value, this.selectedFile, this.author.id).subscribe(response => {
-  
-  
-      console.log('New submission successful');
-      
+    this.submitService.addSubmission(this.addSubmissionForm.value, this.selectedFile, this.author.id).subscribe((newSubmission: any) => {
+      console.log('New submission successful:', newSubmission);
+    
       this.isSubmitting = false;
       this.snackBar.open('Successfully submitted! Please check your email for confirmation.', 'Close', {
-        duration: 1300, // 15 seconds
+        duration: 1300,
         horizontalPosition: 'center',
         verticalPosition: 'top',
-        panelClass: ['snackbar-success', 'custom-snackbar', 'mat-snack-bar-container-center'] // Add your custom classes here
-        
+        panelClass: ['snackbar-success', 'custom-snackbar', 'mat-snack-bar-container-center']
       });
-      this.router.navigate(['/author-dashboard']);
     
-     
-  
-      // Reset the form
+      this.router.navigate(['/author-dashboard']);
       this.addSubmissionForm.reset();
     }, error => {
       this.isSubmitting = false;

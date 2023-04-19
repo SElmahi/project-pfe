@@ -3,6 +3,9 @@
   <h2>Here are your current submissions:</h2>
 </div>
 <button routerLink="/add-submission" class="add-submission-button">Add New Submission</button>
+<div *ngIf="submissions.length === 0">
+  <p>No submissions found.</p>
+</div>
 <div class="submissions-table-container">
   <div class="table-responsive">
     <table class="submissions-table">
