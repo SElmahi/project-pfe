@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from './../../services/admin.service';
-import { Router } from '@angular/router';
+
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-author-dashboard',
@@ -12,9 +13,17 @@ export class AuthorDashboardComponent implements OnInit {
   displayedColumns: string[] = ['title', 'abstractText', 'keywords', 'submissionState', 'submissionDate', 'submissionType'];
 
 
-  constructor(private adminService: AdminService,private router :Router) {}
+  constructor(private adminService: AdminService, private router: Router) {
+    // Listen for NavigationEnd events and call the fetchSubmissions method
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd && event.url === '/author-dashboard') {
+        this.fetchSubmissions();
+      }
+    });
+  }
   authorName: string = '';
   ngOnInit(): void {
+    
     console.log('ngOnInit called')
     const userId = parseInt(localStorage.getItem('userId'), 10);
     this.adminService.getAuthorInfo(userId).subscribe((data: any) => {
@@ -52,6 +61,19 @@ export class AuthorDashboardComponent implements OnInit {
   
   modifySubmission(submissionId: number): void {
     this.router.navigate(['/modify-submission', submissionId]);
+  }
+  fetchSubmissions(): void {
+    const userId = parseInt(localStorage.getItem('userId'), 10);
+    this.adminService.getAuthorInfo(userId).subscribe((data: any) => {
+      this.authorName = data.firstName;
+    });
+    this.adminService.getAuthorSubmissions(userId).subscribe((data: any[]) => {
+      console.log('Received submissions data:', data); // Log the received data
+      this.submissions = data;
+  
+      // Log individual submission properties
+    
+    });
   }
 
 }

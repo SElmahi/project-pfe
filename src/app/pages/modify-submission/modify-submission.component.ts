@@ -85,20 +85,25 @@ export class ModifySubmissionComponent implements OnInit {
       updatedSubmission.paper = paper;
     }
   
-    this.submitService.updateSubmission(this.submission.id, updatedSubmission, this.selectedFile).subscribe(
-      () => {
-        this.loading = false;
-        this.router.navigate(['/author-dashboard']); // Navigate to a success page or the updated submission page
-      },
-      error => {
-        this.loading = false;
-        this.error = 'Failed to update the submission. Please try again.';
-      }
-    );
-
+    // Remove the 'paper' property when sending the request
+  
+  
+    this.submitService
+      .updateSubmission(this.submission.id, updatedSubmission, this.selectedFile)
+      .subscribe(
+        () => {
+          this.loading = false;
+          this.router.navigate(['/author-dashboard']); // Navigate to a success page or the updated submission page
+        },
+        (error) => {
+          this.loading = false;
+          this.error = 'Failed to update the submission. Please try again.';
+        }
+      );
+  }
 
   
-  }
+  
 getCoAuthorsControls(): AbstractControl[] {
   return (this.submitForm.get('coAuthors') as FormArray).controls;
 }

@@ -14,7 +14,7 @@ export class SubmitComponent implements OnInit {
   submitForm: FormGroup;
   selectedFile: File;
   isSubmitting: boolean = false;
-  coAuthors: Author[] = [];
+ 
 
   constructor(private formBuilder: FormBuilder, private submitService: SubmitService, private snackBar: MatSnackBar, private router: Router) {
     this.submitForm = this.formBuilder.group({
@@ -29,7 +29,7 @@ export class SubmitComponent implements OnInit {
       keywords: ['', Validators.required],
       paper: ['', Validators.required],
       submissionType: ['', Validators.required],
-       coAuthors: this.formBuilder.array([]),
+     
     }, { validators: this.fileSelectedValidator.bind(this) });
   }
 
@@ -59,7 +59,7 @@ export class SubmitComponent implements OnInit {
     }
   
     this.isSubmitting = true;
-    this.submitService.submitPaper(this.submitForm.value, this.selectedFile, this.coAuthors).subscribe(response => {
+    this.submitService.submitPaper(this.submitForm.value, this.selectedFile).subscribe(response => {
      
       console.log('Submission successful');
       this.isSubmitting = false;
@@ -73,7 +73,7 @@ export class SubmitComponent implements OnInit {
       });
       // Redirect to the confirmation view or clear the form
       this.submitForm.reset();
-      this.coAuthors = [];
+     
     }, error => {
       this.isSubmitting = false;
       let errorMessage = 'An error occurred while submitting the paper. Please try again.';
@@ -105,21 +105,7 @@ export class SubmitComponent implements OnInit {
   }
   
 
-  addCoAuthor(): void {
-    const coAuthorsArray = this.submitForm.get('coAuthors') as FormArray;
-    coAuthorsArray.push(this.formBuilder.group({
-      email: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      affiliation: ['', Validators.required],
-      role: [UserRole.AUTHOR]
-    }));
-  }
-
-  removeCoAuthor(index: number): void {
-    const coAuthorsArray = this.submitForm.get('coAuthors') as FormArray;
-    coAuthorsArray.removeAt(index);
-  }
+ 
 
 
 confirmPasswordValidator(control: AbstractControl) {
@@ -138,7 +124,5 @@ confirmPasswordValidator(control: AbstractControl) {
   }
   return null;
 }
-getCoAuthorsControls(): AbstractControl[] {
-  return (this.submitForm.get('coAuthors') as FormArray).controls;
-}
+
 }

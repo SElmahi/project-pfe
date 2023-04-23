@@ -28,7 +28,7 @@ export class SubmitService {
     return this.http.post<any>(this.registerAttendeeUrl, formData, httpOptions);
   }
 
-  submitPaper(formData: any, paper: File, coAuthors: Author[]): Observable<any> {
+  submitPaper(formData: any, paper: File): Observable<any> {
     const submissionData = new FormData();
     
     submissionData.append('email', formData.email);
@@ -42,12 +42,7 @@ export class SubmitService {
     submissionData.append('paper', paper);
     submissionData.append('submissionType', formData.submissionType);
 
-    coAuthors.forEach((coAuthor, index) => {
-      submissionData.append(`coAuthorFirstName[${index}]`, coAuthor.firstName);
-      submissionData.append(`coAuthorLastName[${index}]`, coAuthor.lastName);
-      submissionData.append(`coAuthorEmail[${index}]`, coAuthor.email);
-      submissionData.append(`coAuthorAffiliation[${index}]`, coAuthor.affiliation);
-    });
+    
 
     const httpOptions = {
       responseType: 'text' as 'json'
@@ -60,7 +55,7 @@ export class SubmitService {
 
   updateSubmission(id: number, submission: Submission, paper: File): Observable<any> {
     const formData = new FormData();
-    
+  
     // Create an object containing the updated submission properties
     const updatedSubmissionData = {
       title: submission.title,
@@ -83,6 +78,8 @@ export class SubmitService {
       },
     });
   }
+  
+    
   addSubmission(formData: any, paper: File, authorId: number): Observable<any> {
     const submissionData = new FormData();
     submissionData.append('title', formData.title);
