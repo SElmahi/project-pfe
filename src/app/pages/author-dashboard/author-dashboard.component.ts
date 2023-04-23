@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AdminService } from './../../services/admin.service';
 
 import { Router, NavigationEnd } from '@angular/router';
+import { SubmitService } from 'src/app/services/submit.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-author-dashboard',
@@ -13,7 +15,7 @@ export class AuthorDashboardComponent implements OnInit {
   displayedColumns: string[] = ['title', 'abstractText', 'keywords', 'submissionState', 'submissionDate', 'submissionType'];
 
 
-  constructor(private adminService: AdminService, private router: Router) {
+  constructor(private adminService: AdminService, private router: Router, private submitService: SubmitService, private snackBar: MatSnackBar) {
     // Listen for NavigationEnd events and call the fetchSubmissions method
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd && event.url === '/author-dashboard') {
@@ -76,4 +78,35 @@ export class AuthorDashboardComponent implements OnInit {
     });
   }
 
+  
+  
+  
+  onPaymentFileSelected(event: any, submissionId: number): void {
+    const paymentFile = event.target.files[0];
+  
+    this.submitService.uploadPaymentFile(paymentFile, submissionId).subscribe(response => {
+      console.log('Payment file uploaded successfully');
+  
+      // Show success snackbar
+      this.snackBar.open('Payment uploaded successfully!', 'Close', {
+        duration: 10000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: ['snackbar-success', 'custom-snackbar', 'mat-snack-bar-container-center']
+      });
+  
+    }, error => {
+      console.log('Error uploading payment file:', error);
+    
+      // Show error snackbar
+      this.snackBar.open('An error occurred while uploading the payment file. Please try again.', 'Close', {
+        duration: 10000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        panelClass: ['snackbar-error', 'custom-snackbar', 'mat-snack-bar-container-center']
+      });
+    });
+  }
 }
+ 
+

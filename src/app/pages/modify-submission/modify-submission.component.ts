@@ -48,6 +48,7 @@ export class ModifySubmissionComponent implements OnInit {
       const { paper, ...submissionData } = submission;
       this.submitForm.patchValue(submissionData);
       console.log('Submission data:', submissionData);
+      
     });
   }
  
@@ -72,8 +73,10 @@ export class ModifySubmissionComponent implements OnInit {
     if (this.submitForm.invalid) {
       return;
     }
-    this.updateSubmission({ ...this.submitForm.value }, this.selectedFile);
-  }
+    const formData = { ...this.submitForm.value, customId: this.submission.customId };
+    console.log('Form  modifed dd data:', formData); // Add this line
+    this.updateSubmission(formData, this.selectedFile);
+  }  
 
   updateSubmission(formData: any, paper: File): void {
     this.loading = true;

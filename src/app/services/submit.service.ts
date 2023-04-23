@@ -19,7 +19,7 @@ export class SubmitService {
   registerAttendee(name: string, familyName: string, email: string, payment: File): Observable<any> {
     const formData: FormData = new FormData();
     formData.append('attendee', JSON.stringify({ name, familyName, email }));
-    formData.append('paper', payment);
+    formData.append('paymentProof', payment);
 
     const httpOptions = {
       responseType: 'text' as 'json'
@@ -61,7 +61,8 @@ export class SubmitService {
       title: submission.title,
       abstractText: submission.abstractText,
       keywords: submission.keywords,
-      submissionType: submission.submissionType
+      submissionType: submission.submissionType,
+      customId: submission.customId // Add this line
     };
   
     // Append the object as a JSON string with the key 'submission'
@@ -96,8 +97,19 @@ export class SubmitService {
   
     return this.http.post<any>(this.addSubmissionUrl, submissionData, httpOptions);
   }
+ 
   
-  
+  uploadPaymentFile(paymentFile: File, submissionId: number): Observable<any> {
+    const formData = new FormData();
+    formData.append('paymentFileName', paymentFile);
+    formData.append('submissionId', submissionId.toString());
+   
+    return this.http.post(`${this.apiUrl}/submissions/uploadPayment`, formData, {
+      responseType: 'text' // Add this line to specify the expected response type
+    });
+   
+  }
+
   
   
 }

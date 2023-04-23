@@ -20,6 +20,7 @@
           <th>Type</th> <!-- Added a header for the Submission Type column -->
           <th>Modify</th>
           <th>Paper</th>
+          <th>Payment</th>
         </tr>
       </thead>
       <tbody>
@@ -36,6 +37,11 @@
           </td>
           <td data-label="Paper">
             <a [href]="getPaperUrl('papers', submission.paper)" target="_blank">Download Paper</a>
+          </td>
+          <td data-label="Payment">
+            <button (click)="paymentInput.click()">Pay</button>
+            <input #paymentInput type="file" style="display: none;" (change)="onPaymentFileSelected($event, submission.id)" accept=".pdf">
+
           </td>
         </tr>
       </tbody>
