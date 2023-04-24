@@ -1,26 +1,76 @@
-<h1>MODIFY CONTENT</h1>
-<select [(ngModel)]="pageSelected" (change)="afficheContent()">
-  <option
-    placeholder="Email Address@gmail.com"
-    *ngFor="let page of pages"
-    [value]="page"
-  >
-    -{{ page }}
-  </option>
-</select>
+<div class="admin-dashboard">
+  <h1>Admin Dashboard</h1>
 
-<div>
-  <ckeditor 
-    
-    [editor]="Editor"
-    (ready)="onReady($event)"
-    (change)="onChange($event)"
-    [data]="contentAffiche"
-    
-   
-  (ready)="onReady($event)"
-  >
-  </ckeditor>
-  <button (click)="save()">save</button>
+  <div class="tabs">
+    <button class="tab-button" (click)="selectTab('content')">Manage Content</button>
+    <button class="tab-button" (click)="selectTab('ManageAttendees')">Manage Attendees</button>
+    <button class="tab-button" (click)="selectTab('ManageSubmissions')">Manage Submissions</button>
+  </div>
 </div>
-<h1>MANAGES SUBMISSION</h1>
+
+<!-- Content tab -->
+<div *ngIf="selectedTab === 'content'" class="tab-content">
+  <h2>Manage Content</h2>
+  <select [(ngModel)]="pageSelected" (change)="afficheContent()">
+    <option *ngFor="let page of pages" [value]="page">-{{ page }}</option>
+  </select>
+
+  <div>
+    <ckeditor [editor]="Editor" (ready)="onReady($event)" (change)="onChange($event)" [data]="contentAffiche"></ckeditor>
+    <button (click)="save()">Save</button>
+  </div>
+</div>
+
+<!-- Attendee Payments tab -->
+<div *ngIf="selectedTab === 'ManageAttendees'" class="tab-content">
+  <h2>Manage Attendees</h2>
+  <!-- Add Attendee Payments table here -->
+</div>
+
+<!-- Submissions tab -->
+<div *ngIf="selectedTab === 'ManageSubmissions'" class="tab-content">
+  <h2>Manage Submissions</h2>
+  <div class="submissions-table-container">
+    <div class="table-responsive">
+      <table class="submissions-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Abstract</th>
+            <th>Keywords</th>
+            <th>Status</th>
+            <th>Submission Date</th>
+            <th>Author Name</th>
+            <th>Affiliation</th>
+            <th>Paper</th> 
+            <th>Payment Status</th>
+            <th>Payment File</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let submission of submissions">
+            <td data-label="ID">{{ submission.submission.customId }}</td>
+            <td data-label="Title">{{ submission.submission.title }}</td>
+            <td data-label="Abstract">{{ submission.submission.abstractText }}</td>
+            <td data-label="Keywords">{{ submission.submission.keywords }}</td>
+            <td data-label="Status">{{ submission.submission.submissionState }}</td>
+            <td data-label="Submission Date">{{ submission.submission.submissionDate }}</td>
+            <td data-label="Author Name">{{ submission.author.firstName }} {{ submission.author.lastName }}</td>
+            <td data-label="Affiliation">{{ submission.author.affiliation }}</td>
+            
+            <td data-label="Payment Status">{{ submission.submission.paymentStatus }}</td>
+            <td data-label="Payment File">{{ submission.submission.paymentFileName }}</td>
+            <td data-label="Actions">
+              <button (click)="acceptSubmission(submission.submission.id)">Accept</button>
+              <button (click)="rejectSubmission(submission.submission.id)">Reject</button>
+              <button (click)="setInReview(submission.submission.id)">Prevent Modification</button>
+              <button (click)="updatePaymentStatus(submission.submission.id)">update payment status Paid</button>
+            </td>     
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

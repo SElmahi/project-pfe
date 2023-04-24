@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { Submission } from '../models/Submission';
 
 
 @Injectable({
@@ -96,5 +97,7 @@ export class AdminService {
     return this.http.get<any>(`http://localhost:8080/api/authors/info?id=${id}`);
   }
  
- 
+  getAllSubmissionsWithAuthorInfo(): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/submissions/all-with-authors`);
+  }
 }

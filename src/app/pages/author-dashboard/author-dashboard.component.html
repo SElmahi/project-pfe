@@ -2,7 +2,13 @@
   <h1>Welcome, {{ authorName }}!</h1>
   <h2>Here are your current submissions:</h2>
 </div>
-<button routerLink="/add-submission" class="add-submission-button">Add New Submission</button>
+<div class="instruction-container">
+  <button routerLink="/add-submission" class="add-submission-button">Add New Submission</button>
+  <div class="instructions">
+    <p class="note">N.B</p>
+    <p>You can modify your submissions or add new ones. When your submission status is "accepted," you can pay for the submission.</p>
+  </div>
+</div>
 <div *ngIf="submissions.length === 0">
   <p>No submissions found.</p>
 </div>
@@ -39,10 +45,10 @@
             <a [href]="getPaperUrl('papers', submission.paper)" target="_blank">Download Paper</a>
           </td>
           <td data-label="Payment">
-            <button (click)="paymentInput.click()">Pay</button>
+            <button [disabled]="submission.submissionState !== 'accepted'" (click)="paymentInput.click()">Pay</button>
             <input #paymentInput type="file" style="display: none;" (change)="onPaymentFileSelected($event, submission.id)" accept=".pdf">
-
           </td>
+          
         </tr>
       </tbody>
     </table>

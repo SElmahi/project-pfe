@@ -5,6 +5,7 @@ import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 import { PageServiceService } from 'src/app/services/page-service.service';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'app-admin-dasboard',
@@ -13,8 +14,10 @@ import { PageServiceService } from 'src/app/services/page-service.service';
 })
 export class AdminDasboardComponent {
   public Editor = DecoupledEditor as any;
+  public selectedTab: string = 'content'; // Default selected tab
+
  
-  
+  displayedColumns: string[] = ['title', 'abstractText', 'keywords', 'submissionState', 'submissionDate', 'submissionType', 'authorName', 'affiliation'];
 
   public pages = [
     'About',
@@ -34,8 +37,10 @@ export class AdminDasboardComponent {
   public pageSelected!: string;
   private editordata;
   public contentAffiche;
-  
-  constructor(private pageServiceService: PageServiceService) {}
+  public submissions = [];
+  constructor(private pageServiceService: PageServiceService,private adminService : AdminService) {
+    this.loadSubmissions();
+  }
 
   
   save() {
@@ -144,7 +149,9 @@ export class AdminDasboardComponent {
     } else {
     }
   }
-  
+  selectTab(tab: string) {
+    this.selectedTab = tab;
+  }
 
   public onReady( editor ) {
     editor.ui.getEditableElement().parentElement.insertBefore(
@@ -153,4 +160,45 @@ export class AdminDasboardComponent {
     );
   
 }
+loadSubmissions() {
+  
+  this.adminService.getAllSubmissionsWithAuthorInfo().subscribe((data: any[]) => {
+    console.log('Received submissions data:', data); // Log the received data
+    this.submissions = data;
+    console.log('First submission:', this.submissions[0]);
+console.log('Author of the first submission:', this.submissions[0].author);
+    
+  });
+ 
+}
+
+
+// Add these methods to handle submission actions
+/*
+acceptSubmission(id: number) {
+  this.adminService.acceptSubmission(id).subscribe(() => {
+    alert('Submission accepted');
+    this.loadSubmissions();
+  });
+}
+
+rejectSubmission(id: number) {
+  this.adminService.rejectSubmission(id).subscribe(() => {
+    alert('Submission rejected');
+    this.loadSubmissions();
+  });
+}
+setInReview(id: number) {
+  this.adminService.setInReview(id).subscribe(() => {
+    alert('Submission set to In Review');
+    this.loadSubmissions();
+  });
+}
+
+updatePaymentStatus(id: number) {
+  this.adminService.updatePaymentStatus(id).subscribe(() => {
+    alert('Payment status updated to Paid');
+    this.loadSubmissions();
+  });
+}*/
 }

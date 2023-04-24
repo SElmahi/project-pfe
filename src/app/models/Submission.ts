@@ -18,4 +18,6 @@ export enum SubmissionType {
     authors: Author[];
     submissionType: SubmissionType;
     admin_id: number;
+    paymentFileName: string;
+    paymentStatus: string;
   }
