@@ -45,6 +45,7 @@
             <th>Submission Date</th>
             <th>Author Name</th>
             <th>Affiliation</th>
+            <th>Email</th>
             <th>Paper</th> 
             <th>Payment Status</th>
             <th>Payment File</th>
@@ -57,10 +58,11 @@
             <td data-label="Title">{{ submission.submission.title }}</td>
             <td data-label="Abstract">{{ submission.submission.abstractText }}</td>
             <td data-label="Keywords">{{ submission.submission.keywords }}</td>
-            <td data-label="Status">{{ submission.submission.submissionState }}</td>
+            <td data-label="Status">{{ submission.submission.submissionStatus }}</td>
             <td data-label="Submission Date">{{ submission.submission.submissionDate }}</td>
             <td data-label="Author Name">{{ submission.author.firstName }} {{ submission.author.lastName }}</td>
             <td data-label="Affiliation">{{ submission.author.affiliation }}</td>
+            <td data-label="Email">{{ submission.author.email }}</td>
             <td data-label="Paper">
               <a [href]="getPaperUrl('papers', submission.submission.paper)" target="_blank">Download Paper</a>
             </td>
@@ -69,10 +71,10 @@
               <a [href]="getPaperUrl('AuthorPayment', submission.submission.paymentFileName)" target="_blank">Download Payment</a>
             </td>
             <td data-label="Actions">
-              <button (click)="acceptSubmission(submission.submission.id)">Accept</button>
-              <button (click)="rejectSubmission(submission.submission.id)">Reject</button>
-              <button (click)="setInReview(submission.submission.id)">Prevent Modification</button>
-              <button (click)="updatePaymentStatus(submission.submission.id)">update payment status Paid</button>
+              <button class="action-button" (click)="acceptSubmission(submission.submission.id)">Accept</button>
+              <button class="action-button" (click)="rejectSubmission(submission.submission.id)">Reject</button>
+              <button class="action-button" (click)="preventModification(submission.submission.id)">Prevent Modification</button>
+              <button class="action-button"(click)="updatePaymentStatus(submission.submission.id)">Update Payment Status</button>
             </td>     
           </tr>
         </tbody>

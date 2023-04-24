@@ -5,14 +5,18 @@ export enum SubmissionType {
     ORAL = 'ORAL',
     OTHER = 'OTHER',
   }
-  
+  export enum SubmissionStatus {
+    POSTER = 'REJECETED',
+    ORAL = 'ACCEPTED',
+    OTHER = 'OTHER',
+  }
   export interface Submission {
     id: number;
     customId: string;
     title: string;
     abstractText: string;
     keywords: string;
-    submissionState: string;
+    submissionStatus: SubmissionStatus;
     submissionDate: string;
     paper: string;
     authors: Author[];

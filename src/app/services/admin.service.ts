@@ -100,4 +100,13 @@ export class AdminService {
   getAllSubmissionsWithAuthorInfo(): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/api/submissions/all-with-authors`);
   }
+  acceptSubmission(id: number) {
+    return this.http.put(`http://localhost:8080/api/submissions/${id}/accept`, {});
+  }
+  rejectSubmission(id: number) {
+    return this.http.put(`http://localhost:8080/api/submissions/${id}/reject`, {});
+  }
+  preventModification(id: number) {
+    return this.http.put(`http://localhost:8080/api/submissions/${id}/in-review`, {});
+  }
 }

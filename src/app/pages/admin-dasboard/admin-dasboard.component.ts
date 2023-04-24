@@ -223,7 +223,24 @@ exportToExcel() {
   const wbout: ArrayBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
   saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'submissions.xlsx');
 }
-
+acceptSubmission(id: number) {
+  this.adminService.acceptSubmission(id).subscribe(() => {
+    alert('Submission accepted');
+    this.loadSubmissions();
+  });
+}
+rejectSubmission(id: number) {
+  this.adminService.rejectSubmission(id).subscribe(() => {
+    alert('Submission rejected');
+    this.loadSubmissions();
+  });
+}
+preventModification(id: number) {
+  this.adminService.preventModification(id).subscribe(() => {
+    alert('Submission set to In Review');
+    this.loadSubmissions();
+  });
+}
 // Add these methods to handle submission actions
 /*
 acceptSubmission(id: number) {

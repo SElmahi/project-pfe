@@ -35,20 +35,19 @@
           <td data-label="Title">{{ submission.title }}</td>
           <td data-label="Abstract">{{ submission.abstractText }}</td>
           <td data-label="Keywords">{{ submission.keywords }}</td>
-          <td data-label="Status">{{ submission.submissionState }}</td>
+          <td data-label="Status">{{ submission.submissionStatus }}</td>
           <td data-label="Submission Date">{{ submission.submissionDate }}</td>
           <td data-label="Type">{{ submission.submissionType }}</td> <!-- Added Submission Type field -->
           <td data-label="Modify">
-            <button (click)="modifySubmission(submission.id)">Modify</button>
+            <button [disabled]="submission.submissionStatus === 'IN_REVIEW' || submission.submissionStatus === 'ACCEPTED' || submission.submissionStatus === 'REJECTED'" (click)="modifySubmission(submission.id)">Modify</button>
           </td>
           <td data-label="Paper">
             <a [href]="getPaperUrl('papers', submission.paper)" target="_blank">Download Paper</a>
           </td>
           <td data-label="Payment">
-            <button  (click)="paymentInput.click()">Pay</button>
+            <button [disabled]="submission.submissionStatus !== 'ACCEPTED'" (click)="paymentInput.click()">Pay</button>
             <input #paymentInput type="file" style="display: none;" (change)="onPaymentFileSelected($event, submission.id)" accept=".pdf">
           </td>
-          
         </tr>
       </tbody>
     </table>

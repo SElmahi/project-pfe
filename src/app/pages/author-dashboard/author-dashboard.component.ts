@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AuthorDashboardComponent implements OnInit {
   submissions: any[] = [];
-  displayedColumns: string[] = ['title', 'abstractText', 'keywords', 'submissionState', 'submissionDate', 'submissionType'];
+  displayedColumns: string[] = ['title', 'abstractText', 'keywords', 'submissionStatus', 'submissionDate', 'submissionType'];
 
 
   constructor(private adminService: AdminService, private router: Router, private submitService: SubmitService, private snackBar: MatSnackBar) {
