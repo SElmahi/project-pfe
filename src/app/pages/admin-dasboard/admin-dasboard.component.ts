@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
-import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
+
 
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 import { PageServiceService } from 'src/app/services/page-service.service';
 import { AdminService } from 'src/app/services/admin.service';
-
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
 @Component({
   selector: 'app-admin-dasboard',
   templateUrl: './admin-dasboard.component.html',
@@ -171,7 +172,57 @@ console.log('Author of the first submission:', this.submissions[0].author);
   });
  
 }
+getPaperUrl(subfolder: string, fileName: string): string {
+  if (!fileName) {
+    console.log('No file name provided');
+    return '';
+  }
 
+  const normalizedFileName = fileName.replace(/\\/g, '/');
+  const subfolderPrefix = subfolder + '/';
+  const cleanedFileName = normalizedFileName.startsWith(subfolderPrefix) ? normalizedFileName.slice(subfolderPrefix.length) : normalizedFileName;
+  const url = `http://localhost:8080/api/submissions/${subfolder}/${cleanedFileName}`;
+  console.log('Generated URL:', url);
+  return url;
+}
+exportToCSV() {
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.submissions.map(submission => ({
+    ID: submission.submission.customId,
+    Title: submission.submission.title,
+    Abstract: submission.submission.abstractText,
+    Keywords: submission.submission.keywords,
+    Status: submission.submission.submissionState,
+    SubmissionDate: submission.submission.submissionDate,
+    AuthorName: submission.author.firstName + ' ' + submission.author.lastName,
+    Affiliation: submission.author.affiliation,
+    PaymentStatus: submission.submission.paymentStatus,
+  })));
+
+  const csvOutput: string = XLSX.utils.sheet_to_csv(ws);
+
+  saveAs(new Blob([csvOutput], { type: 'text/csv;charset=utf-8;' }), 'submissions.csv');
+}
+exportToExcel() {
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.submissions.map(submission => ({
+    ID: submission.submission.customId,
+    Title: submission.submission.title,
+    Abstract: submission.submission.abstractText,
+    Keywords: submission.submission.keywords,
+    Status: submission.submission.submissionState,
+    SubmissionDate: submission.submission.submissionDate,
+    AuthorName: submission.author.firstName + ' ' + submission.author.lastName,
+    Affiliation: submission.author.affiliation,
+    PaymentStatus: submission.submission.paymentStatus,
+  })));
+ 
+  
+
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Submissions');
+
+  const wbout: ArrayBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+  saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'submissions.xlsx');
+}
 
 // Add these methods to handle submission actions
 /*

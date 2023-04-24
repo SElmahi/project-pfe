@@ -30,6 +30,8 @@
 <!-- Submissions tab -->
 <div *ngIf="selectedTab === 'ManageSubmissions'" class="tab-content">
   <h2>Manage Submissions</h2>
+  <button (click)="exportToExcel()">Export to Excel</button>
+  <button (click)="exportToCSV()">Export to CSV</button>
   <div class="submissions-table-container">
     <div class="table-responsive">
       <table class="submissions-table">
@@ -59,9 +61,13 @@
             <td data-label="Submission Date">{{ submission.submission.submissionDate }}</td>
             <td data-label="Author Name">{{ submission.author.firstName }} {{ submission.author.lastName }}</td>
             <td data-label="Affiliation">{{ submission.author.affiliation }}</td>
-            
+            <td data-label="Paper">
+              <a [href]="getPaperUrl('papers', submission.submission.paper)" target="_blank">Download Paper</a>
+            </td>
             <td data-label="Payment Status">{{ submission.submission.paymentStatus }}</td>
-            <td data-label="Payment File">{{ submission.submission.paymentFileName }}</td>
+            <td data-label="Payment File">
+              <a [href]="getPaperUrl('AuthorPayment', submission.submission.paymentFileName)" target="_blank">Download Payment</a>
+            </td>
             <td data-label="Actions">
               <button (click)="acceptSubmission(submission.submission.id)">Accept</button>
               <button (click)="rejectSubmission(submission.submission.id)">Reject</button>

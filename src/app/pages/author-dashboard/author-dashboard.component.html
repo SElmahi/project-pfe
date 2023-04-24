@@ -45,7 +45,7 @@
             <a [href]="getPaperUrl('papers', submission.paper)" target="_blank">Download Paper</a>
           </td>
           <td data-label="Payment">
-            <button [disabled]="submission.submissionState !== 'accepted'" (click)="paymentInput.click()">Pay</button>
+            <button  (click)="paymentInput.click()">Pay</button>
             <input #paymentInput type="file" style="display: none;" (change)="onPaymentFileSelected($event, submission.id)" accept=".pdf">
           </td>
           
