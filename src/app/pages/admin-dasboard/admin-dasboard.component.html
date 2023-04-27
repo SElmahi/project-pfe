@@ -1,17 +1,17 @@
 <h1>MODIFY CONTENT</h1>
-<select [(ngModel)]="pageSelected" (change)="afficheContent()">
-  <option
-    placeholder="Email Address@gmail.com"
-    *ngFor="let page of pages"
-    [value]="page"
-  >
-    -{{ page }}
-  </option>
-</select>
-
+<div class="position">
+  <select [(ngModel)]="pageSelected" (change)="afficheContent()">
+    <option
+      placeholder="Email Address@gmail.com"
+      *ngFor="let page of pages"
+      [value]="page"
+    >
+      -{{ page }}
+    </option>
+  </select>
+</div>
 <div>
   <ckeditor
-    
     [editor]="Editor"
     (ready)="onReady($event)"
     (change)="onChange($event)"
@@ -19,6 +19,12 @@
     (ready)="onReady($event)"
   >
   </ckeditor>
-  <button (click)="save()">save</button>
+  <div class="position">
+    <button (click)="save()">save</button>
+  </div>
 </div>
 <h1>MANAGES SUBMISSION</h1>
+<h1>IMAGE</h1>
+<button >delet</button>
+<button >updat</button>
+<button>upload</button>

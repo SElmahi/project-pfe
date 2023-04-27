@@ -8,18 +8,15 @@ import { PageServiceService } from 'src/app/services/page-service.service';
 })
 export class HeaderComponent implements OnInit {
   content: any;
-  public open;
 
   constructor(private pageServiceService: PageServiceService) {}
+  toolbarVariable: boolean = true;
+  openToolbar() {
+    this.toolbarVariable = !this.toolbarVariable;
+  }
   ngOnInit(): void {
     this.pageServiceService.getHeaderPage().subscribe((response: any) => {
       this.content = response;
-    });
-    const toggleButton = document.getElementsByClassName('toggle-button')[0];
-    const toolbarUl = document.getElementsByClassName('link')[0];
-
-    toggleButton.addEventListener('click', () => {
-      toolbarUl.classList.toggle('active');
     });
   }
 }

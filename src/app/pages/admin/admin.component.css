@@ -38,9 +38,11 @@ input[type="password"] {
   border-top-right-radius: 0;
 }
 button {
-  width: 300px;
+  width: 105%;
   padding: 10px;
   background-color: #0a2647;
   color: #fff4e0;
   font-size: 18px;
+}
+@media (max-width: 946px) {
 }

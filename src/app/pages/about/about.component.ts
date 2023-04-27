@@ -18,7 +18,7 @@ export class AboutComponent implements OnInit {
     private pageServiceService: PageServiceService,
     private sanitizer: DomSanitizer
   ) {}
-
+//
   ngOnInit(): void {
     this.pageServiceService.getAboutPage().subscribe((response: any) => {
       console.log('API Response:', response);

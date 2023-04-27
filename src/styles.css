@@ -1,9 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /* Add these styles to styles.css or styles.scss */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 .mat-snack-bar-container-center {
   top: 50% !important;
   transform: translateY(-50%) !important;
