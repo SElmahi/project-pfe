@@ -78,11 +78,11 @@ export class PageServiceService {
     }
   
     saveCommitteesPage(content: any) {
-      return this.http.put(`${this.baseUrl}/committees`, { content: content });
+      return this.http.put(`${this.baseUrl}/committees/1`, { content: content });
     }
   
     getCommitteesPage(): any {
-      return this.http.get(`${this.baseUrl}/committees`);
+      return this.http.get(`${this.baseUrl}/committees/1`);
     }
   
     saveRegisterPage(content: any) {

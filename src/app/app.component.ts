@@ -11,4 +11,5 @@ export class AppComponent {
   constructor(private adminService: AdminService) {
     this.adminService.checkAuthenticated();
   }
+  
 }

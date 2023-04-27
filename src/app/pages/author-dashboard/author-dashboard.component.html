@@ -36,8 +36,8 @@
           <td data-label="Abstract">{{ submission.abstractText }}</td>
           <td data-label="Keywords">{{ submission.keywords }}</td>
           <td data-label="Status">{{ submission.submissionStatus }}</td>
-          <td data-label="Submission Date">{{ submission.submissionDate }}</td>
-          <td data-label="Type">{{ submission.submissionType }}</td> <!-- Added Submission Type field -->
+          <td data-label="Submission Date">{{ submission.submissionDate| date:'dd/MM/yyyy' }}</td>
+          <td data-label="Type">{{ submission.submissionType }}</td> 
           <td data-label="Modify">
             <button [disabled]="submission.submissionStatus === 'IN_REVIEW' || submission.submissionStatus === 'ACCEPTED' || submission.submissionStatus === 'REJECTED'" (click)="modifySubmission(submission.id)">Modify</button>
           </td>

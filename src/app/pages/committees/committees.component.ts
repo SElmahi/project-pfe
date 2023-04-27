@@ -7,11 +7,17 @@ import { PageServiceService } from 'src/app/services/page-service.service';
   styleUrls: ['./committees.component.css']
 })
 export class CommitteesComponent {
-content :any
-constructor( private pageServiceService:PageServiceService){}
-ngOnInit(): void {
-  this.content = this.pageServiceService.getCommitteesPage()
- 
-}
+  public contentAffiche;
+  
+  content: any;
 
+  constructor(private pageServiceService: PageServiceService) {}
+
+ 
+  ngOnInit(): void {
+    this.pageServiceService.getCommitteesPage().subscribe((response: any) => {
+      this.contentAffiche = response.content;
+      console.log(response);
+    });
+  }
 }

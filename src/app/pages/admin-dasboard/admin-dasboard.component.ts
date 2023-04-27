@@ -1,22 +1,31 @@
 import { Component } from '@angular/core';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
-
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 import { PageServiceService } from 'src/app/services/page-service.service';
 import { AdminService } from 'src/app/services/admin.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
+
 @Component({
   selector: 'app-admin-dasboard',
   templateUrl: './admin-dasboard.component.html',
   styleUrls: ['./admin-dasboard.component.css'],
 })
 export class AdminDasboardComponent {
+
   public Editor = DecoupledEditor as any;
   public selectedTab: string = 'content'; // Default selected tab
-
+  public ckEditorConfig = {
+    plugins: [ HtmlEmbed ], // Include other plugins that you're using
+    toolbar: [ 'htmlEmbed', /* ... */ ],
+    htmlEmbed: {
+      showPreviews: true
+    },
+    language: 'en'
+  };
  
   displayedColumns: string[] = ['title', 'abstractText', 'keywords', 'submissionState', 'submissionDate', 'submissionType', 'authorName', 'affiliation'];
 
@@ -39,8 +48,10 @@ export class AdminDasboardComponent {
   private editordata;
   public contentAffiche;
   public submissions = [];
+  public attendees = [];
   constructor(private pageServiceService: PageServiceService,private adminService : AdminService) {
     this.loadSubmissions();
+    this.loadAttendees(); // Add this line
   }
 
   
@@ -113,7 +124,7 @@ export class AdminDasboardComponent {
       });
     } else if (this.pageSelected == 'Committees') {
       this.pageServiceService.getCommitteesPage().subscribe((response: any) => {
-        this.contentAffiche = response.committeesContent;
+        this.contentAffiche = response.content;
        
       });
     } else if (this.pageSelected == 'Call For Papers') {
@@ -172,6 +183,13 @@ console.log('Author of the first submission:', this.submissions[0].author);
   });
  
 }
+loadAttendees() {
+  this.adminService.getAllAttendees().subscribe((data: any[]) => {
+    console.log('Received attendees data:', data);
+    this.attendees = data;
+  });
+}
+
 getPaperUrl(subfolder: string, fileName: string): string {
   if (!fileName) {
     console.log('No file name provided');
@@ -223,6 +241,36 @@ exportToExcel() {
   const wbout: ArrayBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
   saveAs(new Blob([wbout], { type: 'application/octet-stream' }), 'submissions.xlsx');
 }
+exportAttendeeToCSV() {
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.attendees.map(attendee => ({
+    ID: attendee.id,
+    Name: attendee.name,
+    FamilyName: attendee.familyName,
+    Email: attendee.email,
+    RegistrationDate: attendee.registerDate,
+    RegistrationStatus: attendee.registrationStatus,
+  })));
+
+  const csvOutput: string = XLSX.utils.sheet_to_csv(ws);
+
+  saveAs(new Blob([csvOutput], { type: 'text/csv;charset=utf-8;' }), 'attendees.csv');
+}
+
+exportAttendeeToExcel() {
+  const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.attendees.map(attendee => ({
+    ID: attendee.id,
+    Name: attendee.name,
+    FamilyName: attendee.familyName,
+    Email: attendee.email,
+    RegistrationDate: attendee.registerDate,
+    RegistrationStatus: attendee.registrationStatus,
+  })));
+
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Attendees');
+
+  XLSX.writeFile(wb, 'attendees.xlsx');
+}
 acceptSubmission(id: number) {
   this.adminService.acceptSubmission(id).subscribe(() => {
     alert('Submission accepted');
@@ -241,32 +289,17 @@ preventModification(id: number) {
     this.loadSubmissions();
   });
 }
-// Add these methods to handle submission actions
-/*
-acceptSubmission(id: number) {
-  this.adminService.acceptSubmission(id).subscribe(() => {
-    alert('Submission accepted');
-    this.loadSubmissions();
-  });
-}
-
-rejectSubmission(id: number) {
-  this.adminService.rejectSubmission(id).subscribe(() => {
-    alert('Submission rejected');
-    this.loadSubmissions();
-  });
-}
-setInReview(id: number) {
-  this.adminService.setInReview(id).subscribe(() => {
-    alert('Submission set to In Review');
-    this.loadSubmissions();
-  });
-}
 
 updatePaymentStatus(id: number) {
   this.adminService.updatePaymentStatus(id).subscribe(() => {
     alert('Payment status updated to Paid');
     this.loadSubmissions();
   });
-}*/
+}
+updateAttendeePaymentStatus(id: number) {
+  this.adminService.updateAttendeePaymentStatus(id).subscribe(() => {
+    alert('Payment status updated to Paid');
+    this.loadAttendees();
+  });
+}
 }

@@ -109,4 +109,13 @@ export class AdminService {
   preventModification(id: number) {
     return this.http.put(`http://localhost:8080/api/submissions/${id}/in-review`, {});
   }
+  updatePaymentStatus(id: number) {
+    return this.http.put(`http://localhost:8080/api/submissions/${id}/set-toPaid`, {});
+  }
+  updateAttendeePaymentStatus(id: number) {
+    return this.http.put(`http://localhost:8080/api/attendees/${id}/set-toPaid`, {});
+  }
+  getAllAttendees(): Observable<any> {
+    return this.http.get<any>('http://localhost:8080/api/attendees');
+}
 }

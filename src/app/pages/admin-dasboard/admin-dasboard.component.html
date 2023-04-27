@@ -16,15 +16,54 @@
   </select>
 
   <div>
-    <ckeditor [editor]="Editor" (ready)="onReady($event)" (change)="onChange($event)" [data]="contentAffiche"></ckeditor>
+    <ckeditor [editor]="Editor" [config]="ckEditorConfig" (ready)="onReady($event)" (change)="onChange($event)" [data]="contentAffiche"></ckeditor>
+
     <button (click)="save()">Save</button>
   </div>
 </div>
 
+
 <!-- Attendee Payments tab -->
 <div *ngIf="selectedTab === 'ManageAttendees'" class="tab-content">
   <h2>Manage Attendees</h2>
-  <!-- Add Attendee Payments table here -->
+  <button (click)="exportAttendeeToExcel()">Export to Excel</button>
+  <button (click)="exportAttendeeToCSV()">Export to CSV</button>
+  <div class="attendees-table-container">
+    <div class="table-responsive">
+      <table class="attendees-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Family Name</th>
+            <th>Email</th>
+            <th>Registration Date</th>
+            <th>Registration Status</th>
+            <th>Payment File</th>
+            <th>Payment Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let attendee of attendees">
+            <td data-label="ID">{{ attendee.id }}</td>
+            <td data-label="Name">{{ attendee.name }}</td>
+            <td data-label="Family Name">{{ attendee.familyName }}</td>
+            <td data-label="Email">{{ attendee.email }}</td>
+            <td data-label="Registration Date">{{ attendee.registerDate | date:'dd/MM/yyyy' }}</td>
+            <td data-label="Registration Status">{{ attendee.registrationStatus }}</td>
+            <td data-label="Payment File">
+              <a [href]="getPaperUrl('AttendeePayments',attendee.paymentFile)" target="_blank">Download Payment</a>
+            </td>
+            <td data-label="Payment Status">{{ attendee.paymentStatus }}</td>
+            <td data-label="Actions">
+              <button class="action-button"(click)="updateAttendeePaymentStatus(attendee.id)">Set Paid</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <!-- Submissions tab -->
@@ -59,7 +98,7 @@
             <td data-label="Abstract">{{ submission.submission.abstractText }}</td>
             <td data-label="Keywords">{{ submission.submission.keywords }}</td>
             <td data-label="Status">{{ submission.submission.submissionStatus }}</td>
-            <td data-label="Submission Date">{{ submission.submission.submissionDate }}</td>
+            <td data-label="Submission Date">{{ submission.submission.submissionDate| date:'dd/MM/yyyy'  }}</td>
             <td data-label="Author Name">{{ submission.author.firstName }} {{ submission.author.lastName }}</td>
             <td data-label="Affiliation">{{ submission.author.affiliation }}</td>
             <td data-label="Email">{{ submission.author.email }}</td>
@@ -74,7 +113,7 @@
               <button class="action-button" (click)="acceptSubmission(submission.submission.id)">Accept</button>
               <button class="action-button" (click)="rejectSubmission(submission.submission.id)">Reject</button>
               <button class="action-button" (click)="preventModification(submission.submission.id)">Prevent Modification</button>
-              <button class="action-button"(click)="updatePaymentStatus(submission.submission.id)">Update Payment Status</button>
+              <button class="action-button"(click)="updatePaymentStatus(submission.submission.id)">Set Paid</button>
             </td>     
           </tr>
         </tbody>
