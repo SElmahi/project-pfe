@@ -1,31 +1,23 @@
 import { Component } from '@angular/core';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
+
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 
 import { PageServiceService } from 'src/app/services/page-service.service';
 import { AdminService } from 'src/app/services/admin.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
-import HtmlEmbed from '@ckeditor/ckeditor5-html-embed/src/htmlembed';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin-dasboard',
   templateUrl: './admin-dasboard.component.html',
   styleUrls: ['./admin-dasboard.component.css'],
 })
 export class AdminDasboardComponent {
-
   public Editor = DecoupledEditor as any;
   public selectedTab: string = 'content'; // Default selected tab
-  public ckEditorConfig = {
-    plugins: [ HtmlEmbed ], // Include other plugins that you're using
-    toolbar: [ 'htmlEmbed', /* ... */ ],
-    htmlEmbed: {
-      showPreviews: true
-    },
-    language: 'en'
-  };
+
  
   displayedColumns: string[] = ['title', 'abstractText', 'keywords', 'submissionState', 'submissionDate', 'submissionType', 'authorName', 'affiliation'];
 
@@ -49,7 +41,7 @@ export class AdminDasboardComponent {
   public contentAffiche;
   public submissions = [];
   public attendees = [];
-  constructor(private pageServiceService: PageServiceService,private adminService : AdminService) {
+  constructor(private pageServiceService: PageServiceService,private adminService : AdminService,private router :Router) {
     this.loadSubmissions();
     this.loadAttendees(); // Add this line
   }
@@ -301,5 +293,15 @@ updateAttendeePaymentStatus(id: number) {
     alert('Payment status updated to Paid');
     this.loadAttendees();
   });
+}
+logout(): void {
+  this.adminService.logout().subscribe(
+    () => {
+      this.router.navigate(['/admin']);
+    },
+    (error) => {
+      console.error('Failed to logout', error);
+    }
+  );
 }
 }

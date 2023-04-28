@@ -1,6 +1,8 @@
 <div class="admin-dashboard">
-  <h1>Admin Dashboard</h1>
-
+  <div class="header">
+    <h1 class="title">Admin Dashboard</h1>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
   <div class="tabs">
     <button class="tab-button" (click)="selectTab('content')">Manage Content</button>
     <button class="tab-button" (click)="selectTab('ManageAttendees')">Manage Attendees</button>
@@ -16,8 +18,7 @@
   </select>
 
   <div>
-    <ckeditor [editor]="Editor" [config]="ckEditorConfig" (ready)="onReady($event)" (change)="onChange($event)" [data]="contentAffiche"></ckeditor>
-
+    <ckeditor [editor]="Editor" (ready)="onReady($event)" (change)="onChange($event)" [data]="contentAffiche"></ckeditor>
     <button (click)="save()">Save</button>
   </div>
 </div>

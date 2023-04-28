@@ -53,6 +53,15 @@ export class AdminService {
       })
     );
   }
+  logout(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/logout`, {}).pipe(
+      tap(() => {
+        this.clearLocalStorage();
+        this.isAuthenticatedSubject.next(false);
+        this.roleSubject.next(null);
+      })
+    );
+  }
 
   saveUserDetails(role: string, email: string, id: number) {
     const expirationTime = new Date().getTime() + (10 * 60 * 1000); // 3 minutes
@@ -118,4 +127,5 @@ export class AdminService {
   getAllAttendees(): Observable<any> {
     return this.http.get<any>('http://localhost:8080/api/attendees');
 }
+
 }

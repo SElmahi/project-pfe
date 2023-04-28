@@ -7,7 +7,7 @@
   font-size: 36px;
   font-weight: 600;
   margin-bottom: 8px;
-  color: #3f51b5;
+  color: #283593;
 }
 
 .tabs {
@@ -17,7 +17,7 @@
 }
 
 .tab-button {
-  background-color: #3f51b5;
+  background-color: #283593;
   color: #ffffff;
   font-weight: 500;
   text-decoration: none;
@@ -53,6 +53,9 @@
   width: 100%; /* Make the table container full-width */
 }
 
+.logout-button {
+  margin-left: 110rem;
+}
 .table-responsive {
   max-width: 100%;
   overflow-x: auto;
@@ -145,7 +148,7 @@ tr:hover {
   
   /* Button styles */
   button {
-  background-color: #3f51b5;
+  background-color:  #283593;
   color: #ffffff;
   font-weight: 500;
   text-decoration: none;
@@ -163,7 +166,7 @@ tr:hover {
     min-width: 300px; /* Adjust this value as needed */
   }
   .action-button {
-    background-color: #3f51b5;
+    background-color:#283593;
     color: #ffffff;
     font-weight: 500;
     text-decoration: none;
