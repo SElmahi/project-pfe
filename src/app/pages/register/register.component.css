@@ -1,18 +1,18 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  line-height: 1.6;
+:host {
+  font-family: "Roboto", sans-serif;
+  color: #4d4d4d;
 }
-
 h1 {
   text-align: center;
-  font-size: 32px;
-  font-weight: 600;
-  color: #1A3B5D;
-  border-bottom: 3px solid #1A3B5D;
-  padding-bottom: 10px;
-  margin-bottom: 1.5rem;
+  color: #1a3b5d;
+  border-bottom: 3px solid #1a3b5d;
+  padding-bottom: 0.5rem;
+  font-family: "Arial", sans-serif;
 }
-
+label {
+  font-weight: bold;
+  display: block;
+}
 table {
   margin-left: auto;
   margin-right: auto;
@@ -37,28 +37,18 @@ th {
 .form-container {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 2rem;
 }
 
 form {
   width: 45%;
-  background-color: #F5F5F5;
   padding: 1.5rem;
-  border: 1px solid #1A3B5D;
+  border: 1px solid #1a3b5d;
   border-radius: 0.25rem;
 }
 
 .form-group {
   margin-top: 2%;
   margin-left: 10%;
-  color: #1A3B5D;
-  margin-bottom: 1rem;
-}
-
-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
 }
 
 input[type="text"],
@@ -66,10 +56,10 @@ input[type="email"],
 input[type="tel"] {
   font-size: 1rem;
   line-height: 1.5;
-  color: #1A3B5D;
-  background-color: #F5F5F5;
+  color: #1a3b5d;
+  background-color: #f5f5f5;
   background-clip: padding-box;
-  border: 1px solid #1A3B5D;
+  border: 1px solid #1a3b5d;
   border-radius: 0.25rem;
   width: 100%;
   max-width: 400px;
@@ -77,29 +67,24 @@ input[type="tel"] {
   margin-bottom: 1rem;
 }
 
-input[type="file"] {
-  margin-top: 0.25rem;
-  margin-bottom: 1rem;
-}
-
 button[type="submit"] {
   border-radius: 0.3rem;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
-  margin-left: 19%;
-  background-color: #1A3B5D;
-  color: #FFFFFF;
+  margin-left: 64%;
+  background-color: #1a3b5d;
+  color: #ffffff;
   font-size: 1.1rem;
   white-space: nowrap;
   min-width: 7rem;
 }
 
 button[type="submit"]:hover {
-  background-color: #3E6AA3;
+  background-color: #3e6aa3;
 }
 
 button[type="submit"]:disabled {
-  background-color: #A3B1C6;
+  background-color: #a3b1c6;
   cursor: not-allowed;
 }
 
@@ -109,10 +94,18 @@ button[type="submit"]:disabled {
 }
 
 h2 {
-  font-family: 'Roboto', sans-serif;
-  color: #1A3B5D;
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  color: #1a3b5d;
+  margin-left: 10%;
   text-decoration: underline;
+}
+@media (max-width: 946px) {
+  .form-container {
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+  form {
+    width: auto;
+    margin-bottom: 1rem;
+  }
 }

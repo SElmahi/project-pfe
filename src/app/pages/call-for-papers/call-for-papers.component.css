@@ -1,23 +1,24 @@
 
 h1{
-text-align: center;
-color: #0A2647;
-border-bottom: 3px  solid #4D4D4D;
-border-style: double;
-}
-p{
-margin-left:2% ;
-margin-top: 5%;
-text-align:left;
-
-color:#4D4D4D;
-font-size: 18px;
-}
-
-ul{
-
-color:#4D4D4D;
-font-size: 18px;
-}
-
-
+    text-align: center;
+    color: #0A2647;
+    border-bottom: 3px solid #0a2647;
+    padding-bottom: 0.5rem;
+      font-family: 'Arial', sans-serif;
+    }
+    p{
+    margin-left:2% ;
+    margin-top: 5%;
+    text-align:left;
+    
+    color:#4D4D4D;
+    font-size: 18px;
+    }
+    
+    ul{
+    
+    color:#4D4D4D;
+    font-size: 18px;
+    }
+    
+    
