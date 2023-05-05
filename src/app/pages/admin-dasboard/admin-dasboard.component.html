@@ -39,7 +39,7 @@
             <th>Family Name</th>
             <th>Email</th>
             <th>Registration Date</th>
-            <th>Registration Status</th>
+          
             <th>Payment File</th>
             <th>Payment Status</th>
             <th>Actions</th>
@@ -52,7 +52,7 @@
             <td data-label="Family Name">{{ attendee.familyName }}</td>
             <td data-label="Email">{{ attendee.email }}</td>
             <td data-label="Registration Date">{{ attendee.registerDate | date:'dd/MM/yyyy' }}</td>
-            <td data-label="Registration Status">{{ attendee.registrationStatus }}</td>
+          
             <td data-label="Payment File">
               <a [href]="getPaperUrl('AttendeePayments',attendee.paymentFile)" target="_blank">Download Payment</a>
             </td>

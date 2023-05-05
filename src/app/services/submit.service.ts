@@ -15,18 +15,20 @@ export class SubmitService {
 
 
   constructor(private http: HttpClient) {}
-
   registerAttendee(name: string, familyName: string, email: string, payment: File): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('attendee', JSON.stringify({ name, familyName, email }));
+    formData.append('name', name);
+    formData.append('familyName', familyName);
+    formData.append('email', email);
     formData.append('paymentProof', payment);
-
+  
     const httpOptions = {
       responseType: 'text' as 'json'
     };
     
     return this.http.post<any>(this.registerAttendeeUrl, formData, httpOptions);
   }
+  
 
   submitPaper(formData: any, paper: File): Observable<any> {
     const submissionData = new FormData();
@@ -62,7 +64,7 @@ export class SubmitService {
       abstractText: submission.abstractText,
       keywords: submission.keywords,
       submissionType: submission.submissionType,
-      customId: submission.customId // Add this line
+      customId: submission.customId 
     };
   
     // Append the object as a JSON string with the key 'submission'
@@ -74,8 +76,7 @@ export class SubmitService {
   
     return this.http.put(`${this.apiUrl}/submissions/${id}`, formData, {
       headers: {
-        // Don't set the 'Content-Type' header, Angular will set it automatically.
-        // 'Content-Type': 'multipart/form-data',
+       
       },
     });
   }

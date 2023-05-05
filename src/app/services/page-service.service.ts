@@ -62,11 +62,11 @@ export class PageServiceService {
   }
   
     saveCallForPapersPage(content: any) {
-      return this.http.put(`${this.baseUrl}/callforpapers`, { content: content });
+      return this.http.put(`${this.baseUrl}/callforpapers/1`, content );
     }
   
     getCallForPapersPage(): any {
-      return this.http.get(`${this.baseUrl}/callforpapers`);
+      return this.http.get(`${this.baseUrl}/callforpapers/1`);
     }
   
     saveImportantDatesPage(content: any) {
@@ -94,10 +94,10 @@ export class PageServiceService {
     }
   
     savePublicationIndexPage(content: any) {
-      return this.http.put(`${this.baseUrl}/publicationindex`, { content: content });
+      return this.http.put(`${this.baseUrl}/publication-indexations/1`,  content);
     }
   
     getPublicationIndexPage(): any {
-      return this.http.get(`${this.baseUrl}/publicationindex`);
+      return this.http.get(`${this.baseUrl}/publication-indexations/1`);
     }
 }

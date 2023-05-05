@@ -121,18 +121,16 @@ export class AdminDasboardComponent {
       });
     } else if (this.pageSelected == 'Call For Papers') {
       this.pageServiceService.getCallForPapersPage().subscribe((response: any) => {
-        this.contentAffiche = response.callForPapersContent;
+        this.contentAffiche = response.content;
        
       });
     } else if (this.pageSelected == 'Important Dates') {
       this.pageServiceService.getImportantDatesPage().subscribe((response: any) => {
-        this.contentAffiche = response.content ; // Set it to an empty string if it's null or undefined
-        // ...
-      
+        this.contentAffiche = response.content; 
       });
     } else if (this.pageSelected == 'Publication Index') {
       this.pageServiceService.getPublicationIndexPage().subscribe((response: any) => {
-        this.contentAffiche = response.publicationIndexContent;
+        this.contentAffiche = response.content; 
        
       });
     } else if (this.pageSelected == 'ConferenceProgramme') {

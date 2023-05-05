@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { PageServiceService } from 'src/app/services/page-service.service';
 
 @Component({
@@ -8,13 +9,22 @@ import { PageServiceService } from 'src/app/services/page-service.service';
 })
 export class CallForPapersComponent {
 
-  content:any
-  constructor(private pageServiceService:PageServiceService){
-
-  }
+  public contentAffiche;
   
+  content: any;
+
+  constructor(
+  private pageServiceService: PageServiceService,
+  private sanitizer: DomSanitizer){} 
+
+ 
   ngOnInit(): void {
-    this.content = this.pageServiceService.getCallForPapersPage()
-   
+    this.pageServiceService
+      .getCallForPapersPage()
+      .subscribe((response: any) => {
+        this.contentAffiche = this.sanitizer.bypassSecurityTrustHtml(
+          response.content
+        );
+      });
   }
 }
