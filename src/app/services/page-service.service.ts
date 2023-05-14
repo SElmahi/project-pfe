@@ -50,15 +50,12 @@ export class PageServiceService {
       return this.http.get(`${this.baseUrl}/partners`);
     }
   
-    saveHeaderPage(content: any) {
-      return this.http.put(`${this.baseUrl}/header/${content.id}`, {
-        text: content.headerText,
-        imageUrl: content.headerImageUrl,
-      });
+  saveHeaderPage(content: any) {
+      return this.http.put(`${this.baseUrl}/header/email/1`,content); 
     }
   
   getHeaderPage() {
-    return this.http.get(`${this.baseUrl}/header/1`);
+    return this.http.get(`${this.baseUrl}/header/email/1`);
   }
   
     saveCallForPapersPage(content: any) {
@@ -100,4 +97,7 @@ export class PageServiceService {
     getPublicationIndexPage(): any {
       return this.http.get(`${this.baseUrl}/publication-indexations/1`);
     }
+
+ 
+    
 }

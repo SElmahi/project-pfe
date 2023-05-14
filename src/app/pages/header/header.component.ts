@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { PageServiceService } from 'src/app/services/page-service.service';
 
 @Component({
@@ -8,15 +9,16 @@ import { PageServiceService } from 'src/app/services/page-service.service';
 })
 export class HeaderComponent implements OnInit {
   content: any;
-
-  constructor(private pageServiceService: PageServiceService) {}
+  public contentAffiche;
+  constructor(private pageServiceService: PageServiceService, private sanitizer: DomSanitizer) {}
   toolbarVariable: boolean = true;
   openToolbar() {
     this.toolbarVariable = !this.toolbarVariable;
   }
   ngOnInit(): void {
     this.pageServiceService.getHeaderPage().subscribe((response: any) => {
-      this.content = response;
+      this.contentAffiche = this.sanitizer.bypassSecurityTrustHtml(response.contactMail);
     });
   }
+  
 }

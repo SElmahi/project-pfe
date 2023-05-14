@@ -2,7 +2,7 @@
   <form class="form-signin" (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">       
     <h2>Please login</h2>
     <div class="form-group">
-      <input type="email" class="form-control" name="email" placeholder="Email Address@gmail.com" ngModel required />
+      <input type="email" class="form-control" name="email" placeholder="EmailAddress@gmail.com" ngModel required />
       <div *ngIf="loginForm.controls.email?.invalid && (loginForm.controls.email?.dirty || loginForm.controls.email?.touched)">
         <div *ngIf="loginForm.controls.email?.errors.required">Email est requis</div>
         <div *ngIf="loginForm.controls.email?.errors.email">Email invalide</div>

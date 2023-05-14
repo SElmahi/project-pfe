@@ -90,8 +90,6 @@ export class SubmitService {
     submissionData.append('paper', paper);
     submissionData.append('submissionType', formData.submissionType);
     submissionData.append('authorId', authorId.toString());
-  
-    console.log('Form data:', submissionData);
     const httpOptions = {
       responseType: 'json' as 'json'
     };
@@ -106,7 +104,7 @@ export class SubmitService {
     formData.append('submissionId', submissionId.toString());
    
     return this.http.post(`${this.apiUrl}/submissions/uploadPayment`, formData, {
-      responseType: 'text' // Add this line to specify the expected response type
+      responseType: 'text' 
     });
    
   }

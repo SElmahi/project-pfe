@@ -103,11 +103,7 @@ export class AdminDasboardComponent {
       });
     } else if (this.pageSelected == 'Header') {
       this.pageServiceService.getHeaderPage().subscribe((response: any) => {
-        this.contentAffiche = {
-          headerText: response.text,
-          headerImageUrl: response.imageUrl,
-        };
-      
+      this.contentAffiche = response.contactMail;
       });
     } else if (this.pageSelected == 'Register') {
       this.pageServiceService.getRegisterPage().subscribe((response: any) => {
