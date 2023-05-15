@@ -1,0 +1,9 @@
+.separator {
+    padding: 7%;
+  }
+  .couverture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto;
+  }

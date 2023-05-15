@@ -33,14 +33,7 @@ p {
   font-size: 17px;
   color: #4d4d4d;
 }
-.map {
-  display: flex;
-  justify-content: center;
-  height: 400px;
-  margin-top: 2em;
-  height: 100%;
-  width: 100%;
-}
+
 .part {
   padding: auto;
 }
@@ -54,6 +47,7 @@ img {
   height: 60px;
   margin: 10px;
 }
+
 @media (max-width: 946px) {
   .photo-list li {
     align-items: center;

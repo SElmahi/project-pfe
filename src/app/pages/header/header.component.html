@@ -21,7 +21,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 50px;
+    height: 9%;
     display: flex;
     align-items: center;
     background-color: #0a2647;
@@ -76,7 +76,7 @@
 
   .toggle-button {
     position: absolute;
-    margin-top: 5%;
+    margin: 3%;
     right: 1rem;
     display: none;
     flex-direction: column;
@@ -110,7 +110,7 @@
       flex-direction: column;
     }
     .logo {
-      width: 11%;
+      width: 9%;
     }
     .footer {
       height: auto;
@@ -123,13 +123,13 @@
       font-size: 180%;
     }
     .toolbarClass {
-      display:none;
+      display: none;
     }
   }
 </style>
 <nav class="toolbar">
   <img class="logo" src="assets/image/logo.png" alt="logo" />
-  <a href="#" class="toggle-button" (click)="openToolbar()">
+  <a class="toggle-button" (click)="openToolbar()">
     <span class="bar"> </span>
     <span class="bar"> </span>
     <span class="bar"> </span>

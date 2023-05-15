@@ -25,6 +25,7 @@
 </div>
 <h1>MANAGES SUBMISSION</h1>
 <h1>IMAGE</h1>
-<button >delet</button>
-<button >updat</button>
-<button>upload</button>
+<label for="logo">logo :</label>
+<input type="file" [(ngModel)]="logo" id="photo" name="photo" />
+<button (click)="saveImage()">save Image</button>
+

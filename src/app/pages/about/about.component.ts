@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AboutService } from 'src/app/services/about.service';
 import { PageServiceService } from 'src/app/services/page-service.service';
 
 @Component({

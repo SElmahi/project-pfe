@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
-
+import { ImageService } from 'src/app/services/image.service';
 import { PageServiceService } from 'src/app/services/page-service.service';
 
 @Component({
@@ -11,10 +11,9 @@ import { PageServiceService } from 'src/app/services/page-service.service';
   styleUrls: ['./admin-dasboard.component.css'],
 })
 export class AdminDasboardComponent {
+  logo: any;
 
- 
   public Editor = DecoupledEditor as any;
-
 
   public pages = [
     'About',
@@ -33,8 +32,14 @@ export class AdminDasboardComponent {
   private editordata;
   public contentAffiche;
 
-  constructor(private pageServiceService: PageServiceService) {}
+  constructor(private pageServiceService: PageServiceService,
+    private imageService :ImageService) {}
+  saveImage() {
+    saveLogo(this.logo)
+  }
+  afficheImage(){
 
+  }
   //la fonction save pour save le contenu de ckeditor
   save() {
     if (this.pageSelected == 'About') {
@@ -168,3 +173,7 @@ export class AdminDasboardComponent {
       );
   }
 }
+function saveLogo(logo: any) {
+  throw new Error('Function not implemented.');
+}
+
