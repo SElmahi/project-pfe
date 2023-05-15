@@ -10,6 +10,7 @@ import { PageServiceService } from 'src/app/services/page-service.service';
 export class HeaderComponent implements OnInit {
   content: any;
   public contentAffiche;
+  public titreAffiche;
   constructor(private pageServiceService: PageServiceService, private sanitizer: DomSanitizer) {}
   toolbarVariable: boolean = true;
   openToolbar() {
@@ -19,6 +20,10 @@ export class HeaderComponent implements OnInit {
     this.pageServiceService.getHeaderPage().subscribe((response: any) => {
       this.contentAffiche = this.sanitizer.bypassSecurityTrustHtml(response.contactMail);
     });
-  }
+    this.pageServiceService.getTitle().subscribe((response: any) => {
+      this.titreAffiche = this.sanitizer.bypassSecurityTrustHtml(response.title);
+
+  });
   
+}
 }

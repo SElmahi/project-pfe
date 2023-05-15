@@ -57,6 +57,13 @@ export class PageServiceService {
   getHeaderPage() {
     return this.http.get(`${this.baseUrl}/header/email/1`);
   }
+  saveTitle(content: any) {
+    return this.http.put(`${this.baseUrl}/header/title/1`,content); 
+  }
+
+getTitle() {
+  return this.http.get(`${this.baseUrl}/header/title/1`);
+}
   
     saveCallForPapersPage(content: any) {
       return this.http.put(`${this.baseUrl}/callforpapers/1`, content );

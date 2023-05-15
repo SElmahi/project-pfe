@@ -26,6 +26,7 @@ export class AdminDasboardComponent {
     'Header',
     'Register',
     'Committees',
+    'Title',
     'Call For Papers',
     'Important Dates',
     'Publication Index',
@@ -56,6 +57,10 @@ export class AdminDasboardComponent {
       this.pageServiceService.saveHeaderPage(this.editordata).subscribe(() => {
         alert('Header page saved');
       });
+    }  else if (this.pageSelected == 'Title') {
+        this.pageServiceService.saveTitle(this.editordata).subscribe(() => {
+          alert('Title page saved');
+        });
     } else if (this.pageSelected == 'Register') {
       this.pageServiceService.saveRegisterPage(this.editordata).subscribe(() => {
         alert('Register page saved');
@@ -104,6 +109,10 @@ export class AdminDasboardComponent {
     } else if (this.pageSelected == 'Header') {
       this.pageServiceService.getHeaderPage().subscribe((response: any) => {
       this.contentAffiche = response.contactMail;
+      });
+    } else if (this.pageSelected == 'Title') {
+      this.pageServiceService.getTitle().subscribe((response: any) => {
+      this.contentAffiche = response.title;
       });
     } else if (this.pageSelected == 'Register') {
       this.pageServiceService.getRegisterPage().subscribe((response: any) => {
