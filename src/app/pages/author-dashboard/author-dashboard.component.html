@@ -2,6 +2,7 @@
   <h1>Welcome, {{ authorName }}!</h1>
   <h2>Here are your current submissions:</h2>
 </div>
+<button class="logout-button" (click)="logout()">Logout</button>
 <div class="instruction-container">
   <button routerLink="/add-submission" class="add-submission-button">Add New Submission</button>
   <div class="instructions">
@@ -23,7 +24,7 @@
           <th>Keywords</th>
           <th>Status</th>
           <th>Submission Data</th>
-          <th>Type</th> <!-- Added a header for the Submission Type column -->
+          <th>Type</th> 
           <th>Modify</th>
           <th>Paper</th>
           <th>Payment</th>

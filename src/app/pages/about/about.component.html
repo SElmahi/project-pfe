@@ -7,15 +7,18 @@
 <span class="comment" [innerHTML]="conferencePorgramme"></span>
 
 <h1>Conference Venue</h1>
-<h2 [innerHTML]="conferenceVenue"></h2>
+<div class="venue">
+  <h2 [innerHTML]="conferenceVenue"></h2>
+  <img [src]="venueImageURL" alt="Conference Venue" />
+</div>
 
 <h1>Partners</h1>
 <div class="part">
   <ul class="photo-list">
-    <li><img src="assets/image/logo1.jpg" alt="Logo 1" /></li>
-    <li><img src="assets/image/logo2.png" alt="Logo 2" /></li>
-    <li><img src="assets/image/logo 3.jpg" alt="Logo 3" /></li>
-    <li><img src="assets/image/logo4.jpg" alt="Logo 4" /></li>
-    <li><img src="assets/image/logo5.jpg" alt="Logo 5" /></li>
+    <li><img [src]="sponsor1URL" alt="Logo 1" /></li>
+    <li><img [src]="sponsor2URL" alt="Logo 2" /></li>
+    <li><img [src]="sponsor3URL" alt="Logo 3" /></li>
+    <li><img [src]="sponsor4URL" alt="Logo 4" /></li>
+   
   </ul>
 </div>

@@ -3,12 +3,16 @@ import { ChangeEvent } from '@ckeditor/ckeditor5-angular';
 
 
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { PageServiceService } from 'src/app/services/page-service.service';
 import { AdminService } from 'src/app/services/admin.service';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { map } from 'rxjs';
+import { Images } from 'src/app/models/Image';
 @Component({
   selector: 'app-admin-dasboard',
   templateUrl: './admin-dasboard.component.html',
@@ -18,7 +22,13 @@ export class AdminDasboardComponent {
   public Editor = DecoupledEditor as any;
   public selectedTab: string = 'content'; // Default selected tab
 
- 
+  public logoImage: SafeUrl;
+  public backgroundImage: SafeUrl;
+  sponsor1Image: SafeUrl | string = 'assets/image/logo1.jpg';
+sponsor2Image: SafeUrl | string = 'assets/image/logo2.png';
+sponsor3Image: SafeUrl | string = 'assets/image/logo3.jpg';
+sponsor4Image: SafeUrl | string = 'assets/image/logo4.jpg';
+venueImage: SafeUrl | string;
   displayedColumns: string[] = ['title', 'abstractText', 'keywords', 'submissionState', 'submissionDate', 'submissionType', 'authorName', 'affiliation'];
 
   public pages = [
@@ -42,10 +52,12 @@ export class AdminDasboardComponent {
   public contentAffiche;
   public submissions = [];
   public attendees = [];
-  constructor(private pageServiceService: PageServiceService,private adminService : AdminService,private router :Router) {
+  private imageIds: {[key: string]: number} = {};
+  constructor(private pageServiceService: PageServiceService, private adminService : AdminService, private router :Router, private sanitizer: DomSanitizer) {
     this.loadSubmissions();
-    this.loadAttendees(); // Add this line
-  }
+    this.loadAttendees();
+}
+
 
   
   save() {
@@ -297,6 +309,69 @@ updateAttendeePaymentStatus(id: number) {
     this.loadAttendees();
   });
 }
+onFileSelected(event: Event, imageName: string): void {
+  const file = (event.target as HTMLInputElement).files[0];
+  if (file) {
+    this.pageServiceService.uploadImage(file, imageName)
+      .subscribe((response: Images) => {
+        console.log(response); // <- Add this line to debug
+
+        if (response.id) { // <- Check if id exists before proceeding
+          // Save the id of the uploaded image
+          this.imageIds[imageName] = response.id;
+          this.loadImage(imageName, response.id);
+        } else {
+          console.error('Image ID is undefined', response);
+        }
+      });
+  }
+}
+
+loadImage(imageName: string, imageId: number): void {
+  this.pageServiceService.getImage(imageId)
+    .pipe(map(blob => {
+      let safeURL = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(blob));
+      if (imageName === 'logo') {
+        this.pageServiceService.updateLogoURL(safeURL);
+      } else if (imageName === 'background') {
+        this.pageServiceService.updateBackgroundURL(safeURL);
+      } else if (imageName.startsWith('sponsor')) {
+        const sponsorNumber = imageName.slice(-1); // Get the last character, which is the number
+        this.pageServiceService[`updateSponsor${sponsorNumber}URL`](safeURL);
+      } else if (imageName === 'venue') {  
+        this.pageServiceService.updateVenueImageURL(safeURL);
+      }
+      
+      return safeURL;
+    }))
+    .subscribe(image => {
+      switch (imageName) {
+        case 'logo':
+          this.logoImage = image;
+          break;
+        case 'background':
+          this.backgroundImage = image;
+          break;
+        case 'sponsor1':
+          this.sponsor1Image = image;
+          break;
+        case 'sponsor2':
+          this.sponsor2Image = image;
+          break;
+        case 'sponsor3':
+          this.sponsor3Image = image;
+          break;
+        case 'sponsor4':
+          this.sponsor4Image = image;
+          break;
+        case 'venue':  
+          this.venueImage = image;
+          break;
+      }
+    });
+}
+
+
 logout(): void {
   this.adminService.logout().subscribe(
     () => {

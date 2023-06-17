@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PageServiceService } from 'src/app/services/page-service.service';
 import { SubmitService } from 'src/app/services/submit.service';
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

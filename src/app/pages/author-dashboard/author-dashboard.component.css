@@ -31,6 +31,8 @@
 
 .add-submission-button:hover {
   background-color: #283593;
+  cursor: pointer; 
+  transition: background 0.3s ease; 
 }
 
 .submissions-table-container {
@@ -97,6 +99,22 @@ tr:hover {
   margin-bottom: 8px;
   font-size: 14px;
   padding: 8px 16px;
+}
+.logout-button {
+  margin-left: 110rem;
+  display: inline-block;
+  background-color: #3f51b5;
+  color: #ffffff;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+.logout-button:hover {
+  background-color: #283593;
+  cursor: pointer; 
+  transition: background 0.3s ease; 
 }
 
 /* Added media query for smaller screens */

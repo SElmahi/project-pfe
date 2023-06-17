@@ -2,13 +2,23 @@
   <form class="form-signin" (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">       
     <h2>Please login</h2>
     <div class="form-group">
-      <input type="email" class="form-control" name="email" placeholder="EmailAddress@gmail.com" ngModel required />
-      <div *ngIf="loginForm.controls.email?.invalid && (loginForm.controls.email?.dirty || loginForm.controls.email?.touched)">
-        <div *ngIf="loginForm.controls.email?.errors.required">Email est requis</div>
-        <div *ngIf="loginForm.controls.email?.errors.email">Email invalide</div>
+      <input type="text" class="form-control" name="email" placeholder="Username or Email" pattern="admin|[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" ngModel required />
+    
+      <div *ngIf="loginForm.controls.email?.invalid && (loginForm.controls.email?.dirty || loginForm.controls.email?.touched)" class="error-message">
+        <div *ngIf="loginForm.controls.email?.errors.required">Email is required</div>
+    
       </div>
     </div>
-    <input type="password" class="form-control" name="password" placeholder="Password" minlength="8" maxlength="35" ngModel required />      
+    
+    <div class="form-group">
+      <input type="password" class="form-control" name="password" placeholder="Password" minlength="8" maxlength="35" ngModel required />      
+      <div *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.password?.dirty || loginForm.controls.password?.touched)" class="error-message">
+        <div *ngIf="loginForm.controls.password?.errors.required">Password is required</div>
+        <div *ngIf="loginForm.controls.password?.errors.minlength">Password should be at least 8 characters long</div>
+        <div *ngIf="loginForm.controls.password?.errors.maxlength">Password should not exceed 35 characters</div>
+      </div>
+    </div>
+    
     <br>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
   </form>

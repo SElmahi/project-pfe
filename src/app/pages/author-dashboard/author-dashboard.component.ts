@@ -116,5 +116,15 @@ this.submitService.uploadPaymentFile(paymentFile, submissionId).subscribe(respon
   });
 });
   }
+  logout(): void {
+    this.adminService.logout().subscribe(
+      () => {
+        this.router.navigate(['/admin']);
+      },
+      (error) => {
+        console.error('Failed to logout', error);
+      }
+    );
+  }
 }
     

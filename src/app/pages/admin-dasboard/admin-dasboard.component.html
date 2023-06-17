@@ -10,6 +10,10 @@
   </div>
 </div>
 
+
+
+
+
 <!-- Content tab -->
 <div *ngIf="selectedTab === 'content'" class="tab-content">
   <h2>Manage Content</h2>
@@ -22,7 +26,38 @@
     <button (click)="save()">Save</button>
   </div>
 </div>
+<div class="upload-section">
+  <h2>Logo Image</h2>
+  <input type="file" (change)="onFileSelected($event, 'logo')" accept=".png, .jpg, .jpeg">
+</div>
 
+<div class="upload-section">
+  <h2>Background Image</h2>
+  <input type="file" (change)="onFileSelected($event, 'background')" accept=".png, .jpg, .jpeg">
+</div>
+<div class="upload-section">
+  <h2>Sponsor 1 Image</h2>
+  <input type="file" (change)="onFileSelected($event, 'sponsor1')" accept=".png, .jpg, .jpeg">
+</div>
+
+<div class="upload-section">
+  <h2>Sponsor 2 Image</h2>
+  <input type="file" (change)="onFileSelected($event, 'sponsor2')" accept=".png, .jpg, .jpeg">
+</div>
+
+<div class="upload-section">
+  <h2>Sponsor 3 Image</h2>
+  <input type="file" (change)="onFileSelected($event, 'sponsor3')" accept=".png, .jpg, .jpeg">
+</div>
+
+<div class="upload-section">
+  <h2>Sponsor 4 Image</h2>
+  <input type="file" (change)="onFileSelected($event, 'sponsor4')" accept=".png, .jpg, .jpeg">
+</div>
+<div class="upload-section">
+  <h2>Venue Image</h2>
+  <input type="file" (change)="onFileSelected($event, 'venue')" accept=".png, .jpg, .jpeg">
+</div>
 
 <!-- Attendee Payments tab -->
 <div *ngIf="selectedTab === 'ManageAttendees'" class="tab-content">
@@ -121,4 +156,5 @@
       </table>
     </div>
   </div>
+  
 </div>
