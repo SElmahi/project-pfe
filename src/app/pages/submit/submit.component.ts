@@ -21,37 +21,67 @@ export class SubmitComponent implements OnInit {
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, this.confirmPasswordValidator.bind(this)]],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      affiliation: ['', Validators.required],
+      firstName: ['', [Validators.required, this.noSpecialCharsValidator.bind(this)]],
+      lastName: ['', [Validators.required, this.noSpecialCharsValidator.bind(this)]],
+      affiliation: ['', [Validators.required, this.noOnlyNumbersValidator.bind(this)]],
       title: ['', Validators.required],
       abstractText: ['', Validators.required],
       keywords: ['', Validators.required],
       paper: ['', Validators.required],
+      fileSize: [null] ,
       submissionType: ['', Validators.required],
      
     }, { validators: this.fileSelectedValidator.bind(this) });
   }
 
   ngOnInit(): void {}
-
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
-    this.submitForm.updateValueAndValidity(); // Trigger form validation update
-  }
-
-  fileSelectedValidator(control: AbstractControl): ValidationErrors | null {
-    if (!this.selectedFile || this.selectedFile.type !== 'application/pdf') {
+  fileSelectedValidator(formGroup: FormGroup): ValidationErrors | null {
+    const file = this.selectedFile;
+    if (!file) {
+      return { noFileSelected: true };
+    } 
+  
+    if (file.type !== 'application/pdf') {
       return { invalidFileType: true };
     }
-
-    // Check for the file size limit
-    if (this.selectedFile.size > 5 * 1024 * 1024) { // 5MB in bytes
+  
+    if (file.size > 5 * 1024 * 1024) { // 5MB in bytes
       return { maxSize: true };
     }
-
+  
     return null;
   }
+  
+  
+  noSpecialCharsValidator(control: AbstractControl) {
+    if (control && (control.value !== null || control.value !== undefined)) {
+      const regex = new RegExp('^[a-zA-Z ]*$');
+      if (!regex.test(control.value)) {
+        return {
+          isError: true,
+        };
+      }
+    }
+    return null;
+  }
+
+  noOnlyNumbersValidator(control: AbstractControl) {
+    if (control && (control.value !== null || control.value !== undefined)) {
+      const regex = new RegExp('^[0-9]*$');
+      if (regex.test(control.value)) {
+        return {
+          isError: true,
+        };
+      }
+    }
+    return null;
+  }
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+    this.submitForm.get('fileSize').setValue(this.selectedFile ? this.selectedFile.size : null);
+    this.submitForm.get('fileSize').updateValueAndValidity();
+  }
+  
 
   onSubmit(): void {
     if (this.submitForm.invalid) {

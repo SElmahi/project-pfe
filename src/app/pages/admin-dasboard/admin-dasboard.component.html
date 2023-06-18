@@ -13,7 +13,6 @@
 
 
 
-
 <!-- Content tab -->
 <div *ngIf="selectedTab === 'content'" class="tab-content">
   <h2>Manage Content</h2>
@@ -25,38 +24,42 @@
     <ckeditor [editor]="Editor" (ready)="onReady($event)" (change)="onChange($event)" [data]="contentAffiche"></ckeditor>
     <button (click)="save()">Save</button>
   </div>
-</div>
-<div class="upload-section">
-  <h2>Logo Image</h2>
-  <input type="file" (change)="onFileSelected($event, 'logo')" accept=".png, .jpg, .jpeg">
-</div>
+  
+  <div class="upload-section">
+    <h2>Logo Image</h2>
+    <input type="file" (change)="onFileSelected($event, 'logo')" accept=".png, .jpg, .jpeg">
+  </div>
 
-<div class="upload-section">
-  <h2>Background Image</h2>
-  <input type="file" (change)="onFileSelected($event, 'background')" accept=".png, .jpg, .jpeg">
-</div>
-<div class="upload-section">
-  <h2>Sponsor 1 Image</h2>
-  <input type="file" (change)="onFileSelected($event, 'sponsor1')" accept=".png, .jpg, .jpeg">
-</div>
+  <div class="upload-section">
+    <h2>Background Image</h2>
+    <input type="file" (change)="onFileSelected($event, 'background')" accept=".png, .jpg, .jpeg">
+  </div>
+  
+  <div class="upload-section">
+    <h2>Sponsor 1 Image</h2>
+    <input type="file" (change)="onFileSelected($event, 'sponsor1')" accept=".png, .jpg, .jpeg">
+  </div>
 
-<div class="upload-section">
-  <h2>Sponsor 2 Image</h2>
-  <input type="file" (change)="onFileSelected($event, 'sponsor2')" accept=".png, .jpg, .jpeg">
-</div>
+  <div class="upload-section">
+    <h2>Sponsor 2 Image</h2>
+    <input type="file" (change)="onFileSelected($event, 'sponsor2')" accept=".png, .jpg, .jpeg">
+  </div>
 
-<div class="upload-section">
-  <h2>Sponsor 3 Image</h2>
-  <input type="file" (change)="onFileSelected($event, 'sponsor3')" accept=".png, .jpg, .jpeg">
-</div>
+  <div class="upload-section">
+    <h2>Sponsor 3 Image</h2>
+    <input type="file" (change)="onFileSelected($event, 'sponsor3')" accept=".png, .jpg, .jpeg">
+  </div>
 
-<div class="upload-section">
-  <h2>Sponsor 4 Image</h2>
-  <input type="file" (change)="onFileSelected($event, 'sponsor4')" accept=".png, .jpg, .jpeg">
-</div>
-<div class="upload-section">
-  <h2>Venue Image</h2>
-  <input type="file" (change)="onFileSelected($event, 'venue')" accept=".png, .jpg, .jpeg">
+  <div class="upload-section">
+    <h2>Sponsor 4 Image</h2>
+    <input type="file" (change)="onFileSelected($event, 'sponsor4')" accept=".png, .jpg, .jpeg">
+  </div>
+  
+  <div class="upload-section">
+    <h2>Venue Image</h2>
+    <input type="file" (change)="onFileSelected($event, 'venue')" accept=".png, .jpg, .jpeg">
+  </div>
+
 </div>
 
 <!-- Attendee Payments tab -->
@@ -64,9 +67,9 @@
   <h2>Manage Attendees</h2>
   <button (click)="exportAttendeeToExcel()">Export to Excel</button>
   <button (click)="exportAttendeeToCSV()">Export to CSV</button>
-  <div class="attendees-table-container">
+  <div class="submissions-table-container">
     <div class="table-responsive">
-      <table class="attendees-table">
+      <table class="submissions-table">
         <thead>
           <tr>
             <th>ID</th>

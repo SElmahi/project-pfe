@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { Submission } from '../models/Submission';
 
@@ -107,7 +107,8 @@ export class AdminService {
   }
  
   getAllSubmissionsWithAuthorInfo(): Observable<any> {
-    return this.http.get<any>(`http://localhost:8080/api/submissions/all-with-authors`);
+    return this.http.get<any>(`http://localhost:8080/api/submissions/all-with-authors`)
+    
   }
   acceptSubmission(id: number) {
     return this.http.put(`http://localhost:8080/api/submissions/${id}/accept`, {});

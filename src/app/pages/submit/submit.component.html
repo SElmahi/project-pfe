@@ -41,8 +41,10 @@
   <div *ngIf="submitForm.get('firstName').touched && submitForm.get('firstName').hasError('required')" class="error-message">
     First Name is required.
   </div>
+  <div *ngIf="submitForm.get('firstName').touched && submitForm.get('firstName').hasError('isError')" class="error-message">
+    Invalid First Name. It should not contain any special characters.
+  </div>
 </div>
-
 <!-- Last Name -->
 <div>
   <label for="lastName">Last Name:</label>
@@ -50,8 +52,10 @@
   <div *ngIf="submitForm.get('lastName').touched && submitForm.get('lastName').hasError('required')" class="error-message">
     Last Name is required.
   </div>
+  <div *ngIf="submitForm.get('lastName').touched && submitForm.get('lastName').hasError('isError')" class="error-message">
+    Invalid Last Name. It should not contain any special characters.
+  </div>
 </div>
-
 <!-- Affiliation -->
 <div>
   <label for="affiliation">Affiliation:</label>
@@ -60,7 +64,6 @@
     Affiliation is required.
   </div>
 </div>
-
 
  
   <h2>Paper Submission</h2>
@@ -88,12 +91,18 @@
 
 <label for="paper">Paper (PDF):</label>
 <input type="file" formControlName="paper" (change)="onFileSelected($event)" accept="application/pdf" required>
-<div *ngIf="submitForm.get('paper').touched && submitForm.get('paper').hasError('required')" class="error-message">
+<div *ngIf="submitForm.hasError('noFileSelected')" class="error-message">
+  Please select a file.
+</div>
+
+<div *ngIf="submitForm.hasError('invalidFileType')" class="error-message">
   Invalid file type. Please upload a PDF file.
 </div>
-<div *ngIf="submitForm.get('paper').touched && submitForm.get('paper').hasError('maxSize')" class="error-message">
+
+<div *ngIf="submitForm.hasError('maxSize')" class="error-message">
   File size exceeds 5MB. Please upload a smaller file.
 </div>
+
 
 <div>
   <div>
