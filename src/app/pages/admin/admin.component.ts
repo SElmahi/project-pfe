@@ -17,7 +17,7 @@ export class AdminComponent {
     if (form.invalid) {
       return;
     }
-    const emailPattern = /^(admin|[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})$/;
+    const emailPattern = /^(admin|[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})$/i;
     if (!emailPattern.test(form.value.email)) {
       // Show error snackbar
       this.snackBar.open('Please enter a valid email', 'Close', {
@@ -28,7 +28,6 @@ export class AdminComponent {
       });
       return;
     }
-    
     this.adminService.login(form.value.email, form.value.password).subscribe(
       (response: any) => {
         console.log(response);
