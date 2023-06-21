@@ -128,7 +128,7 @@ venueImage: SafeUrl | string;
       });
     } else if (this.pageSelected == 'Register') {
       this.pageServiceService.getRegisterPage().subscribe((response: any) => {
-        this.contentAffiche = response.registerContent;
+        this.contentAffiche = response.content;
        
       });
     } else if (this.pageSelected == 'Committees') {

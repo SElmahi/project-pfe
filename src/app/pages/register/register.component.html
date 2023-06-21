@@ -1,36 +1,9 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,600&display=swap" rel="stylesheet">
 <div><h2>REGISTRATION</h2></div>
-<div><table>
-    <thead>
-      <tr>
-        <th>Registration</th>
-        <th>Fees</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Full registration</td>
-        <td>$500</td>
-      </tr>
-      <tr>
-        <td>Student registration</td>
-        <td>$250</td>
-      </tr>
-      <tr>
-        <td>One-day registration</td>
-        <td>$150</td>
-      </tr>
-      <tr>
-        <td>Workshop registration</td>
-        <td>$100</td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
-  <div>
 
-  </div>
- 
+
+<div  [innerHTML]="contentAffiche" > <p></div>
+
   <router-outlet></router-outlet>
   <div class="form-container">
     <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">

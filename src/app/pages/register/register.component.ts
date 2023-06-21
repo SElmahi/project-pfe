@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DomSanitizer } from '@angular/platform-browser';
 import { PageServiceService } from 'src/app/services/page-service.service';
 import { SubmitService } from 'src/app/services/submit.service';
 
@@ -11,7 +12,9 @@ import { SubmitService } from 'src/app/services/submit.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-content :any
+  public contentAffiche;
+  
+  content: any;
  
 onFileSelected(event: any) {
   if (event && event.length > 0) {
@@ -22,9 +25,14 @@ onFileSelected(event: any) {
 submitForm: FormGroup;
 selectedFile: File;
 isSubmitting: boolean = false;
-constructor(private pageServiceService: PageServiceService, private submitService: SubmitService, private snackBar: MatSnackBar, private formBuilder: FormBuilder) {
-  this.content = this.pageServiceService.getRegisterPage();
-
+constructor(private pageServiceService: PageServiceService, private submitService: SubmitService, private snackBar: MatSnackBar, private formBuilder: FormBuilder,  private sanitizer: DomSanitizer){
+  this.pageServiceService
+  .getRegisterPage()
+  .subscribe((response: any) => {
+    this.contentAffiche = this.sanitizer.bypassSecurityTrustHtml(
+      response.content
+    );
+  });
   
   this.submitForm = this.formBuilder.group({
     name: ['', Validators.required],

@@ -106,11 +106,11 @@ getTitle() {
     }
   
     saveRegisterPage(content: any) {
-      return this.http.put(`${this.baseUrl}/register`, { content: content });
+      return this.http.put(`${this.baseUrl}/registrationdetails/1`, content );
     }
   
     getRegisterPage(): any {
-      return this.http.get(`${this.baseUrl}/register`);
+      return this.http.get(`${this.baseUrl}/registrationdetails/1`);
     }
   
     savePublicationIndexPage(content: any) {
