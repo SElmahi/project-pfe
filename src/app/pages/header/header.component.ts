@@ -15,8 +15,8 @@ export class HeaderComponent implements OnInit {
 
   // Define the variables
 // Define the variables
-logoURL: SafeUrl | string = 'assets/image/logo.png';
-backgroundURL: SafeUrl | string = 'assets/image/conference.jpg';
+logoURL: SafeUrl ;
+backgroundURL: SafeUrl ;
 
 
   constructor(private pageServiceService: PageServiceService, private sanitizer: DomSanitizer) {}

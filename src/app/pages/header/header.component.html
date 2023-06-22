@@ -187,9 +187,8 @@
 
 <div class="photo">
   <img [src]="backgroundURL" alt="background" class="background-img" />
-  <h1>
-    The 1st National Conference on Computer Science and Artificial Intelligence
-    (NCCSAI 2023)
+  <h1 [innerHTML]="titreAffiche">
+   
   </h1>
 </div>
 
@@ -199,5 +198,5 @@
 <div class="footer">
   <img class="logo" style="margin-top: 1.5rem" [src]="logoURL" alt="logo" />
 
-  <span style="margin-right: 3%">contact@gmail.com</span>
+  <span style="margin-right: 3%"  [innerHTML]="contentAffiche"></span>
 </div>
