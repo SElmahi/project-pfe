@@ -1,45 +1,83 @@
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,600&display=swap" rel="stylesheet">
-<div><h2>REGISTRATION</h2></div>
+<div><h1>REGISTRATION</h1></div>
 
+<div [innerHTML]="contentAffiche"><p></p></div>
 
-<div  [innerHTML]="contentAffiche" > <p></div>
-
-  <router-outlet></router-outlet>
-  <div class="form-container">
-    <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
-      <h2>ATTENDEES</h2>
+<div class="form-container">
+  <form [formGroup]="submitForm" (ngSubmit)="onSubmit()">
+    <h2>ATTENDEES</h2>
     <div classg="form-group">
-      <label for="name">First name :</label><br>
-      <input type="text" class="form-control" id="name" formControlName="name">
-      <div *ngIf="submitForm.get('name').invalid && submitForm.get('name').touched" class="error-message">
+      <label for="name">First name :</label><br />
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="submitForm.get('name').invalid && submitForm.get('name').touched"
+        class="error-message"
+      >
         First name is required.
       </div>
     </div>
     <div class="form-group">
-      <label for="familyName">Last name :</label><br>
-      <input type="text" class="form-control" id="familyName" formControlName="familyName">
-      <div *ngIf="submitForm.get('familyName').invalid && submitForm.get('familyName').touched" class="error-message">
+      <label for="familyName">Last name :</label><br />
+      <input
+        type="text"
+        class="form-control"
+        id="familyName"
+        formControlName="familyName"
+      />
+      <div
+        *ngIf="
+          submitForm.get('familyName').invalid &&
+          submitForm.get('familyName').touched
+        "
+        class="error-message"
+      >
         Last name is required.
       </div>
     </div>
     <div class="form-group">
-      <label for="email">Email :</label><br>
-      <input type="email" class="form-control" id="email" formControlName="email">
-      <div *ngIf="submitForm.get('email').invalid && submitForm.get('email').touched" class="error-message">
-        <span *ngIf="submitForm.get('email').errors?.required">Email is required.</span>
-        <span *ngIf="submitForm.get('email').errors?.email">Invalid email format.</span>
+      <label for="email">Email :</label><br />
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
+      <div
+        *ngIf="
+          submitForm.get('email').invalid && submitForm.get('email').touched
+        "
+        class="error-message"
+      >
+        <span *ngIf="submitForm.get('email').errors?.required"
+          >Email is required.</span
+        >
+        <span *ngIf="submitForm.get('email').errors?.email"
+          >Invalid email format.</span
+        >
       </div>
     </div>
     <div class="form-group">
-      <label for="payment">Payment :</label><br>
-      <input type="file" id="payment" name="payment" (change)="onFileSelected($event.target.files)" accept=".pdf">
-      <div *ngIf="submitForm.hasError('fileNotSelected') && submitForm.touched" class="error-message">
+      <label for="payment">Payment :</label><br />
+      <input
+        type="file"
+        id="payment"
+        name="payment"
+        (change)="onFileSelected($event.target.files)"
+        accept=".pdf"
+      />
+      <div
+        *ngIf="submitForm.hasError('fileNotSelected') && submitForm.touched"
+        class="error-message"
+      >
         Payment file is required.
       </div>
     </div>
     <button type="submit" [disabled]="isSubmitting || submitForm.invalid">
-      {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+      {{ isSubmitting ? "Submitting..." : "Submit" }}
     </button>
   </form>
-
-  </div>
+</div>

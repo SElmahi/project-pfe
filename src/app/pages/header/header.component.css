@@ -1,0 +1,143 @@
+:host {
+  font-family: "Roboto", sans-serif;
+
+  color: #ffffff;
+}
+.footer {
+  position: fixed; /* Changed from 'absolute' to 'fixed' */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50.6px;
+  background-color: #0a2647;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  z-index: 9999;
+}
+
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 9%;
+  display: flex;
+  align-items: center;
+  background-color: #0a2647;
+  justify-content: space-between;
+  z-index: 10; /* Any positive number will do, it just has to be higher than the z-index of the other elements */
+}
+
+.toolbar ul {
+  list-style: none;
+  font-size: 13px;
+  display: flex;
+}
+.toolbar li {
+  margin-right: 1em;
+}
+.toolbar a {
+  font-size: 135%;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+  letter-spacing: 0.05em;
+}
+.toolbar a:hover {
+  color: #2c74b3;
+}
+.toolbar a:active {
+  color: #ffffff;
+}
+
+h1 {
+  font-size: 60px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.logo {
+  width: 3%;
+  margin: 1%;
+}
+.photo {
+  position: relative; /* Added */
+  margin-top: 5.5%;
+  margin-left: 1%;
+  margin-right: 1%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Added, will hide the overflowing parts of the image */
+}
+
+.background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Added */
+  height: 100%; /* Changed from 100% to auto */
+  object-fit: cover; /* Changed from contain to cover */
+  z-index: -1;
+}
+
+.link {
+  display: flex;
+}
+/*tejriba f nav bar*/
+
+.toggle-button {
+  position: absolute;
+  margin: 3%;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+.toggle-button .bar {
+  height: 5px;
+  width: 8%;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: auto;
+}
+
+@media (max-width: 946px) {
+  .toggle-button {
+    display: flex;
+  }
+  .toolbar a {
+    width: 100%;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: start;
+    height: auto;
+  }
+  .toolbar ul {
+    width: 100%;
+    flex-direction: column;
+  }
+  .logo {
+    width: 9%;
+  }
+  .footer {
+    height: auto;
+  }
+  .photo {
+    margin-top: 19%;
+    height: 300px;
+  }
+  h1 {
+    font-size: 180%;
+  }
+  .toolbarClass {
+    display: none;
+  }
+}

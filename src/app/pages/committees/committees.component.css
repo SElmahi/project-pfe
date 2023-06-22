@@ -1,3 +1,7 @@
+:host {
+  font-family: "Roboto", sans-serif;
+  color: #000;
+}
 h1 {
   color: #0a2647;
   border-bottom: 3px solid #0a2647;

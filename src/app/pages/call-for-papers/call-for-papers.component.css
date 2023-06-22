@@ -1,24 +1,24 @@
+:host {
+  font-family: "Roboto", sans-serif;
+  color: #000;
+}
+h1 {
+  text-align: center;
+  color: #0a2647;
+  border-bottom: 3px solid #0a2647;
+  padding-bottom: 0.5rem;
+  font-family: "Arial", sans-serif;
+}
+p {
+  margin-left: 2%;
+  margin-top: 5%;
+  text-align: left;
 
-h1{
-    text-align: center;
-    color: #0A2647;
-    border-bottom: 3px solid #0a2647;
-    padding-bottom: 0.5rem;
-      font-family: 'Arial', sans-serif;
-    }
-    p{
-    margin-left:2% ;
-    margin-top: 5%;
-    text-align:left;
-    
-    color:#4D4D4D;
-    font-size: 18px;
-    }
-    
-    ul{
-    
-    color:#4D4D4D;
-    font-size: 18px;
-    }
-    
-    
+  color: #4d4d4d;
+  font-size: 18px;
+}
+
+ul {
+  color: #4d4d4d;
+  font-size: 18px;
+}

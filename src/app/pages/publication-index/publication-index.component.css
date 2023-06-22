@@ -1,6 +1,17 @@
-p{
-    margin:1,5em 0;
-    padding:0;
-    text-indent:1,5em;
-    white-space: pre-line;
-   }
+:host {
+  font-family: "Roboto", sans-serif;
+  color: #000;
+}
+p {
+  margin: 1, 5em 0;
+  padding: 0;
+  text-indent: 1, 5em;
+  white-space: pre-line;
+}
+h1 {
+  text-align: center;
+  color: #1a3b5d;
+  border-bottom: 3px solid #1a3b5d;
+  padding-bottom: 0.5rem;
+  font-family: "Arial", sans-serif;
+}

@@ -1,6 +1,6 @@
 :host {
   font-family: "Roboto", sans-serif;
-  color: #4d4d4d;
+  color: #000;
 }
 h1 {
   text-align: center;
@@ -13,26 +13,6 @@ label {
   font-weight: bold;
   display: block;
 }
-table {
-  margin-left: auto;
-  margin-right: auto;
-  color: #4d4d4d;
-  border-collapse: collapse;
-  width: 50%;
-  margin-bottom: 1.5rem;
-}
-
-th,
-td {
-  border: 1px solid #4d4d4d;
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  color: #fff4e0;
-  background-color: #205295;
-}
 
 .form-container {
   display: flex;
@@ -42,8 +22,6 @@ th {
 form {
   width: 45%;
   padding: 1.5rem;
-  border: 1px solid #1a3b5d;
-  border-radius: 0.25rem;
 }
 
 .form-group {
